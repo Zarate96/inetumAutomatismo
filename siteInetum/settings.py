@@ -164,6 +164,8 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+CELERY_BROKER_URL = 'amqp://localhost'
+
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'Full',

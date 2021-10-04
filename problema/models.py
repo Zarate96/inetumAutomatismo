@@ -1,5 +1,7 @@
 from django.db import models
-
+from .tasks import notificacion_telegram
+from django.dispatch import receiver
+from django.db.models.signals import pre_save
 # Create your models here.
 
 SUBESTADO = (
@@ -11,6 +13,39 @@ SUBESTADO = (
 AMBIENTE_SOC = (
         ('Pre-Producción', 'Pre-Producción'),
         ('Producción', 'Producción'),
+
+    )
+
+ENTREGABLES = (
+        ('KO', 'KO'),
+        ('COMITÉ ARQ.', 'COMITÉ ARQ.'),
+        ('PLAN PROYECTO', 'PLAN PROYECTO'),
+        ('MINUTA KO', 'MINUTA KO'),
+        ('SS', 'SS'),
+        ('ALTA EN GESTORES', 'ALTA EN GESTORES'),
+        ('RESPALDOS', 'RESPALDOS'),
+        ('ESTADÍSTICAS', 'ESTADÍSTICAS'),
+        ('LISTAS DE ALARMAS', 'LISTAS DE ALARMAS'),
+        ('MT', 'MT'),
+        ('ATP', 'ATP'),
+        ('MO', 'MO'),
+        ('SLA', 'SLA'),
+        ('TOPOLOGÍA', 'TOPOLOGÍA'),
+        ('CAPACITACIÓN', 'CAPACITACIÓN'),
+        ('PRUEBAS CERTIFICACIÓN', 'PRUEBAS CERTIFICACIÓN'),
+        ('CERTIFICADO SSL', 'CERTIFICADO SSL'),
+        ('MANUALES', 'MANUALES'),
+        ('RUTINAS O&M', 'RUTINAS O&M'),
+        ('RM', 'RM'),
+        ('DTS', 'DTS'),
+        ('VOBO SOPORTE PRESUPUESTAL', 'VOBO SOPORTE PRESUPUESTAL'),
+        ('OT FORMATO ABC', 'OT FORMATO ABC'),
+        ('VOBO SOPORTE PARA PP', 'VOBO SOPORTE PARA PP'),
+        ('ALTA DNS/PLANTILLAS', 'ALTA DNS/PLANTILLAS'),
+        ('DIAGRAMA/ TOPOLOGIA KMZ', 'DIAGRAMA/ TOPOLOGIA KMZ'),
+        ('REPORTE FOTOGRAFICO', 'REPORTE FOTOGRAFICO'),
+        ('AE', 'AE'),
+        ('AA', 'AA'),
 
     )
 
@@ -51,40 +86,6 @@ class Estatus(models.Model):
     class Meta:
         verbose_name = "Estatus"
         verbose_name_plural = "Estatus"
-        ordering = ('created',)
-
-    def __str__(self):
-        return self.name
-
-
-
-class Grupo(models.Model):
-    name = models.CharField(max_length=100, verbose_name="Nombre del Elemento")
-    grupo = models.CharField(max_length=100, verbose_name="Grupo del Elemento")
-    id_grupo = models.PositiveIntegerField(default=0, verbose_name="ID del Grupo")
-    alta_workflow = models.DateField( verbose_name="Fecha de Alta WORKFLOW",blank=True, null=True)
-    created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
-    updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición")
-
-    class Meta:
-        verbose_name = "Grupo"
-        verbose_name_plural = "Grupos"
-        ordering = ('created',)
-
-    def __str__(self):
-        return self.name
-
-class Entregable(models.Model):
-    name = models.CharField(max_length=100, verbose_name="Nombre del Entregable")
-    compromiso = models.DateField( verbose_name="Fecha Compromiso del Entregable",blank=True, null=True)
-    grupo = models.ForeignKey(Grupo, on_delete=models.CASCADE, related_name="get_grupo",
-                                   verbose_name="Grupo", blank=True, null=True)
-    created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
-    updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición")
-
-    class Meta:
-        verbose_name = "Entregable"
-        verbose_name_plural = "Entregables"
         ordering = ('created',)
 
     def __str__(self):
@@ -212,12 +213,29 @@ class Catalogo(models.Model):
     def __str__(self):
         return self.name
 
+class Grupo(models.Model):
+    name = models.CharField(max_length=100, verbose_name="Nombre del Elemento")
+    elemento_soc = models.ForeignKey(Catalogo, on_delete=models.CASCADE, related_name="get_grupo",
+                                     verbose_name="Elemento",blank=True, null=True)
+    id_grupo = models.PositiveIntegerField(default=0, verbose_name="ID del Grupo")
+    alta_workflow = models.DateField( verbose_name="Fecha de Alta WORKFLOW",blank=True, null=True)
+    created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
+    updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición")
+
+    class Meta:
+        verbose_name = "Grupo"
+        verbose_name_plural = "Grupos"
+        ordering = ('created',)
+
+    def __str__(self):
+        return self.name
 
 
 class Ot(models.Model):
     name = models.CharField(max_length=100, verbose_name="Titulo de la Ot")
     numero = models.PositiveIntegerField(default=0, verbose_name="Numero de la OT")
-    elemento_soc = models.CharField(max_length=100, verbose_name="Elemento")
+    elemento_soc = models.ForeignKey(Catalogo, on_delete=models.CASCADE, related_name="get_ot",
+                                     verbose_name="Elemento")
     ejecucion = models.DateField( verbose_name="Fecha de Ejecución de la OT",blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición")
@@ -269,3 +287,37 @@ class Gestion(models.Model):
 
     def __str__(self):
         return self.name_proyecto
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+
+class Entregable(models.Model):
+    name = models.CharField(choices=ENTREGABLES, max_length=200, verbose_name="Escoja el entregable")
+    compromiso = models.DateField( verbose_name="Fecha Compromiso del Entregable",blank=True, null=True)
+    comentario = models.CharField(max_length=100, verbose_name="Comentario", blank=True, null=True)
+    gestion = models.ForeignKey(Gestion, on_delete=models.CASCADE, related_name="get_gestion",
+                                   verbose_name="Proyecto", blank=True, null=True)
+    created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
+    updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición")
+
+    class Meta:
+        verbose_name = "Entregable"
+        verbose_name_plural = "Entregables"
+        ordering = ('created',)
+
+    def __str__(self):
+        return self.name
+
+
+@receiver(pre_save, sender=Gestion)
+def validador(sender,instance, **kwargs):
+    prueba = instance
+    print(prueba)
+    try:
+        old_instance = sender.objects.get(pk=instance.pk)
+        if old_instance.estatus != instance.estatus:
+            notificacion_telegram(instance.id_proyecto,instance.name_proyecto,str(old_instance.estatus).upper(), str(instance.estatus).upper())
+            print(old_instance.name_proyecto, instance.name_proyecto)
+    except sender.DoesNotExist:
+        pass
