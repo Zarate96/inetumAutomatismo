@@ -285,8 +285,8 @@ class Gestion(models.Model):
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición")
 
     class Meta:
-        verbose_name = "Liberacion y despliegue"
-        verbose_name_plural = "Liberacion y despliegue"
+        verbose_name = "Gestion de Proyectos"
+        verbose_name_plural = "Gestion de Proyectos"
         ordering = ('created',)
 
     def __str__(self):
