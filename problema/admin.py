@@ -32,9 +32,9 @@ class CatalogoProject(ImportExportModelAdmin, admin.ModelAdmin):
 class EntregableProject(ImportExportModelAdmin, admin.ModelAdmin):
     resouce_class = ProblemaResource
     readonly_fields = ('created', 'updated')
-    list_display = ('name', 'compromiso','gestion')
+    list_display = ('name', 'compromiso','gestion', 'estatus')
     search_fields = ('name', 'compromiso','gestion__name')
-    list_filter = ('compromiso', )
+    list_filter = ('compromiso', 'estatus','gestion')
 
 
 @admin.register(Estatus)
@@ -50,8 +50,8 @@ class EstatusProject(ImportExportModelAdmin, admin.ModelAdmin):
 class GerenciaSoporteTemmProject(ImportExportModelAdmin, admin.ModelAdmin):
     resouce_class = ProblemaResource
     readonly_fields = ('created', 'updated')
-    list_display = ('name', 'apellido', 'mrn', 'email', 'created', 'updated')
-    search_fields = ('name', 'apellido', 'mrn', 'email', 'created', 'updated')
+    list_display = ('name', 'area', 'apellido', 'telefono', 'email', 'created', 'updated')
+    search_fields = ('name', 'area', 'apellido', 'telefono', 'email', 'created', 'updated')
     list_filter = ('get_gerente__name', 'get_gerente__apellido')
 
 
@@ -59,8 +59,8 @@ class GerenciaSoporteTemmProject(ImportExportModelAdmin, admin.ModelAdmin):
 class GerenciaTemmProject(ImportExportModelAdmin, admin.ModelAdmin):
     resouce_class = ProblemaResource
     readonly_fields = ('created', 'updated')
-    list_display = ('name', 'apellido', 'mrn', 'email', 'created', 'updated')
-    search_fields = ('name', 'apellido', 'mrn', 'email', 'created', 'updated')
+    list_display = ('name', 'apellido', 'telefono', 'email', 'created', 'updated')
+    search_fields = ('name', 'apellido', 'telefono', 'email', 'created', 'updated')
     list_filter = ('get_gerente__name', 'get_gerente__apellido')
 
 
@@ -68,8 +68,8 @@ class GerenciaTemmProject(ImportExportModelAdmin, admin.ModelAdmin):
 class GestorProject(ImportExportModelAdmin, admin.ModelAdmin):
     resouce_class = ProblemaResource
     readonly_fields = ('created', 'updated')
-    list_display = ('name', 'apellido', 'mrn', 'email', 'created', 'updated')
-    search_fields = ('name', 'apellido', 'mrn', 'email', 'created', 'updated')
+    list_display = ('name', 'apellido', 'mrn', 'telefono', 'email', 'created', 'updated')
+    search_fields = ('name', 'apellido', 'mrn', 'telefono', 'email', 'created', 'updated')
     list_filter = ('name',)
 
 
@@ -81,9 +81,6 @@ class GrupoProject(ImportExportModelAdmin, admin.ModelAdmin):
     search_fields = ('name', 'elemento_soc', 'id_grupo', 'alta_workflow',)
     list_filter = ('name', )
     ordering = ['created']
-
-
-
 
 @admin.register(Ot)
 class OtProject(ImportExportModelAdmin, admin.ModelAdmin):
@@ -116,9 +113,9 @@ class TipoProyectoProject(ImportExportModelAdmin, admin.ModelAdmin):
 class SoporteTemmProject(ImportExportModelAdmin, admin.ModelAdmin):
     resouce_class = ProblemaResource
     readonly_fields = ('created', 'updated')
-    list_display = ('name','apellido', 'mrn' ,'email' ,'gerente', 'created', 'updated')
-    search_fields = ('name','apellido', 'mrn' ,'email' , 'created', 'updated')
-    list_filter = ('gerente__name', 'gerente__apellido', 'gerente__mrn',)
+    list_display = ('name', 'area', 'apellido', 'telefono' ,'email' ,'gerente', 'created', 'updated')
+    search_fields = ('name', 'area', 'apellido', 'telefono' ,'email' , 'created', 'updated')
+    list_filter = ('gerente__name', 'gerente__apellido', 'gerente__telefono',)
 
 
 
@@ -126,9 +123,9 @@ class SoporteTemmProject(ImportExportModelAdmin, admin.ModelAdmin):
 class LiderTecnicoTemmProject(ImportExportModelAdmin, admin.ModelAdmin):
     resouce_class = ProblemaResource
     readonly_fields = ('created', 'updated')
-    list_display = ('name', 'apellido', 'mrn', 'email', 'gerente', 'created', 'updated')
-    search_fields = ('name', 'apellido', 'mrn', 'email', 'created', 'updated')
-    list_filter = ('gerente__name', 'gerente__apellido', 'gerente__mrn',)
+    list_display = ('name', 'apellido', 'telefono', 'email', 'gerente', 'created', 'updated')
+    search_fields = ('name', 'apellido', 'telefono', 'email', 'created', 'updated')
+    list_filter = ('gerente__name', 'gerente__apellido', 'gerente__telefono',)
 
 
 

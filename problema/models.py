@@ -7,13 +7,12 @@ from django.db.models.signals import pre_save
 SUBESTADO = (
         ('Maqueta', 'Maqueta'),
         ('Servicio', 'Servicio'),
-
+        ('Regularización', 'Regularización'),
     )
 
 AMBIENTE_SOC = (
         ('Pre-Producción', 'Pre-Producción'),
         ('Producción', 'Producción'),
-
     )
 
 ENTREGABLES = (
@@ -46,13 +45,14 @@ ENTREGABLES = (
         ('REPORTE FOTOGRAFICO', 'REPORTE FOTOGRAFICO'),
         ('AE', 'AE'),
         ('AA', 'AA'),
-
+        ('Otros', 'Otros'),
     )
 
 class Gestor(models.Model):
     name = models.CharField(max_length=100, verbose_name="Nombre del Gestor")
     apellido = models.CharField(max_length=100, verbose_name="Apellido del Gestor")
     mrn = models.CharField(max_length=100, verbose_name="MRN del Gestor")
+    telefono = models.CharField(max_length=100, verbose_name="Teléfono del Gestor", default="")
     email = models.EmailField(max_length=100, verbose_name="Email del Gestor")
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición")
@@ -109,7 +109,7 @@ class Area(models.Model):
 class GerenciaTemm(models.Model):
     name = models.CharField(max_length=100, verbose_name="Nombre del Gerente")
     apellido = models.CharField(max_length=100, verbose_name="Apellido del Gerente")
-    mrn = models.CharField(max_length=100, verbose_name="MRN del Gerente")
+    telefono = models.CharField(max_length=100, verbose_name="Numero de Telefono", default="")
     email = models.EmailField(max_length=100, verbose_name="Email del Gerente")
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición")
@@ -125,7 +125,7 @@ class GerenciaTemm(models.Model):
 class LiderTecnicoTemm(models.Model):
     name = models.CharField(max_length=100, verbose_name="Nombre del Lider")
     apellido = models.CharField(max_length=100, verbose_name="Apellido del Lider")
-    mrn = models.CharField(max_length=100, verbose_name="MRN del Lider")
+    telefono = models.CharField(max_length=100, verbose_name="Numero de Telefono", default="")
     email = models.EmailField(max_length=100, verbose_name="Email del Lider")
     gerente = models.ForeignKey(GerenciaTemm, on_delete=models.CASCADE, related_name="get_gerente",
                                      verbose_name="Gerente del Proyecto")
@@ -144,8 +144,9 @@ class LiderTecnicoTemm(models.Model):
 
 class GerenciaSoporteTemm(models.Model):
     name = models.CharField(max_length=100, verbose_name="Nombre del Gerente")
+    area = models.CharField(max_length=100, verbose_name="Nombre del area de soporte", default="")
     apellido = models.CharField(max_length=100, verbose_name="Apellido del Gerente")
-    mrn = models.CharField(max_length=100, verbose_name="MRN del Gerente")
+    telefono = models.CharField(max_length=100, verbose_name="Numero de Telefono", default="")
     email = models.EmailField(max_length=100, verbose_name="Email del Gerente")
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición")
@@ -160,8 +161,9 @@ class GerenciaSoporteTemm(models.Model):
 
 class SoporteTemm(models.Model):
     name = models.CharField(max_length=100, verbose_name="Nombre del Sorpote")
+    area = models.CharField(max_length=100, verbose_name="Nombre del area", default="")
     apellido = models.CharField(max_length=100, verbose_name="Apellido del Soporte")
-    mrn = models.CharField(max_length=100, verbose_name="MRN del Soporte")
+    telefono = models.CharField(max_length=100, verbose_name="Numero de Telefono", default="")
     email = models.EmailField(max_length=100, verbose_name="Email del Soporte")
     gerente = models.ForeignKey(GerenciaSoporteTemm, on_delete=models.CASCADE, related_name="get_gerente",
                                      verbose_name="Gerente del Proyecto")
@@ -175,7 +177,7 @@ class SoporteTemm(models.Model):
         ordering = ('created',)
 
     def __str__(self):
-        return self.name
+        return self.area
 
 
 class TecnologiaCatalogo(models.Model):
@@ -196,10 +198,10 @@ class Catalogo(models.Model):
     name = models.CharField(max_length=100, verbose_name="Hostname")
     id_soc = models.PositiveIntegerField(default=0, verbose_name="ID del SOC")
     elemento_soc = models.CharField(max_length=100, verbose_name="Elemento")
-    ip_soc = models.GenericIPAddressField(default=0, verbose_name="Ip del SOC")
+    ip_soc = models.GenericIPAddressField(default=" ", verbose_name="Ip del SOC", blank=True, null=True)
     ambiente = models.CharField(choices=AMBIENTE_SOC, max_length=200, verbose_name="Ambiente SOC", blank=True, null=True)
     tecnologia = models.ForeignKey(TecnologiaCatalogo, on_delete=models.CASCADE, related_name="get_tecnologia_soc",
-                                verbose_name="Tecnología Soc")
+                                verbose_name="Tecnología Soc", blank=True)
 
 
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
@@ -223,8 +225,8 @@ class Grupo(models.Model):
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición")
 
     class Meta:
-        verbose_name = "Grupo"
-        verbose_name_plural = "Grupos"
+        verbose_name = "Elemento"
+        verbose_name_plural = "Elementos"
         ordering = ('created',)
 
     def __str__(self):
@@ -254,6 +256,8 @@ class Ot(models.Model):
 class Gestion(models.Model):
     id_proyecto = models.PositiveIntegerField(default=0, verbose_name="ID del proyecto")
     name_proyecto = models.CharField(max_length=100, verbose_name="Nombre del Proyecto")
+    detencion = models.BooleanField(verbose_name="Detencion de proyecto", blank=True, null=True, default=False)
+    fecha_detencion = models.DateField(verbose_name="Fecha de detencion", blank=True, null=True)
     tipoProyecto = models.ForeignKey(TipoProyecto, on_delete=models.CASCADE, related_name="get_tipo",
                                 verbose_name="Tipo de Proyecto")
     estatus = models.ForeignKey(Estatus, on_delete=models.CASCADE, related_name="get_estatus",
@@ -274,15 +278,15 @@ class Gestion(models.Model):
                               verbose_name="Soporte Técnico")
     pmo = models.CharField(max_length=100, verbose_name="Nombre del PMO")
     catalogo = models.ManyToManyField(Catalogo, verbose_name="Catalogo", related_name="get_catalogo")
-    ot = models.ManyToManyField(Ot, verbose_name="Orden de Trabajo", related_name="get_ots")
+    ot = models.ManyToManyField(Ot, verbose_name="Orden de Trabajo", related_name="get_ots", default="N/A")
     impacto = models.BooleanField(verbose_name="Impacto al Negocio", blank=True, null=True, default=False)
-
+    comentarios = models.TextField(verbose_name="Comentarios generales", default="")
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición")
 
     class Meta:
-        verbose_name = "Gestión de Proyecto"
-        verbose_name_plural = "Gestión de Proyectos"
+        verbose_name = "Liberacion y despliegue"
+        verbose_name_plural = "Liberacion y despliegue"
         ordering = ('created',)
 
     def __str__(self):
@@ -298,6 +302,7 @@ class Entregable(models.Model):
     comentario = models.CharField(max_length=100, verbose_name="Comentario", blank=True, null=True)
     gestion = models.ForeignKey(Gestion, on_delete=models.CASCADE, related_name="get_gestion",
                                    verbose_name="Proyecto", blank=True, null=True)
+    estatus = models.BooleanField(verbose_name="Estatus", default=False) 
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición")
 
