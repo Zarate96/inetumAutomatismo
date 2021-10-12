@@ -23,10 +23,20 @@ class AreaProject(ImportExportModelAdmin, admin.ModelAdmin):
 class CatalogoProject(ImportExportModelAdmin, admin.ModelAdmin):
     resouce_class = ProblemaResource
     readonly_fields = ('created', 'updated')
-    list_display = ('name', 'id_soc', 'elemento_soc', 'ip_soc' , 'ambiente', 'tecnologia',)
+    list_display = ('name', 'id_soc', 'elemento_soc', 'ip_soc' , 'ambiente', 'tecnologia','get_proyecto')
     search_fields = ('name', 'id_soc', 'elemento_soc', 'ip_soc' , 'ambiente', 'tecnologia',)
     list_filter = ('tecnologia',)
 
+    def get_proyecto(self, obj):
+        proyectos = Gestion.objects.filter(catalogo=obj.pk).order_by("created")
+        lista =[]
+
+        for proyecto in proyectos:
+            lista.append(proyecto.id_proyecto)
+            lista.append(proyecto.name_proyecto)
+        return lista
+
+    get_proyecto.short_description = "Proyectos"
 
 @admin.register(Entregable)
 class EntregableProject(ImportExportModelAdmin, admin.ModelAdmin):
@@ -137,7 +147,7 @@ class GestionProject(ImportExportModelAdmin, admin.ModelAdmin):
                     'get_fechas','problema_catalogo',)
     search_fields = ('id_proyecto', 'name_proyecto', 'tipoProyecto', 'estatus', 'sub_estado', 'liberado', 'produccion', 'gestor',
                     'kick_off','get_fechas','problema_catalogo','grupo__name')
-    raw_id_fields = ('grupo',)
+    raw_id_fields = ('grupo','catalogo','ot')
 
     def problema_catalogo(self, obj):
         return ", ".join(
