@@ -15,6 +15,7 @@ class gestionProyectos(ListView):
 class proyectoDetalle(DetailView):
     template_name = "problema/proyecto_detalle.html"
     model = Gestion
+    context_object_name = "proyecto"
 
 class crearProyectos(FormView):
     form_class = GestionForm

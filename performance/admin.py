@@ -8,19 +8,20 @@ from import_export.admin import ImportExportModelAdmin
 # REGISTRO DE IMPORTACIONES
 class PerformanceResource(resources.ModelResource):
     class meta:
-        model=(Categoria, SubCategoria , Performance)
+        model=(Estatus, Categoria , Performance, Servicio, Troncal, Ingeniero)
+
+
+@admin.register(Estatus)
+class EstatusProject(ImportExportModelAdmin, admin.ModelAdmin):
+    resouce_class = PerformanceResource
+    readonly_fields = ('created', 'updated')
+    list_display = ('name','fecha', 'ingeniero',)
+    search_fields = ('name','created', 'updated',)
+    raw_id_fields = ('performance',)
 
 
 @admin.register(Categoria)
 class CategoriaProject(ImportExportModelAdmin, admin.ModelAdmin):
-    resouce_class = PerformanceResource
-    readonly_fields = ('created', 'updated')
-    list_display = ('name','created', 'updated',)
-    search_fields = ('name','created', 'updated',)
-
-
-@admin.register(SubCategoria)
-class SubCategoriaProject(ImportExportModelAdmin, admin.ModelAdmin):
     resouce_class = PerformanceResource
     readonly_fields = ('created', 'updated')
     list_display = ('name', 'created', 'updated',)
@@ -31,7 +32,43 @@ class SubCategoriaProject(ImportExportModelAdmin, admin.ModelAdmin):
 class PerformanceProject(ImportExportModelAdmin, admin.ModelAdmin):
     resouce_class = PerformanceResource
     readonly_fields = ('created', 'updated')
-    list_display = ('categoria', 'subcategoria', 'fecha','cantidad')
-    list_filter = ('fecha','subcategoria', 'categoria')
+    list_display = ('name', 'sucursal','servicio', 'troncal', 'tipo','identificador', 'categoria','get_estatus', 'region',  'unico','regio', 'ab', 'saltos')
+    list_filter = ( 'categoria',)
+
+
+
+    def get_estatus(self, obj):
+        estatus =  Estatus.objects.filter(performance__id=obj.pk).order_by("created")
+        lista =[]
+
+        for x in estatus:
+            lista.append(x.name)
+            lista.append(x.fecha)
+        return lista
+
+    get_estatus.short_description = "Estatus"
+
+@admin.register(Servicio)
+class ServicioriaProject(ImportExportModelAdmin, admin.ModelAdmin):
+    resouce_class = PerformanceResource
+    readonly_fields = ('created', 'updated')
+    list_display = ('name', 'created', 'updated',)
+    search_fields = ('name', 'created', 'updated',)
+
+@admin.register(Troncal)
+class TroncalProject(ImportExportModelAdmin, admin.ModelAdmin):
+    resouce_class = PerformanceResource
+    readonly_fields = ('created', 'updated')
+    list_display = ('name', 'created', 'updated',)
+    search_fields = ('name', 'created', 'updated',)
+
+@admin.register(Ingeniero)
+class IngenieroProject(ImportExportModelAdmin, admin.ModelAdmin):
+    resouce_class = PerformanceResource
+    readonly_fields = ('created', 'updated')
+    list_display = ('name', 'created', 'updated',)
+    search_fields = ('name', 'created', 'updated',)
+
+
 
 ##################################################################################################
