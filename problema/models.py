@@ -254,7 +254,7 @@ class Ot(models.Model):
 
 
 class Gestion(models.Model):
-    id_proyecto = models.PositiveIntegerField(default=0, verbose_name="ID del proyecto")
+    id_proyecto = models.PositiveIntegerField(default=0, verbose_name="ID de grupo")
     name_proyecto = models.CharField(max_length=100, verbose_name="Nombre del Proyecto")
     detencion = models.BooleanField(verbose_name="Detencion de proyecto", blank=True, null=True, default=False)
     fecha_detencion = models.DateField(verbose_name="Fecha de detencion", blank=True, null=True)
@@ -278,7 +278,7 @@ class Gestion(models.Model):
                               verbose_name="Soporte Técnico")
     pmo = models.CharField(max_length=100, verbose_name="Nombre del PMO")
     catalogo = models.ManyToManyField(Catalogo, verbose_name="Catalogo", related_name="get_catalogo")
-    ot = models.ManyToManyField(Ot, verbose_name="Orden de Trabajo", related_name="get_ots", default="N/A")
+    ot = models.ManyToManyField(Ot, verbose_name="Orden de Trabajo", related_name="get_ots", blank=True)
     impacto = models.BooleanField(verbose_name="Impacto al Negocio", blank=True, null=True, default=False)
     comentarios = models.TextField(verbose_name="Comentarios generales", default="")
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")

@@ -149,18 +149,18 @@ class Estatus(models.Model):
     def __str__(self):
         return self.name
 
-    def save(self, *args, **kwargs):
-        if self.name == "RECHAZADO":
-            notificacion_correo_rechado(self.name,self.performance.name, self.performance.sucursal,self.performance.identificador,self.motivo,self.ingeniero.name, self.ingeniero.mail)
-            super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     if self.name == "RECHAZADO":
+    #         notificacion_correo_rechado(self.name,self.performance.name, self.performance.sucursal,self.performance.identificador,self.motivo,self.ingeniero.name, self.ingeniero.mail)
+    #         super().save(*args, **kwargs)
 
 
-        elif self.name == "ACEPTADO":
-            notificacion_correo_aceptado(self.name,self.performance.name, self.performance.sucursal,self.performance.identificador,self.ingeniero.name, self.ingeniero.mail)
-            super().save(*args, **kwargs)
+    #     elif self.name == "ACEPTADO":
+    #         notificacion_correo_aceptado(self.name,self.performance.name, self.performance.sucursal,self.performance.identificador,self.ingeniero.name, self.ingeniero.mail)
+    #         super().save(*args, **kwargs)
 
-        else:
-            super().save(*args, **kwargs)
+    #     else:
+    #         super().save(*args, **kwargs)
 
 
 #########################################################################################################

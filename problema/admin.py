@@ -87,10 +87,19 @@ class GestorProject(ImportExportModelAdmin, admin.ModelAdmin):
 class GrupoProject(ImportExportModelAdmin, admin.ModelAdmin):
     resouce_class = ProblemaResource
     readonly_fields = ('created', 'updated')
-    list_display = ('name', 'elemento_soc', 'id_grupo', 'alta_workflow', )
+    list_display = ('name', 'elemento_soc', 'id_grupo', 'alta_workflow','get_proyecto')
     search_fields = ('name', 'elemento_soc', 'id_grupo', 'alta_workflow',)
     list_filter = ('name', )
     ordering = ['created']
+
+    def get_proyecto(self, obj):
+        proyectos = Gestion.objects.filter(grupo=obj.pk).order_by("created")
+        lista =[]
+
+        for proyecto in proyectos:
+            lista.append(proyecto.id_proyecto)
+            lista.append(proyecto.name_proyecto)
+        return lista
 
 @admin.register(Ot)
 class OtProject(ImportExportModelAdmin, admin.ModelAdmin):
