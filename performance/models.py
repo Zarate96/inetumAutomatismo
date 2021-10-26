@@ -137,7 +137,7 @@ class Estatus(models.Model):
                                   verbose_name="Nombre del Ingeniero", blank=True, null=True)
 
     motivo = models.CharField(choices=MOTIVO, max_length=45, verbose_name="Motivo", blank=True, null=True)
-    adicionales = RichTextField(max_length=1000, verbose_name="Comentarios Adicionales", blank=True, null=True)
+    adicionales = RichTextField(verbose_name="Comentarios Adicionales", blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición")
 

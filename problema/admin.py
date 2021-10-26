@@ -42,7 +42,7 @@ class CatalogoProject(ImportExportModelAdmin, admin.ModelAdmin):
 class EntregableProject(ImportExportModelAdmin, admin.ModelAdmin):
     resouce_class = ProblemaResource
     readonly_fields = ('created', 'updated')
-    list_display = ('name', 'compromiso','gestion', 'estatus')
+    list_display = ('estatus','name', 'compromiso','gestion')
     search_fields = ('name', 'compromiso','gestion__name')
     list_filter = ('compromiso', 'estatus','gestion')
 
@@ -88,7 +88,7 @@ class GrupoProject(ImportExportModelAdmin, admin.ModelAdmin):
     resouce_class = ProblemaResource
     readonly_fields = ('created', 'updated')
     list_display = ('name', 'elemento_soc', 'id_grupo', 'alta_workflow','get_proyecto')
-    search_fields = ('name', 'elemento_soc', 'id_grupo', 'alta_workflow',)
+    search_fields = ('name',)
     list_filter = ('name', )
     ordering = ['created']
 
@@ -100,6 +100,8 @@ class GrupoProject(ImportExportModelAdmin, admin.ModelAdmin):
             lista.append(proyecto.id_proyecto)
             lista.append(proyecto.name_proyecto)
         return lista
+    
+    get_proyecto.short_description = "Proyectos"
 
 @admin.register(Ot)
 class OtProject(ImportExportModelAdmin, admin.ModelAdmin):
@@ -153,9 +155,9 @@ class GestionProject(ImportExportModelAdmin, admin.ModelAdmin):
     resouce_class = ProblemaResource
     readonly_fields = ('created', 'updated')
     list_display = ('id_proyecto', 'name_proyecto', 'tipoProyecto', 'estatus', 'sub_estado', 'liberado', 'produccion', 'gestor',
-                    'get_fechas','problema_catalogo',)
+                    'get_fechasEntregado','get_fechasNoEntregado','problema_catalogo',)
     search_fields = ('id_proyecto', 'name_proyecto', 'tipoProyecto', 'estatus', 'sub_estado', 'liberado', 'produccion', 'gestor',
-                    'kick_off','get_fechas','problema_catalogo','grupo__name')
+                    'kick_off','get_fechasEntregado','problema_catalogo','grupo__name')
     raw_id_fields = ('grupo','catalogo','ot')
 
     def problema_catalogo(self, obj):
@@ -164,10 +166,8 @@ class GestionProject(ImportExportModelAdmin, admin.ModelAdmin):
 
     problema_catalogo.short_description = "Catalogos"
 
-
-
-    def get_fechas(self, obj):
-        entregables =  Entregable.objects.filter(gestion_id=obj.pk).order_by("created")
+    def get_fechasEntregado(self, obj):
+        entregables =  Entregable.objects.filter(gestion_id=obj.pk).order_by("created").filter(estatus=True)
         lista =[]
 
         for entregable in entregables:
@@ -178,4 +178,18 @@ class GestionProject(ImportExportModelAdmin, admin.ModelAdmin):
         #return " / ".join(
         #    [str(c.compromiso) for c in Entregable.objects.filter(gestion_id=obj.pk).order_by("created")])
 
-    get_fechas.short_description = "Entregables"
+    get_fechasEntregado.short_description = "Entregables entregados"
+
+    def get_fechasNoEntregado(self, obj):
+        entregables =  Entregable.objects.filter(gestion_id=obj.pk).order_by("created").filter(estatus=False)
+        lista =[]
+
+        for entregable in entregables:
+            lista.append(entregable.name)
+            lista.append(entregable.compromiso)
+        return lista
+
+        #return " / ".join(
+        #    [str(c.compromiso) for c in Entregable.objects.filter(gestion_id=obj.pk).order_by("created")])
+
+    get_fechasNoEntregado.short_description = "Entregables no entregados"

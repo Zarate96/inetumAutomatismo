@@ -219,7 +219,7 @@ class Grupo(models.Model):
     name = models.CharField(max_length=100, verbose_name="Nombre del Elemento")
     elemento_soc = models.ForeignKey(Catalogo, on_delete=models.CASCADE, related_name="get_grupo",
                                      verbose_name="Elemento",blank=True, null=True)
-    id_grupo = models.PositiveIntegerField(default=0, verbose_name="ID del Grupo")
+    id_grupo = models.PositiveIntegerField(default=0, verbose_name="ID del Workflow")
     alta_workflow = models.DateField( verbose_name="Fecha de Alta WORKFLOW",blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición")
@@ -302,7 +302,7 @@ class Entregable(models.Model):
     comentario = models.CharField(max_length=100, verbose_name="Comentario", blank=True, null=True)
     gestion = models.ForeignKey(Gestion, on_delete=models.CASCADE, related_name="get_gestion",
                                    verbose_name="Proyecto", blank=True, null=True)
-    estatus = models.BooleanField(verbose_name="Estatus", default=False) 
+    estatus = models.BooleanField(verbose_name="Entregado", default=False) 
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición")
 
