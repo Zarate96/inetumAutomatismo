@@ -63,7 +63,7 @@ class Gestor(models.Model):
         ordering = ('created',)
 
     def __str__(self):
-        return self.name
+        return f'{self.name} {self.apellido}' 
 
 class TipoProyecto(models.Model):
     name = models.CharField(max_length=100, verbose_name="Tipo de Proyecto")
@@ -139,7 +139,7 @@ class LiderTecnicoTemm(models.Model):
         ordering = ('created',)
 
     def __str__(self):
-        return self.name
+        return f'{self.name} {self.apellido}' 
 
 
 class GerenciaSoporteTemm(models.Model):
@@ -219,6 +219,7 @@ class Grupo(models.Model):
     name = models.CharField(max_length=100, verbose_name="Nombre del Elemento")
     elemento_soc = models.ForeignKey(Catalogo, on_delete=models.CASCADE, related_name="get_grupo",
                                      verbose_name="Elemento",blank=True, null=True)
+    #unique = True
     id_grupo = models.PositiveIntegerField(default=0, verbose_name="ID del Workflow")
     alta_workflow = models.DateField( verbose_name="Fecha de Alta WORKFLOW",blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
@@ -249,9 +250,6 @@ class Ot(models.Model):
 
     def __str__(self):
         return self.name
-
-
-
 
 class Gestion(models.Model):
     id_proyecto = models.PositiveIntegerField(default=0, verbose_name="ID de grupo")

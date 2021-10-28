@@ -15,8 +15,8 @@ class ProblemaResource(resources.ModelResource):
 class AreaProject(ImportExportModelAdmin, admin.ModelAdmin):
     resouce_class = ProblemaResource
     readonly_fields = ('created', 'updated')
-    list_display = ('name','created', 'updated',)
-    search_fields = ('name','created', 'updated',)
+    list_display = ('name','created','updated',)
+    search_fields = ('name','created','updated',)
 
 
 @admin.register(Catalogo)
@@ -24,8 +24,7 @@ class CatalogoProject(ImportExportModelAdmin, admin.ModelAdmin):
     resouce_class = ProblemaResource
     readonly_fields = ('created', 'updated')
     list_display = ('name', 'id_soc', 'elemento_soc', 'ip_soc' , 'ambiente', 'tecnologia','get_proyecto')
-    search_fields = ('name', 'id_soc', 'elemento_soc', 'ip_soc' , 'ambiente', 'tecnologia',)
-    list_filter = ('tecnologia',)
+    search_fields = ('name', 'id_soc', 'elemento_soc', 'ambiente', 'tecnologia__id',)
 
     def get_proyecto(self, obj):
         proyectos = Gestion.objects.filter(catalogo=obj.pk).order_by("created")
@@ -43,7 +42,7 @@ class EntregableProject(ImportExportModelAdmin, admin.ModelAdmin):
     resouce_class = ProblemaResource
     readonly_fields = ('created', 'updated')
     list_display = ('estatus','name', 'compromiso','gestion')
-    search_fields = ('name', 'compromiso','gestion__name')
+    search_fields = ('name', 'compromiso','gestion__name_proyecto')
     list_filter = ('compromiso', 'estatus','gestion')
 
 
@@ -62,7 +61,7 @@ class GerenciaSoporteTemmProject(ImportExportModelAdmin, admin.ModelAdmin):
     readonly_fields = ('created', 'updated')
     list_display = ('name', 'area', 'apellido', 'telefono', 'email', 'created', 'updated')
     search_fields = ('name', 'area', 'apellido', 'telefono', 'email', 'created', 'updated')
-    list_filter = ('get_gerente__name', 'get_gerente__apellido')
+    #list_filter = ('get_gerente__name', 'get_gerente__apellido')
 
 
 @admin.register(GerenciaTemm)
@@ -71,7 +70,7 @@ class GerenciaTemmProject(ImportExportModelAdmin, admin.ModelAdmin):
     readonly_fields = ('created', 'updated')
     list_display = ('name', 'apellido', 'telefono', 'email', 'created', 'updated')
     search_fields = ('name', 'apellido', 'telefono', 'email', 'created', 'updated')
-    list_filter = ('get_gerente__name', 'get_gerente__apellido')
+    #list_filter = ('get_gerente__name', 'get_gerente__apellido')
 
 
 @admin.register(Gestor)
@@ -88,8 +87,8 @@ class GrupoProject(ImportExportModelAdmin, admin.ModelAdmin):
     resouce_class = ProblemaResource
     readonly_fields = ('created', 'updated')
     list_display = ('name', 'elemento_soc', 'id_grupo', 'alta_workflow','get_proyecto')
-    search_fields = ('name',)
-    list_filter = ('name', )
+    search_fields = ('name','elemento_soc__name')
+    list_filter = ('name','elemento_soc__name') 
     ordering = ['created']
 
     def get_proyecto(self, obj):
@@ -156,8 +155,7 @@ class GestionProject(ImportExportModelAdmin, admin.ModelAdmin):
     readonly_fields = ('created', 'updated')
     list_display = ('id_proyecto', 'name_proyecto', 'tipoProyecto', 'estatus', 'sub_estado', 'liberado', 'produccion', 'gestor',
                     'get_fechasEntregado','get_fechasNoEntregado','problema_catalogo',)
-    search_fields = ('id_proyecto', 'name_proyecto', 'tipoProyecto', 'estatus', 'sub_estado', 'liberado', 'produccion', 'gestor',
-                    'kick_off','get_fechasEntregado','problema_catalogo','grupo__name')
+    search_fields = ('id_proyecto', 'name_proyecto','tipoProyecto__name','estatus__name')
     raw_id_fields = ('grupo','catalogo','ot')
 
     def problema_catalogo(self, obj):
