@@ -7,6 +7,8 @@ import pandas as pd
 def get_data_problema():
     entregables = Entregable.objects.filter(estatus=False)
     for x in entregables:
+        if x.compromiso is not None:
+            print("no data")
         now = datetime.date.today()
         diferencia = x.compromiso - now
         delta = pd.date_range(start=now, end =x.compromiso, freq='B')
