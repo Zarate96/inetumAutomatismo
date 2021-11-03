@@ -312,6 +312,21 @@ class Entregable(models.Model):
     def __str__(self):
         return self.name
 
+class Historico(models.Model):
+    gestion = models.ForeignKey(Gestion, on_delete=models.CASCADE, related_name="get_gestion_historico", blank=True, null=True)
+    name = models.CharField(choices=ENTREGABLES, max_length=200, verbose_name="Escoja el entregable")
+    compromiso = models.DateField( verbose_name="Fecha Compromiso del Entregable",blank=True, null=True)
+    comentario = models.CharField(max_length=100, verbose_name="Comentario", blank=True, null=True)
+    created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
+    updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición")
+
+    class Meta:
+        verbose_name = "Historico"
+        verbose_name_plural = "Historicos"
+        ordering = ('created',)
+
+    def __str__(self):
+        return self.name
 
 @receiver(pre_save, sender=Gestion)
 def validador(sender,instance, **kwargs):
@@ -324,3 +339,13 @@ def validador(sender,instance, **kwargs):
             print(old_instance.name_proyecto, instance.name_proyecto)
     except sender.DoesNotExist:
         pass
+
+@receiver(pre_save, sender=Entregable)
+def historico(sender,instance, **kwargs):
+    try:
+        old_instance = sender.objects.get(pk=instance.pk)
+        if old_instance.compromiso != instance.compromiso:
+            Historico.objects.create(gestion_id=instance.gestion.id, name=instance.name, compromiso=old_instance.compromiso,
+                                 comentario=instance.comentario)
+    except sender.DoesNotExist:
+       Historico.objects.create(gestion_id=instance.gestion.id,name=instance.name,compromiso= instance.compromiso,comentario= instance.comentario)
