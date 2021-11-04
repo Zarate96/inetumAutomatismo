@@ -191,3 +191,11 @@ class GestionProject(ImportExportModelAdmin, admin.ModelAdmin):
         #    [str(c.compromiso) for c in Entregable.objects.filter(gestion_id=obj.pk).order_by("created")])
 
     get_fechasNoEntregado.short_description = "Entregables no entregados"
+
+@admin.register(Historico)
+class HistoricoProject(ImportExportModelAdmin, admin.ModelAdmin):
+    resouce_class = ProblemaResource
+    readonly_fields = ('created', 'updated')
+    list_display = ('name', 'compromiso','gestion')
+    search_fields = ('name', 'compromiso',)
+    list_filter = ('compromiso', )
