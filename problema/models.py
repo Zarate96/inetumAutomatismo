@@ -177,7 +177,7 @@ class SoporteTemm(models.Model):
         ordering = ('created',)
 
     def __str__(self):
-        return self.area
+        return f'{self.area} {self.name}'
 
 
 class TecnologiaCatalogo(models.Model):
