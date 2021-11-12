@@ -13,5 +13,6 @@ def start():
     #scheduler.add_job(selenium.get_glpi, 'interval', minutes=45)
     #scheduler.add_job(selenium.get_santander, 'interval', minutes=1)
     #scheduler.add_job(querys.get_data, 'interval', minutes=1)
-    scheduler.add_job(querys.get_data_problema, 'cron', day_of_week='0-4', hour='10')
+    #scheduler.add_job(querys.get_data_problema, 'cron', day_of_week='0-4', hour='10')
+    scheduler.add_job(querys.get_data_problema, 'interval', minutes=1)
     scheduler.start()
