@@ -71,7 +71,7 @@ def notificaciones(periodo, dias):
     now = datetime.date.today()
     delta = pd.date_range(start=now, periods=periodo, freq='B')
     fin = delta[-1]
-    proyectos = GestionProblema.objects.filter(get_gestion__entregado=False, get_gestion__compromiso=fin)
+    proyectos = GestionProblema.objects.filter(get_gestion__estatus=False, get_gestion__compromiso=fin)
 
     lista = []
     for x in proyectos:
