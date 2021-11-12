@@ -87,7 +87,7 @@ def notificaciones(periodo, dias):
         gestor = proyecto.gestor.name
         lista_nombre.append(nombre)
         lista_nombre.append(gestor)
-        entregables = Entregable.objects.filter(entregado=False, compromiso=fin, gestion_id=x)
+        entregables = Entregable.objects.filter(estatus=False, compromiso=fin, gestion_id=x)
 
         for y in entregables:
             lista_nombre.append(y.name)
