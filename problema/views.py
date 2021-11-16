@@ -20,7 +20,12 @@ class proyectoDetalle(DetailView):
 class crearProyectos(FormView):
     form_class = GestionForm
     template_name = "problema/problema_create.html"
-    
+
+class reporteRecurrencia(ListView):
+    model = Gestion
+    template_name = "problema/reporte.html"
+    context_object_name = "proyectos"
+    paginate_by = 20
 
 # class gestionProyectos(View):
 

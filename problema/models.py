@@ -287,6 +287,14 @@ class Gestion(models.Model):
         verbose_name_plural = "Gestion de Proyectos"
         ordering = ('created',)
 
+    def getEntregables(self):
+        entregables =  Entregable.objects.filter(gestion_id=self.pk).order_by("created")
+        lista =[]
+
+        for entregable in entregables:
+            lista.append(entregable.name)
+        return lista
+
     def __str__(self):
         return self.name_proyecto
 
