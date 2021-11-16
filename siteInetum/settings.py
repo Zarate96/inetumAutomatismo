@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'import_export',
     'colorfield',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
