@@ -1,5 +1,5 @@
 from django.db import models
-from datetime  import date
+import datetime
 from .tasks import notificacion_telegram
 from django.dispatch import receiver
 from django.db.models.signals import pre_save
@@ -307,18 +307,22 @@ class Gestion(models.Model):
         for entregable in entregables:
             lista.append(entregable.compromiso)
         
-        input_date = date.today()
-
-        if len(lista) == 0:
+        if len(lista) <= 0:
             return "N/A"
-
-        if lista:
-            results = [d for d in sorted(lista) if d > input_date]
-            listaFinal = results[0] if results else lista[-1]
         else:
-            listaFinal = "N/A"
+            final = sorted(lista)
+            return final[0]
 
-        return listaFinal
+        # if len(lista) == 0:
+        #     return "N/A"
+
+        # if lista:
+        #     results = [d for d in sorted(lista) if d > input_date]
+        #     listaFinal = results[0] if results else lista[-1]
+        # else:
+        #     listaFinal = "N/A"
+
+        
 
     def __str__(self):
         return self.name_proyecto
