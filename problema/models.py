@@ -308,6 +308,10 @@ class Gestion(models.Model):
             lista.append(entregable.compromiso)
         
         input_date = date.today()
+
+        if len(lista) == 0:
+            return "N/A"
+
         if lista:
             results = [d for d in sorted(lista) if d > input_date]
             listaFinal = results[0] if results else lista[-1]
