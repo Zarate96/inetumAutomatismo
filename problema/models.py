@@ -305,7 +305,8 @@ class Gestion(models.Model):
         lista =[]
 
         for entregable in entregables:
-            lista.append(entregable.compromiso)
+            if entregable.compromiso != None:
+                lista.append(entregable.compromiso)
         
         if len(lista) <= 0:
             return "N/A"
