@@ -1,4 +1,5 @@
 from django.db import models
+from datetime  import date
 from .tasks import notificacion_telegram
 from django.dispatch import receiver
 from django.db.models.signals import pre_save
@@ -16,6 +17,8 @@ AMBIENTE_SOC = (
     )
 
 ENTREGABLES = (
+        ('GESTIÓN DE CUENTAS', 'GESTIÓN DE CUENTAS'),
+        ('PRUEBAS DE REDUNDANCIA', 'PRUEBAS DE REDUNDANCIA'),
         ('KO', 'KO'),
         ('COMITÉ ARQ.', 'COMITÉ ARQ.'),
         ('PLAN PROYECTO', 'PLAN PROYECTO'),
@@ -279,21 +282,39 @@ class Gestion(models.Model):
     ot = models.ManyToManyField(Ot, verbose_name="Orden de Trabajo", related_name="get_ots", blank=True)
     impacto = models.BooleanField(verbose_name="Impacto al Negocio", blank=True, null=True, default=False)
     comentarios = models.TextField(verbose_name="Comentarios generales", default="")
+    comentarios_vista = models.TextField(verbose_name="Comentarios generales", default=" ")
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición")
-
+    cumplimiento = models.BooleanField(verbose_name="Cumplimiento para vista", blank=True, null=True, default=False)
+    backlog = models.BooleanField(verbose_name="Cumplimiento", blank=True, null=True, default=False)
     class Meta:
         verbose_name = "Gestion de Proyectos"
         verbose_name_plural = "Gestion de Proyectos"
         ordering = ('created',)
 
     def getEntregables(self):
-        entregables =  Entregable.objects.filter(gestion_id=self.pk).order_by("created")
+        entregables =  Entregable.objects.filter(gestion_id=self.pk).order_by("created").filter(estatus=False)
         lista =[]
 
         for entregable in entregables:
             lista.append(entregable.name)
         return lista
+    
+    def getFechaProxima(self):
+        entregables =  Entregable.objects.filter(gestion_id=self.pk).order_by("created").filter(estatus=False)
+        lista =[]
+
+        for entregable in entregables:
+            lista.append(entregable.compromiso)
+        
+        input_date = date.today()
+        if lista:
+            results = [d for d in sorted(lista) if d > input_date]
+            listaFinal = results[0] if results else lista[-1]
+        else:
+            listaFinal = "N/A"
+
+        return listaFinal
 
     def __str__(self):
         return self.name_proyecto

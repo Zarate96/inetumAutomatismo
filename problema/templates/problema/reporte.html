@@ -89,6 +89,7 @@
                         <th>LT</th>
                         <th>Proyecto</th>
                         <th>Cumplimiento</th>
+                        <th>Fecha</th>
                         <th>Gestor</th>
                         <th>Comentarios</th>
                         <th>Entregables</th>
@@ -102,9 +103,10 @@
                         <td>{{proyecto.soporte.gerente}} </td>
                         <td>{{proyecto.lider}} </td>
                         <td>{{proyecto.name_proyecto}}</td>
-                        <td></td>
+                        <td>{{proyecto.cumplimiento}}</td>
+                        <td>{{proyecto.getFechaProxima}}</td>
                         <td>{{proyecto.gestor}}</td>
-                        <td>{{proyecto.comentarios}}</td>
+                        <td>{{proyecto.comentarios_vista}}</td>
                         <td>{{proyecto.getEntregables}}</td>
                         <td>{{proyecto.estatus}}</td>
                         <td>{{proyecto.detencion}}</td>
