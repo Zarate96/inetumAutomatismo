@@ -1,3 +1,4 @@
+import csv
 from django.core.paginator import Paginator
 from django.shortcuts import render, HttpResponse, get_object_or_404
 from django.views.generic.base import TemplateView
@@ -37,7 +38,11 @@ def reporteRecurrencia(request):
     }
     return render(request, 'problema/reporte.html',context)
 
-
+def export_report(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="users.csv"'
+    writer = csv.writer(response)
+    writer.writerow(['Username', 'First name', 'Last name', 'Email address'])
 
 # class reporteRecurrencia(ListView):
 #     model = Gestion

@@ -155,7 +155,7 @@ class GestionProject(ImportExportModelAdmin, admin.ModelAdmin):
     readonly_fields = ('created', 'updated')
     list_display = ('id_proyecto', 'name_proyecto', 'tipoProyecto', 'estatus', 'sub_estado', 'liberado', 'produccion', 'gestor',
                     'get_fechasEntregado','get_fechasNoEntregado','problema_catalogo',)
-    search_fields = ('id_proyecto', 'name_proyecto','tipoProyecto__name','estatus__name')
+    search_fields = ('name_proyecto','tipoProyecto__name','estatus__name','gestor__name')
     raw_id_fields = ('grupo','catalogo','ot')
 
     def problema_catalogo(self, obj):

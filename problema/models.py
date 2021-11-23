@@ -282,11 +282,11 @@ class Gestion(models.Model):
     ot = models.ManyToManyField(Ot, verbose_name="Orden de Trabajo", related_name="get_ots", blank=True)
     impacto = models.BooleanField(verbose_name="Impacto al Negocio", blank=True, null=True, default=False)
     comentarios = models.TextField(verbose_name="Comentarios generales", default="")
-    comentarios_vista = models.TextField(verbose_name="Comentarios generales", default=" ")
+    comentarios_vista = models.TextField(verbose_name="Comentarios vista", default="")
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición")
     cumplimiento = models.BooleanField(verbose_name="Cumplimiento para vista", blank=True, null=True, default=False)
-    backlog = models.BooleanField(verbose_name="Cumplimiento", blank=True, null=True, default=False)
+    backlog = models.BooleanField(verbose_name="Backlog", blank=True, null=True, default=False)
     class Meta:
         verbose_name = "Gestion de Proyectos"
         verbose_name_plural = "Gestion de Proyectos"
