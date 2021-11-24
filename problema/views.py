@@ -73,6 +73,8 @@ def exportProyectos(request):
         for ot in proyecto.ot.all():
             ots = []
             ots.append(ot.name)
+            if len(ots) == 0:
+                ots = ['N/A']
 
 
         writer.writerow([proyecto.id_proyecto, proyecto.name_proyecto, proyecto.tipoProyecto, proyecto.estatus, proyecto.gestor, proyecto.lider, grupos, proyecto.area, 
