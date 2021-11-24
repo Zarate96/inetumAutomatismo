@@ -31,6 +31,20 @@ def reporteRecurrencia(request):
     proyectos = filter.qs
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
+
+    if request.method == 'POST':
+        response = HttpResponse(content_type='text/csv')
+        
+        writer = csv.writer(response)
+        writer.writerow(['Gerente','LT','Proyecto','Cumplimiento','Fecha1','Fecha2', 'Fecha3', 'Fecha4', 'Fecha5', 'Fecha6', 'Fecha7','Gestor','Comentarios','Entregables','Estado','Detencion PP'])
+        for proyecto in proyectos:
+            writer.writerow([proyecto.soporte.gerente, proyecto.lider.gerente, proyecto.name_proyecto, proyecto.cumplimiento, proyecto.getFechaProxima(), '', '', '', '', '', '', proyecto.gestor, 
+                            proyecto.comentarios_vista, proyecto.getEntregables(), proyecto.estatus, proyecto.detencion])
+        
+        response['Content-Disposition'] = 'attachment; filename="reporte.csv"'
+
+        return response
+
     context = {
         'proyectos' : proyectos,
         'filter': filter,
@@ -38,45 +52,36 @@ def reporteRecurrencia(request):
     }
     return render(request, 'problema/reporte.html',context)
 
-def export_report(request):
+def exportProyectos(request):
+    proyectos = Gestion.objects.all()
+
     response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename="users.csv"'
+    
     writer = csv.writer(response)
-    writer.writerow(['Username', 'First name', 'Last name', 'Email address'])
+    writer.writerow(['ID','Nombre','Tipo de Proyecto','Estatus','Gestor','Líder Técnico','Grupos','Area de ingeniería','Soporte Técnico','Nombre del PMO','Catálogo'
+                    ,'Orden de trabajo','Comentarios','Cumplimiento','BL'])
+    for proyecto in proyectos:
 
-# class reporteRecurrencia(ListView):
-#     model = Gestion
-#     template_name = "problema/reporte.html"
-#     context_object_name = "proyectos"
+        for grupo in proyecto.grupo.all():
+            grupos = []
+            grupos.append(grupo.name)
+        
+        for catalogo in proyecto.catalogo.all():
+            catalogos = []
+            catalogos.append(catalogo.name)
+        
+        for ot in proyecto.ot.all():
+            ots = []
+            ots.append(ot.name)
 
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['myFilter'] = GestionFilter() 
-#         return context
+
+        writer.writerow([proyecto.id_proyecto, proyecto.name_proyecto, proyecto.tipoProyecto, proyecto.estatus, proyecto.gestor, proyecto.lider, grupos, proyecto.area, 
+        proyecto.soporte, proyecto.pmo, catalogos, ots, proyecto.comentarios_vista, proyecto.cumplimiento, proyecto.backlog])
     
-    #paginate_by = 20
+    response['Content-Disposition'] = 'attachment; filename="proyectos.csv"'
 
-# class gestionProyectos(View):
-
-#     def get(self, request):
-#         form = GestionForm()
-#         return render(request, "problema/problema_create.html")
+    return response
     
-#     def post(self, request):
-#         form = GestionForm(request.POST)
-    
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         return context
+    # writer.writerow(['Username', 'First name', 'Last name', 'Email address'])
 
-# def problema(request):
-#     gestion_form = GestionForm
-#     if request.method == "POST":
-#        gestion_form  = gestion_form(data=request.POST)
-#        if gestion_form.is_valid():
-#           pass
-#     context = {
-#         'form':gestion_form,
-#     }
-#     return render(request, "problema/problema_create.html", context)
 

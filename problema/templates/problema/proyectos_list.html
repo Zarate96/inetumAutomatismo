@@ -29,7 +29,7 @@
         <div class="d-flex flex-row-reverse mr-3">
             <div class="row">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-info mr-2">Exportar</button>
+                    <a href="{% url 'problema:exportar-proyectos' %}"><button type="button" class="btn btn-info mr-2">Exportar</button></a>
                 </div>
             </div>
         </div>
@@ -53,11 +53,18 @@
                             <th>ID</th>
                             <th>Nombre</th>
                             <th>Tipo de Proyecto</th>
-                            <th>Status</th>
-                            <th>Líder</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
+                            <th>Estatus</th>
+                            <th>Gestor</th>
+                            <th>Líder Técnico</th>
+                            <th>Grupos</th>
+                            <th>Area de ingeniería</th>
+                            <th>Soporte Técnico</th>
+                            <th>Nombre del PMO</th>
+                            <th>Catálogo</th>
+                            <th>Orden de trabajo</th>
+                            <th>Comentarios</th>
+                            <th>Cumplimiento</th>
+                            <th>BL</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -67,7 +74,17 @@
                             <td>{{ proyecto.name_proyecto }}</td>
                             <td>{{ proyecto.tipoProyecto }}</td>
                             <td>{{ proyecto.estatus }}</td>
+                            <td>{{ proyecto.gestor }}</td>
                             <td>{{ proyecto.lider }}</td>
+                            <td>{% for grupo in proyecto.grupo.all %}{{grupo}}<br>{% endfor %} </td>
+                            <td>{{ proyecto.area }}</td>
+                            <td>{{ proyecto.soporte }}</td>
+                            <td>{{ proyecto.pmo }}</td>
+                            <td>{% for catalogo in proyecto.catalogo.all %}{{catalogo}}<br>{% endfor %}</td>
+                            <td>{% for ot in proyecto.ot.all %}{{ot}}<br>{% endfor %}</td>
+                            <td>{{ proyecto.comentarios_vista }}</td>
+                            <td>{{ proyecto.cumplimiento }}</td>
+                            <td>{{ proyecto.backlog }}</td>
                             </tr>
                             {% endfor %}
                         </tbody>

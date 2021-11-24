@@ -27,7 +27,10 @@
 <div class="content-header">
   <div class="d-flex flex-row-reverse mr-3">
       <div class="row">
-        <button class="btn btn-secondary buttons-csv buttons-html5" tabindex="0" aria-controls="example1" type="button"><span>EXPORTAR CSV</span></button>
+        <form action="" method="POST">
+          {% csrf_token %}
+          <a href="{% url 'problema:reporte-recurrencia' %}"><button class="btn btn-secondary" type="submit"><span>EXPORTAR CSV</span></button></a>
+        </form>
       </div>
   </div>
 </div>
@@ -59,39 +62,53 @@
                       </div>
                       
                     </div>
-                    <table id="example1" class="table table-striped table-bordered table-sm" cellspacing="0"
-                    width="100%">
-                    <thead>
-                      <tr>
-                        <th>Gerente</th>
-                        <th>LT</th>
-                        <th>Proyecto</th>
-                        <th>Cumplimiento</th>
-                        <th>Fecha</th>
-                        <th>Gestor</th>
-                        <th>Comentarios</th>
-                        <th>Entregables</th>
-                        <th>Estado</th>
-                        <th>Detencion PP</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {% for proyecto in proyectos%}
-                      <tr>
-                        <td>{{proyecto.soporte.gerente}} </td>
-                        <td>{{proyecto.lider}} </td>
-                        <td>{{proyecto.name_proyecto}}</td>
-                        <td>{{proyecto.cumplimiento}}</td>
-                        <td>{{proyecto.getFechaProxima}}</td>
-                        <td>{{proyecto.gestor}}</td>
-                        <td>{{proyecto.comentarios_vista}}</td>
-                        <td>{{proyecto.getEntregables}}</td>
-                        <td>{{proyecto.estatus}}</td>
-                        <td>{{proyecto.detencion}}</td>
-                      </tr>
-                      {% endfor %}
-                    </tbody>
-                    </table>
+                    <div class="card-body table-responsive p-0">
+                      <table id="example1" class="table table-striped " cellspacing="0"
+                      width="100%">
+                      <thead>
+                        <tr>
+                          <th>Gerente</th>
+                          <th>LT</th>
+                          <th>Proyecto</th>
+                          <th>Cumplimiento</th>
+                          <th>Fecha1</th>
+                          <th>Fecha2</th>
+                          <th>Fecha3</th>
+                          <th>Fecha4</th>
+                          <th>Fecha5</th>
+                          <th>Fecha6</th>
+                          <th>Fecha7</th>
+                          <th>Gestor</th>
+                          <th>Comentarios</th>
+                          <th>Entregables</th>
+                          <th>Estado</th>
+                          <th>Detencion PP</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for proyecto in proyectos%}
+                        <tr>
+                          <td>{{proyecto.soporte.gerente}} </td>
+                          <td>{{proyecto.lider.gerente}} </td>
+                          <td>{{proyecto.name_proyecto}}</td>
+                          <td>{{proyecto.cumplimiento}}</td>
+                          <td>{{proyecto.getFechaProxima}}</td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td>{{proyecto.gestor}}</td>
+                          <td>{{proyecto.comentarios_vista}}</td>
+                          <td>{{proyecto.getEntregables}}</td>
+                          <td>{{proyecto.estatus}}</td>
+                          <td>{{proyecto.detencion}}</td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                      </table>
+                    </div>
                     {% else %}
                     <p>No existen proyectos</p>
                     {% endif %}
