@@ -48,6 +48,11 @@ ENTREGABLES = (
         ('REPORTE FOTOGRAFICO', 'REPORTE FOTOGRAFICO'),
         ('AE', 'AE'),
         ('AA', 'AA'),
+        ('REVALIDACION SS', 'REVALIDACION SS'),
+        ('REVALIDACION ALARMAS', 'REVALIDACION ALARMAS'),
+        ('ACTUALIZACION DTS', 'ACTUALIZACION DTS'),
+        ('CHECKLIST SO', 'CHECKLIST SO'),
+        ('CHECKLIST BD', 'CHECKLIST BD'),
         ('Otros', 'Otros'),
     )
 
