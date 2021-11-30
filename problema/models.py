@@ -331,7 +331,8 @@ class Gestion(models.Model):
                 name = f'{entregable.name}'
             lista.append(name)
             x = entregable.compromiso
-            lista.append(x.strftime("%d-%m-%Y"))
+            if x:
+                lista.append(x.strftime("%d-%m-%Y"))
         return lista
     
     def getFechaProxima(self):
