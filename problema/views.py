@@ -28,7 +28,7 @@ def reporteRecurrencia(request):
     proyectos = Gestion.objects.all()
     filter = GestionFilter(request.GET, queryset=proyectos)
     proyectos = filter.qs
-    paginator = Paginator(proyectos, 10) 
+    paginator = Paginator(proyectos, 5) 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
@@ -36,10 +36,10 @@ def reporteRecurrencia(request):
         response = HttpResponse(content_type='text/csv')
         
         writer = csv.writer(response)
-        writer.writerow(['Gerente','LT','Proyecto','Cumplimiento','Fecha1','Fecha2', 'Fecha3', 'Fecha4', 'Fecha5', 'Fecha6', 'Fecha7','Gestor','Comentarios','Entregables','Estado','Detencion PP'])
+        writer.writerow(['Gerente','LT','Proyecto','Cumplimiento','Fecha1','Fecha2', 'Fecha3', 'Fecha4', 'Fecha5', 'Fecha6', 'Fecha7','Gestor','Comentarios','Entregables','Entregables no entregados','Estado','Detencion PP','Soporte Técnico'])
         for proyecto in proyectos:
             writer.writerow([proyecto.soporte.gerente, proyecto.lider.gerente, proyecto.name_proyecto, proyecto.cumplimiento, proyecto.getFechaProxima(), '', '', '', '', '', '', proyecto.gestor, 
-                            proyecto.comentarios_vista, proyecto.getEntregables(), proyecto.estatus, proyecto.detencion])
+                            proyecto.comentarios_vista, proyecto.get_fechasEntregado(), proyecto.get_fechasNoEntregado(), proyecto.estatus, proyecto.detencion, proyecto.soporte.name])
         
         response['Content-Disposition'] = 'attachment; filename="reporte.csv"'
 
