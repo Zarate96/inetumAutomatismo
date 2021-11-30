@@ -64,13 +64,13 @@ def reporteBase(request):
         response = HttpResponse(content_type='text/csv')
         
         writer = csv.writer(response)
-        writer.writerow(['Gerente','LT','Proyecto','Cumplimiento','Gestor', 'Fecha alta workflow', 'Fecha PP', 'Comentarios','Entregables','Entregables no entregados','Estado','Detencion PP','Soporte Técnico',
+        writer.writerow(['Gerente','LT','Proyecto','Gestor', 'Fecha alta workflow', 'Fecha PP', 'Comentarios','Entregables','Entregables no entregados','Estado','Detencion PP','Soporte Técnico',
         'Catálogo','OLA', 'Fecha OLA'])
         for proyecto in proyectos:
             catalogosList = []
             for catalogo in proyecto.catalogo.all():
                 catalogosList.append(f'{catalogo.name}({catalogo.ambiente})')
-            writer.writerow([proyecto.lider.gerente, proyecto.lider, proyecto.name_proyecto, proyecto.cumplimiento, proyecto.gestor, proyecto.fecha_alta_workflow, proyecto.fecha_pp, 
+            writer.writerow([proyecto.lider.gerente, proyecto.lider, proyecto.name_proyecto, proyecto.gestor, proyecto.fecha_alta_workflow, proyecto.fecha_pp, 
                              proyecto.comentarios_vista, proyecto.get_fechasEntregado(), proyecto.get_fechasNoEntregado(), proyecto.estatus, proyecto.detencion, proyecto.soporte.name, 
                              catalogosList, proyecto.ola, proyecto.fecha_ola])
         
