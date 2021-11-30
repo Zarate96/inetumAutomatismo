@@ -41,10 +41,17 @@ class CatalogoProject(ImportExportModelAdmin, admin.ModelAdmin):
 class EntregableProject(ImportExportModelAdmin, admin.ModelAdmin):
     resouce_class = ProblemaResource
     readonly_fields = ('created', 'updated')
-    list_display = ('estatus','name', 'compromiso','gestion')
+    list_display = ('estatus','get_Name', 'compromiso','gestion')
     search_fields = ('name', 'compromiso','gestion__name_proyecto')
     list_filter = ('compromiso', 'estatus','gestion')
 
+    def get_Name(self, obj):
+        if obj.otros:
+            return f'{obj.name}/{obj.otros}'
+        else:
+            return f'{obj.name}'
+
+    get_Name.short_description = "Name"
 
 @admin.register(Estatus)
 class EstatusProject(ImportExportModelAdmin, admin.ModelAdmin):
@@ -169,7 +176,11 @@ class GestionProject(ImportExportModelAdmin, admin.ModelAdmin):
         lista =[]
 
         for entregable in entregables:
-            lista.append(entregable.name)
+            if entregable.otros:
+                name = f'{entregable.name}/{entregable.otros}'
+            else:
+                name = f'{entregable.name}'
+            lista.append(name)
             lista.append(entregable.compromiso)
         return lista
 
@@ -183,7 +194,11 @@ class GestionProject(ImportExportModelAdmin, admin.ModelAdmin):
         lista =[]
 
         for entregable in entregables:
-            lista.append(entregable.name)
+            if entregable.otros:
+                name = f'{entregable.name}/{entregable.otros}'
+            else:
+                name = f'{entregable.name}'
+            lista.append(name)
             lista.append(entregable.compromiso)
         return lista
 

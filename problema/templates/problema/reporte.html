@@ -62,7 +62,7 @@
                       </div>
                       
                     </div>
-                    <div class="card-body table-responsive p-0">
+                    <div class="card-body table-responsive p-0" style="overflow:scroll;">
                       <table id="example1" class="table table-striped " cellspacing="0"
                       width="100%">
                       <thead>
@@ -81,15 +81,17 @@
                           <th>Gestor</th>
                           <th>Comentarios</th>
                           <th>Entregables</th>
+                          <th>Entregables no entregados</th>
                           <th>Estado</th>
                           <th>Detencion PP</th>
+                          <th>Soporte Técnico</th>
                         </tr>
                       </thead>
                       <tbody>
                         {% for proyecto in proyectos%}
                         <tr>
-                          <td>{{proyecto.soporte.gerente}} </td>
                           <td>{{proyecto.lider.gerente}} </td>
+                          <td>{{proyecto.lider}} </td>
                           <td>{{proyecto.name_proyecto}}</td>
                           <td>{{proyecto.cumplimiento}}</td>
                           <td>{{proyecto.getFechaProxima}}</td>
@@ -101,9 +103,11 @@
                           <td></td>
                           <td>{{proyecto.gestor}}</td>
                           <td>{{proyecto.comentarios_vista}}</td>
-                          <td>{{proyecto.getEntregables}}</td>
+                          <td>{{proyecto.get_fechasEntregado}}</td>
+                          <td>{{proyecto.get_fechasNoEntregado}}</td>
                           <td>{{proyecto.estatus}}</td>
                           <td>{{proyecto.detencion}}</td>
+                          <td>{{proyecto.soporte}}</td>
                         </tr>
                         {% endfor %}
                       </tbody>

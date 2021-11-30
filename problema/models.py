@@ -128,7 +128,7 @@ class GerenciaTemm(models.Model):
         ordering = ('created',)
 
     def __str__(self):
-        return self.name
+        return f'{self.name} {self.apellido}' 
 
 class LiderTecnicoTemm(models.Model):
     name = models.CharField(max_length=100, verbose_name="Nombre del Lider")
@@ -292,6 +292,7 @@ class Gestion(models.Model):
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición")
     cumplimiento = models.BooleanField(verbose_name="Cumplimiento para vista", blank=True, null=True, default=False)
     backlog = models.BooleanField(verbose_name="Backlog", blank=True, null=True, default=False)
+
     class Meta:
         verbose_name = "Gestion de Proyectos"
         verbose_name_plural = "Gestion de Proyectos"
@@ -303,6 +304,34 @@ class Gestion(models.Model):
 
         for entregable in entregables:
             lista.append(entregable.name)
+        return lista
+    
+    def get_fechasEntregado(self):
+        entregables =  Entregable.objects.filter(gestion_id=self.pk).order_by("created").filter(estatus=True)
+        lista =[]
+
+        for entregable in entregables:
+            if entregable.otros:
+                name = f'{entregable.name}/{entregable.otros}'
+            else:
+                name = f'{entregable.name}'
+            lista.append(name)
+            x = entregable.compromiso
+            lista.append(x.strftime("%d-%m-%Y"))
+        return lista
+    
+    def get_fechasNoEntregado(self):
+        entregables =  Entregable.objects.filter(gestion_id=self.pk).order_by("created").filter(estatus=False)
+        lista =[]
+
+        for entregable in entregables:
+            if entregable.otros:
+                name = f'{entregable.name}/{entregable.otros}'
+            else:
+                name = f'{entregable.name}'
+            lista.append(name)
+            x = entregable.compromiso
+            lista.append(x.strftime("%d-%m-%Y"))
         return lista
     
     def getFechaProxima(self):
@@ -339,6 +368,7 @@ class Gestion(models.Model):
 
 class Entregable(models.Model):
     name = models.CharField(choices=ENTREGABLES, max_length=200, verbose_name="Escoja el entregable")
+    otros = models.CharField(verbose_name="Especificar nombre", max_length=75, blank=True, null=True, default="", help_text="Solo en caso de escoger 'Otros'")
     compromiso = models.DateField( verbose_name="Fecha Compromiso del Entregable",blank=True, null=True)
     comentario = models.CharField(max_length=100, verbose_name="Comentario", blank=True, null=True)
     gestion = models.ForeignKey(Gestion, on_delete=models.CASCADE, related_name="get_gestion",
