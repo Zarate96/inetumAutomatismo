@@ -26,9 +26,9 @@ class crearProyectos(FormView):
     
 def reporteRecurrencia(request):
     proyectos = Gestion.objects.all()
-    paginator = Paginator(proyectos, 5) 
     filter = GestionFilter(request.GET, queryset=proyectos)
     proyectos = filter.qs
+    paginator = Paginator(proyectos, 10) 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
