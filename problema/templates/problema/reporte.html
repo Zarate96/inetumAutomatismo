@@ -84,7 +84,7 @@
                           <th>Entregables no entregados</th>
                           <th>Estado</th>
                           <th>Detencion PP</th>
-                          <th>Soporte Técnico</th>
+                          <th>Catálogo</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -107,7 +107,7 @@
                           <td>{{proyecto.get_fechasNoEntregado}}</td>
                           <td>{{proyecto.estatus}}</td>
                           <td>{{proyecto.detencion}}</td>
-                          <td>{{proyecto.soporte}}</td>
+                          <td>{% for catalogo in proyecto.catalogo.all %}{{ catalogo.name}}, {% endfor %}</td>
                         </tr>
                         {% endfor %}
                       </tbody>

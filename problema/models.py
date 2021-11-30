@@ -292,6 +292,10 @@ class Gestion(models.Model):
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición")
     cumplimiento = models.BooleanField(verbose_name="Cumplimiento para vista", blank=True, null=True, default=False)
     backlog = models.BooleanField(verbose_name="Backlog", blank=True, null=True, default=False)
+    fecha_alta_workflow = models.DateField(verbose_name="Fecha alta en Workflow", blank=True, null=True)
+    fecha_pp = models.DateField(verbose_name="Fecha puesta en producción", blank=True, null=True)
+    ola = models.BooleanField(verbose_name="OLA", blank=True, null=True, default=False)
+    fecha_ola = models.DateField(verbose_name="Fecha inicio de la ola", blank=True, null=True)
 
     class Meta:
         verbose_name = "Gestion de Proyectos"
