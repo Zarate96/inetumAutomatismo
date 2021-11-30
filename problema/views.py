@@ -52,7 +52,72 @@ def reporteRecurrencia(request):
     }
     return render(request, 'problema/reporte.html',context)
 
+def reporteBase(request):
+    proyectos = Gestion.objects.all()
+    filter = GestionFilter(request.GET, queryset=proyectos)
+    proyectos = filter.qs
+    paginator = Paginator(proyectos, 5) 
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    if request.method == 'POST':
+        response = HttpResponse(content_type='text/csv')
+        
+        writer = csv.writer(response)
+        writer.writerow(['Gerente','LT','Proyecto','Cumplimiento','Gestor', 'Fecha alta workflow', 'Fecha PP', 'Comentarios','Entregables','Entregables no entregados','Estado','Detencion PP','Soporte Técnico',
+        'Catálogo','OLA', 'Fecha OLA'])
+        for proyecto in proyectos:
+            catalogosList = []
+            for catalogo in proyecto.catalogo.all():
+                catalogosList.append(f'{catalogo.name}({catalogo.ambiente})')
+            writer.writerow([proyecto.lider.gerente, proyecto.lider, proyecto.name_proyecto, proyecto.cumplimiento, proyecto.gestor, proyecto.fecha_alta_workflow, proyecto.fecha_pp, 
+                             proyecto.comentarios_vista, proyecto.get_fechasEntregado(), proyecto.get_fechasNoEntregado(), proyecto.estatus, proyecto.detencion, proyecto.soporte.name, 
+                             catalogosList, proyecto.ola, proyecto.fecha_ola])
+        
+        response['Content-Disposition'] = 'attachment; filename="reporte.csv"'
+
+        return response
+
+    context = {
+        'proyectos' : proyectos,
+        'filter': filter,
+        'page_obj': page_obj,
+    }
+    return render(request, 'problema/reporteBase.html',context)
+
 def exportProyectos(request):
+    proyectos = Gestion.objects.all()
+
+    response = HttpResponse(content_type='text/csv')
+    
+    writer = csv.writer(response)
+    writer.writerow(['ID','Nombre','Tipo de Proyecto','Estatus','Gestor','Líder Técnico','Grupos','Area de ingeniería','Soporte Técnico','Nombre del PMO','Catálogo'
+                    ,'Orden de trabajo','Comentarios','Cumplimiento','BL'])
+    for proyecto in proyectos:
+
+        for grupo in proyecto.grupo.all():
+            grupos = []
+            grupos.append(grupo.name)
+        
+        for catalogo in proyecto.catalogo.all():
+            catalogos = []
+            catalogos.append(catalogo.name)
+        
+        if proyecto.ot.all():
+            for ot in proyecto.ot.all():
+                ots = []
+                ots.append(ot.name)
+        else:
+            ots = "N/A"
+
+
+        writer.writerow([proyecto.id_proyecto, proyecto.name_proyecto, proyecto.tipoProyecto, proyecto.estatus, proyecto.gestor, proyecto.lider, grupos, proyecto.area, 
+        proyecto.soporte, proyecto.pmo, catalogos, ots, proyecto.comentarios_vista, proyecto.cumplimiento, proyecto.backlog])
+    
+    response['Content-Disposition'] = 'attachment; filename="proyectos.csv"'
+
+    return response
+
     proyectos = Gestion.objects.all()
 
     response = HttpResponse(content_type='text/csv')

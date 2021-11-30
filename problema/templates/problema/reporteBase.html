@@ -10,7 +10,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Reporte Recurrencia</h1>
+                <h1 class="m-0">Reporte Bases</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -29,7 +29,7 @@
       <div class="row">
         <form action="" method="POST">
           {% csrf_token %}
-          <a href="{% url 'problema:reporte-recurrencia' %}"><button class="btn btn-secondary" type="submit"><span>EXPORTAR CSV</span></button></a>
+          <a href="{% url 'problema:exportar-reporte-base' %}"><button class="btn btn-secondary" type="submit"><span>EXPORTAR CSV</span></button></a>
         </form>
       </div>
   </div>
@@ -71,13 +71,8 @@
                           <th>LT</th>
                           <th>Proyecto</th>
                           <th>Cumplimiento</th>
-                          <th>Fecha1</th>
-                          <th>Fecha2</th>
-                          <th>Fecha3</th>
-                          <th>Fecha4</th>
-                          <th>Fecha5</th>
-                          <th>Fecha6</th>
-                          <th>Fecha7</th>
+                          <th>Fecha alta workflow</th>
+                          <th>Fecha PP</th>
                           <th>Gestor</th>
                           <th>Comentarios</th>
                           <th>Entregables</th>
@@ -85,29 +80,27 @@
                           <th>Estado</th>
                           <th>Detencion PP</th>
                           <th>Catálogo</th>
+                          <th>OLA</th>
+                          <th>Fecha OLA</th>
                         </tr>
                       </thead>
                       <tbody>
                         {% for proyecto in proyectos%}
                         <tr>
-                          <td>{{proyecto.lider.gerente}} </td>
+                          <td>{{proyecto.lider.gerente}}</td>
                           <td>{{proyecto.lider}} </td>
                           <td>{{proyecto.name_proyecto}}</td>
                           <td>{{proyecto.cumplimiento}}</td>
-                          <td>{{proyecto.getFechaProxima}}</td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td>{{proyecto.gestor}}</td>
+                          <td>{{proyecto.fecha_alta_workflow}}</td>
+                          <td>{{proyecto.fecha_pp}}</td>
                           <td>{{proyecto.comentarios_vista}}</td>
                           <td>{{proyecto.get_fechasEntregado}}</td>
                           <td>{{proyecto.get_fechasNoEntregado}}</td>
                           <td>{{proyecto.estatus}}</td>
                           <td>{{proyecto.detencion}}</td>
                           <td>{% for catalogo in proyecto.catalogo.all %}{{ catalogo.name}} ({{catalogo.ambiente}}), {% endfor %}</td>
+                          <td>{{proyecto.ola}}</td>
+                          <td>{{proyecto.fecha_ola}}</td>
                         </tr>
                         {% endfor %}
                       </tbody>

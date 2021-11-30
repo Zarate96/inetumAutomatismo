@@ -8,5 +8,7 @@ urlpatterns = [
 	path('agregar/', views.crearProyectos.as_view(), name="agregar-proyecto"),
 	path('detalle/<int:pk>/', views.proyectoDetalle.as_view(), name="detalle-proyecto"),
 	path('reporte/recurrencia', views.reporteRecurrencia, name="reporte-recurrencia"),
+	path('reporte/bases', views.reporteBase, name="reporte-base"),
 	path('reporte/exportar', views.exportProyectos, name="exportar-proyectos"),
+	path('reporte/exportar/reporteBases', views.exportProyectos, name="exportar-reporte-base"),
 ]
