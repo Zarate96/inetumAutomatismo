@@ -152,4 +152,6 @@ def exportProyectos(request):
     
     # writer.writerow(['Username', 'First name', 'Last name', 'Email address'])
 
-
+def reportesHc(request):
+    context = {}
+    return render(request, 'problema/reportesHc.html',context)

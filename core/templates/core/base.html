@@ -121,9 +121,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item menu-open">
-            <a href="" class="nav-link {% if 'problema' in request.path %}active{% endif %}"">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+          <li class="nav-item {% if 'gp' in request.path %}menu-open{% endif %}">
+            <a href="" class="nav-link {% if 'gp' in request.path %}active{% endif %}"">
+              <i class="nav-icon fas fa-clipboard-list"></i>
               <p>
                 Gestión de Proyectos
                 <i class="right fas fa-angle-left"></i>
@@ -131,19 +131,48 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{% url 'problema:proyectos' %}" class="nav-link {% if request.path == '/problema/' %}active{% endif %}">
+                <a href="{% url 'problema:proyectos' %}" class="nav-link {% if request.path == '/problema/gp/' %}active{% endif %}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Proyectos</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{% url 'problema:reporte-recurrencia' %}" class="nav-link {% if request.path == '/problema/reporte/recurrencia' %}active{% endif %}">
+                <a href="{% url 'problema:reporte-recurrencia' %}" class="nav-link {% if request.path == '/problema/gp/reporte/recurrencia' %}active{% endif %}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Reportes</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{% url 'problema:reporte-base' %}" class="nav-link {% if request.path == '/problema/reporte/bases' %}active{% endif %}">
+                <a href="{% url 'problema:reporte-base' %}" class="nav-link {% if request.path == '/problema/gp/reporte/bases' %}active{% endif %}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Reporte bases</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item {% if 'hc' in request.path %}menu-open{% endif %}">
+            <a href="" class="nav-link {% if 'hc' in request.path %}active{% endif %}"">
+              <i class="nav-icon fas fa-list"></i>
+              <p>
+                Healt Check 
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{% url 'problema:hc-interconfiguracion-att' %}" class="nav-link {% if request.path == '/hc/' %}active{% endif %}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Interconfiguración ATT</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'problema:reporte-recurrencia' %}" class="nav-link {% if request.path == '/example/reporte/recurrencia' %}active{% endif %}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Reportes</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'problema:reporte-base' %}" class="nav-link {% if request.path == '/example/reporte/bases' %}active{% endif %}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Reporte bases</p>
                 </a>
