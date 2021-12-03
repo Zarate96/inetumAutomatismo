@@ -152,6 +152,20 @@ def exportProyectos(request):
     
     # writer.writerow(['Username', 'First name', 'Last name', 'Email address'])
 
-def reportesHc(request):
-    context = {}
+def reportesHcIA(request):
+    context = {
+        'titulo':'HEALTH CHECK INTERCONFIGURACION ATT'
+    }
+    return render(request, 'problema/reportesHc.html',context)
+    
+def reportesHcAPN(request):
+    context = {
+        'titulo': "Health Check APN MVNO'S - ROAMING"
+    }
+    return render(request, 'problema/reportesHc.html',context)
+
+def reportesHcRI(request):
+    context = {
+        'titulo':'HEALTH CHECK RUTAS DE INTERCONEXION'
+    }
     return render(request, 'problema/reportesHc.html',context)

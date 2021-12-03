@@ -10,5 +10,7 @@ urlpatterns = [
 	path('gp/reporte/recurrencia', views.reporteRecurrencia, name="reporte-recurrencia"),
 	path('gp/reporte/bases', views.reporteBase, name="reporte-base"),
 	path('gp/reporte/exportar', views.exportProyectos, name="exportar-proyectos"),
-	path('hc/interconfiguracionatt', views.reportesHc, name="hc-interconfiguracion-att"),
+	path('hc/ri', views.reportesHcRI, name="hc-ri"),
+	path('hc/apn', views.reportesHcAPN, name="hc-apn"),
+	path('hc/ia', views.reportesHcIA, name="hc-ia"),
 ]

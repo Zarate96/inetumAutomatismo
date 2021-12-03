@@ -34,17 +34,71 @@
             <div class="card-header">
               <div class="row">
                 <div class="col-md-4">
-                  <img src="" alt="">
+                  <img src="http://localhost:8000/media/IneTelefonica.png" class="img-fluid" alt="">
                 </div>
-                <div class="col-md-8">
-                  
+                <div class="col-md-8 d-flex flex-column text-center">
+                  <h4>{{titulo}}</h4>
+                  <h6>{% now "l, d F Y" %}</h6>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <img src="http://localhost:8000/media/IneEstado.png" class="img-fluid" alt="">
+                </div>
+                <div class="col-md-8 d-flex justify-content-center">
+                  <h6>{% now "H:i" %}</h6>
                 </div>
               </div>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
                 <div class="row">
-                  <div class="col-sm-12 container horizontal-scrollable" style="overflow-x: auto;">
+                  <div class="table-responsive">
+                    <table class="table align-middle">
+                      <thead>
+                        <tr>
+                          <th scope="col">Red</th>
+                          <th scope="col">Elemento</th>
+                          <th scope="col">Status</th>
+                          <th scope="col">Comentarios</th>
+                          <th scope="col">Hora</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">PDC MS OMEX</th>
+                          <td>MACNO CENTRO  BUNDLE-ETHER 300</td>
+                          <td>True</td>
+                          <td></td>
+                          <td>7:00</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">PDC MS OMEX</th>
+                          <td>MACNO CENTRO  BUNDLE-ETHER 300</td>
+                          <td>True</td>
+                          <td></td>
+                          <td>7:00</td>
+                        </tr><tr>
+                          <th scope="row">PDC MS OMEX</th>
+                          <td>MACNO CENTRO  BUNDLE-ETHER 300</td>
+                          <td>True</td>
+                          <td></td>
+                          <td>7:00</td>
+                        </tr><tr>
+                          <th scope="row">PDC MS OMEX</th>
+                          <td>MACNO CENTRO  BUNDLE-ETHER 300</td>
+                          <td>True</td>
+                          <td></td>
+                          <td>7:00</td>
+                        </tr><tr>
+                          <th scope="row">PDC MS OMEX</th>
+                          <td>MACNO CENTRO  BUNDLE-ETHER 300</td>
+                          <td>True</td>
+                          <td></td>
+                          <td>7:00</td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
             </div>

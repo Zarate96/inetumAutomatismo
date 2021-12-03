@@ -160,21 +160,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{% url 'problema:hc-interconfiguracion-att' %}" class="nav-link {% if request.path == '/hc/' %}active{% endif %}">
+                <a href="{% url 'problema:hc-ia' %}" class="nav-link {% if request.path == '/problema/hc/ia' %}active{% endif %}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Interconfiguración ATT</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{% url 'problema:reporte-recurrencia' %}" class="nav-link {% if request.path == '/example/reporte/recurrencia' %}active{% endif %}">
+                <a href="{% url 'problema:hc-apn' %}" class="nav-link {% if request.path == '/problema/hc/apn' %}active{% endif %}">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Reportes</p>
+                  <p>APN MVNO'S</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{% url 'problema:reporte-base' %}" class="nav-link {% if request.path == '/example/reporte/bases' %}active{% endif %}">
+                <a href="{% url 'problema:hc-ri' %}" class="nav-link {% if request.path == '/problema/hc/ri' %}active{% endif %}">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Reporte bases</p>
+                  <p>Rutas de interconexión</p>
                 </a>
               </li>
             </ul>
