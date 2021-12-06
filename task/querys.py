@@ -1,10 +1,11 @@
 from task import chat_bot
 from problema.models import Entregable
 from problema.models import Gestion as GestionProblema
-from cambio_gics.models import Dalia
+from cambio_gics.models import Dalia, Notificacion_red, Notificacion_ti
 from django.utils import  timezone
 import datetime
 import pandas as pd
+from datetime import  timedelta
 
 def get_data_problema():
     entregables = Entregable.objects.filter(estatus=False)
