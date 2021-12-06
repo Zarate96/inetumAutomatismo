@@ -114,6 +114,84 @@ def get_data_problema_titulo():
     notificaciones(9, 8)
     notificaciones(15, 14)
 
+##################################################################################
+
+def get_ordenes_movil():
+    now = datetime.date.today()
+    tomorrow = datetime.date.today() + timedelta(days=1)
+    redes = Notificacion_red.objects.filter(fecha_inicio=tomorrow)
+    tis = Notificacion_ti.objects.filter(fecha_inicio=tomorrow)
+    chat_id = -224944366
+    if len(redes) != 0:
+        texto = 'Buenas Noches estimados, les comparto las actividades de **RED** para ser validadas el día de hoy: {}\n'
+        texto2 = texto.format(now)
+        chat_bot.telegram_api(texto2, chat_id)
+        for x in redes:
+            if x.fecha_inicio == tomorrow:
+                texto5 = """
+                *********************************************************\n          
+                \U00002757 OM: {}\n
+                Gerente: {}\n
+                Categoria: {}\n
+                Titulo: {}\n
+                Descripción: {}\n
+                Afectación: {}\n
+                Criticidad: {}\n
+                Impacto: {}\n
+                Tiempo de Ejecución: {}\n
+                Tiempo de Rollback: {}\n
+                Tiempo de Afectación: {}\n
+                Fecha y Hora Inicio: {} {}\n
+                Fecha y Hora Fin: {} {}\n
+                Horario de Afectación: {}\n
+                Horario entre Afectación: {}\n
+            
+                """
+                texto3 = texto5.format(x.om, x.gerente,x.categoria, x.titulo, x.descripcion, x.afectacion,
+                                       x.criticidad, x.impacto, x.tiempo_ejecucion, x.tiempo_rollback,
+                                       x.tiempo_afectacion, x.fecha_inicio, x.hora_inicio, x.fecha_fin,
+                                       x.hora_fin, x.horario_afectacion, x.horario_entre_afectacion)
+                chat_bot.telegram_api(texto3, chat_id)
+    else:
+        texto = 'Buenas Noches estimados, para el dia de hoy {} no se cuenta con actividades en la parte de **RED**.\n'
+        texto2 = texto.format(now)
+        chat_bot.telegram_api(texto2, chat_id)
+
+    if len(tis) != 0:
+        texto = 'Buenas Noches estimados, les comparto las actividades de **TI** para ser validadas el día de hoy: {}\n'
+        texto2 = texto.format(now)
+        chat_bot.telegram_api(texto2, chat_id)
+        for x in tis:
+            if x.fecha_inicio == tomorrow:
+                texto5 = """
+                   *********************************************************\n          
+                   \U00002757 OM: {}\n
+                   Gerente: {}\n
+                   Titulo: {}\n
+                   Descripción: {}\n
+                   Afectación (B2B o B2C): {}\n
+                   Criticidad: {}\n
+                   Impacto: {}\n
+                   Tiempo de Ejecución: {}\n
+                   Tiempo de Rollback: {}\n
+                   Tiempo de Afectación: {}\n
+                   Fecha y Hora Inicio: {} {}\n
+                   Fecha y Hora Fin: {} {}\n
+                   Afectación: {}\n
+                   Horario de Afectación: {}\n
+                   Area: {}\n
+
+                   """
+                texto3 = texto5.format(x.om, x.gerente,  x.titulo, x.descripcion, x.afectacion,
+                                       x.criticidad, x.impacto, x.tiempo_ejecucion, x.tiempo_rollback,
+                                       x.tiempo_afectacion, x.fecha_inicio, x.hora_inicio, x.fecha_fin, x.hora_fin,
+                                       x.detalle, x.horario_afectacion, x.area)
+                chat_bot.telegram_api(texto3, chat_id)
+    else:
+        texto = 'Buenas Noches estimados, para el dia de hoy {} no se cuenta con actividades en la parte de **TI**.\n'
+        texto2 = texto.format(now)
+        chat_bot.telegram_api(texto2, chat_id)
+
 
 
 
