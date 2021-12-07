@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{% endblock %} | Inetum</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="{% static 'core/plugins/fontawesome-free/css/all.min.css' %}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{% static 'core/dist/css/adminlte.min.css' %}">
+  <!-- Extra examples for card of project details -->
+</head>
+<body class="login-page">
+
+  <!-- Preloader -->
+  <div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__shake" src="{% static 'core/dist/img/inetum.png' %}" alt="AdminLTELogo" height="60" width="60">
+  </div>
+
+  <div class="container mt-3">
+        <main>
+            <div  class="container mb-2 mt-2">
+                <h2>No tienes permiso para visualizar este contenido</h2>
+            </div>
+        </main>
+        <hr>
+        <p class="lead">
+            <a href="{% url 'core:home' %}">Regresar</a>.
+        </p>
+    </div>
+<!-- jQuery -->
+<script src="{% static 'core/plugins/jquery/jquery.min.js' %}"></script>
+<!-- Bootstrap 4 -->
+<script src="{% static 'core/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+<script src="{% static 'core/plugins/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'core/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'core/plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'core/plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+<script src="{% static 'core/plugins/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{% static 'core/plugins/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'core/plugins/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{% static 'core/plugins/jszip/jszip.min.js' %}"></script>
+<script src="{% static 'core/plugins/pdfmake/pdfmake.min.js' %}"></script>
+<script src="{% static 'core/plugins/pdfmake/vfs_fonts.js' %}"></script>
+<script src="{% static 'core/plugins/datatables-buttons/js/buttons.html5.min.js' %}"></script>
+<script src="{% static 'core/plugins/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
+
+<!-- AdminLTE App -->
+<script src="{% static 'core/dist/js/adminlte.min.js' %}"></script>
+
+<!-- Extra examples for card of project details -->
+{% block extra_js %}{% endblock extra_js %}
+
+</body>
+</html>
+

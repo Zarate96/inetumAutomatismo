@@ -70,7 +70,9 @@ ROOT_URLCONF = 'siteInetum.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / 'templates',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -82,6 +84,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'siteInetum.wsgi.application'
 
@@ -170,9 +173,10 @@ CKEDITOR_CONFIGS = {
         'extraAllowedContent': 'iframe[*]',
 
     },
-
-
 }
+
+LOGIN_REDIRECT_URL = 'core:home'
+LOGIN_URL = 'core:login'
 
 EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=False, cast=bool)
 EMAIL_HOST =  config('EMAIL_HOST', default='localhost')

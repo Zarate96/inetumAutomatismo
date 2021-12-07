@@ -4,6 +4,8 @@ from django.shortcuts import render, HttpResponse, get_object_or_404
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView
 from django.views.generic import ListView, DetailView
+from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
+from django.contrib.auth.decorators import login_required
 from django.views import View
 
 from .forms import GestionForm
@@ -23,7 +25,8 @@ class proyectoDetalle(DetailView):
 class crearProyectos(FormView):
     form_class = GestionForm
     template_name = "problema/problema_create.html"
-    
+
+@login_required
 def reporteRecurrencia(request):
     proyectos = Gestion.objects.all()
     filter = GestionFilter(request.GET, queryset=proyectos)
@@ -52,31 +55,36 @@ def reporteRecurrencia(request):
     }
     return render(request, 'problema/reporte.html',context)
 
+@login_required
 def reporteBase(request):
-    proyectos = Gestion.objects.all()
-    filter = GestionFilter(request.GET, queryset=proyectos)
-    proyectos = filter.qs
-    paginator = Paginator(proyectos, 5) 
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
+    user = request.user 
+    if user.is_authenticated:
+        proyectos = Gestion.objects.all()
+        filter = GestionFilter(request.GET, queryset=proyectos)
+        proyectos = filter.qs
+        paginator = Paginator(proyectos, 5) 
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
 
-    if request.method == 'POST':
-        response = HttpResponse(content_type='text/csv')
-        
-        writer = csv.writer(response)
-        writer.writerow(['Gerente','LT','Proyecto','Gestor', 'Fecha alta workflow', 'Fecha PP', 'Comentarios','Entregables','Entregables no entregados','Estado','Detencion PP','Soporte Técnico',
-        'Catálogo','OLA', 'Fecha OLA'])
-        for proyecto in proyectos:
-            catalogosList = []
-            for catalogo in proyecto.catalogo.all():
-                catalogosList.append(f'{catalogo.name}({catalogo.ambiente})')
-            writer.writerow([proyecto.lider.gerente, proyecto.lider, proyecto.name_proyecto, proyecto.gestor, proyecto.fecha_alta_workflow, proyecto.fecha_pp, 
-                             proyecto.comentarios_vista, proyecto.get_fechasEntregado(), proyecto.get_fechasNoEntregado(), proyecto.estatus, proyecto.detencion, proyecto.soporte.name, 
-                             catalogosList, proyecto.ola, proyecto.fecha_ola])
-        
-        response['Content-Disposition'] = 'attachment; filename="reporte.csv"'
+        if request.method == 'POST':
+            response = HttpResponse(content_type='text/csv')
+            
+            writer = csv.writer(response)
+            writer.writerow(['Gerente','LT','Proyecto','Gestor', 'Fecha alta workflow', 'Fecha PP', 'Comentarios','Entregables','Entregables no entregados','Estado','Detencion PP','Soporte Técnico',
+            'Catálogo','OLA', 'Fecha OLA'])
+            for proyecto in proyectos:
+                catalogosList = []
+                for catalogo in proyecto.catalogo.all():
+                    catalogosList.append(f'{catalogo.name}({catalogo.ambiente})')
+                writer.writerow([proyecto.lider.gerente, proyecto.lider, proyecto.name_proyecto, proyecto.gestor, proyecto.fecha_alta_workflow, proyecto.fecha_pp, 
+                                proyecto.comentarios_vista, proyecto.get_fechasEntregado(), proyecto.get_fechasNoEntregado(), proyecto.estatus, proyecto.detencion, proyecto.soporte.name, 
+                                catalogosList, proyecto.ola, proyecto.fecha_ola])
+            
+            response['Content-Disposition'] = 'attachment; filename="reporte.csv"'
 
-        return response
+            return response
+    else:
+        raise PermissionDenied()
 
     context = {
         'proyectos' : proyectos,
