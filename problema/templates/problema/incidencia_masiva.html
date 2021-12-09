@@ -1,0 +1,142 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %} IM {% endblock %}
+
+{% block extracss %}
+  <style>
+    .table td,th{
+    text-align: center;   
+    }
+    #mainContent{
+      font-family: Arial
+    }
+    strong {
+      display: inline-block;
+      width: 100%;
+      border: 1px solid rgb(26, 66, 243);
+      border-radius: 1em/5em;
+      text-align: center;
+    }
+  </style>
+{% endblock extracss %}
+
+{% block content %} 
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <div id="mainContent" class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- /.col-md-6 -->
+        <div class="col-12 mt-4">
+          <div class="card">
+            <div class="card-header">
+              <div class="row">
+                <div class="col-12">
+                  <img src="http://94.74.76.125:8057/media/tituloIm.jpg" class="img-fluid" alt="">
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-4">
+                  <img src="http://94.74.76.125:8057/media/cuadro.jpg" class="img-fluid" alt="">
+                </div>
+                <div class="col-8 d-flex my-auto text-center">
+                  <h6>Clientes afectados Servicio MPLS(27), INTD(24), VOZ(0), CC(0) Estado: Inicio</h6>
+                </div>
+              </div>
+              
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <div class="row">
+                  <div class="table-responsive">
+                    <table class="table align-middle">
+                      <thead>
+                        <tr>
+                          <th scope="col">Cliente</th>
+                          <th scope="col">Sucursal</th>
+                          <th scope="col">Servicio</th>
+                          <th scope="col">Ticket</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>ELEKTRA</td>
+                          <td>OAXACA OAXACA T</td>
+                          <td>MPLS</td>
+                          <td>HD0000005565662</td>
+                        </tr>
+                        <tr>
+                          <td>ELEKTRA</td>
+                          <td>OAXACA OAXACA T</td>
+                          <td>MPLS</td>
+                          <td>HD0000005565662</td>
+                        </tr><tr>
+                          <td>ELEKTRA</td>
+                          <td>OAXACA OAXACA T</td>
+                          <td>MPLS</td>
+                          <td>HD0000005565662</td>
+                        </tr><tr>
+                          <td>ELEKTRA</td>
+                          <td>OAXACA OAXACA T</td>
+                          <td>MPLS</td>
+                          <td>HD0000005565662</td>
+                        </tr><tr>
+                          <td>ELEKTRA</td>
+                          <td>OAXACA OAXACA T</td>
+                          <td>MPLS</td>
+                          <td>HD0000005565662</td>
+                        </tr><tr>
+                          <td>ELEKTRA</td>
+                          <td>OAXACA OAXACA T</td>
+                          <td>MPLS</td>
+                          <td>HD0000005565662</td>
+                        </tr><tr>
+                          <td>ELEKTRA</td>
+                          <td>OAXACA OAXACA T</td>
+                          <td>MPLS</td>
+                          <td>HD0000005565662</td>
+                        </tr><tr>
+                          <td>ELEKTRA</td>
+                          <td>OAXACA OAXACA T</td>
+                          <td>MPLS</td>
+                          <td>HD0000005565662</td>
+                        </tr><tr>
+                          <td>ELEKTRA</td>
+                          <td>OAXACA OAXACA T</td>
+                          <td>MPLS</td>
+                          <td>HD0000005565662</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+            </div>
+            <!-- /.card-body -->
+            
+            <div class="row">
+              <div class="col-10 offset-1 p-3 text-center border border-info rounded">
+                <h6>Descripción de la falla: Se presenta intermitencias de servicio que pasan por el enclace</h6>
+              </div>
+            </div>
+            <div class="card-header">
+              <div class="row mt-3">
+                <div class="col-5">
+                  <strong>Hora de inicio: 10:13 hrs.</strong>
+                </div>
+                <div class="col-7">
+                  <strong>Tiempo estimado de solución: Sin tiempo estimado</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- /.content -->
+{% endblock %}

@@ -3,7 +3,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import render, HttpResponse, get_object_or_404
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.contrib.auth.decorators import login_required
 from django.views import View
@@ -177,3 +177,6 @@ def reportesHcRI(request):
         'titulo':'HEALTH CHECK RUTAS DE INTERCONEXION'
     }
     return render(request, 'problema/reportesHc.html',context)
+
+class IncidenciaMasiva(TemplateView):
+    template_name = "problema/incidencia_masiva.html"
