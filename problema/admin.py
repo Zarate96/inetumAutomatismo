@@ -8,7 +8,7 @@ from import_export.admin import ImportExportModelAdmin
 # REGISTRO DE IMPORTACIONES
 class ProblemaResource(resources.ModelResource):
     class meta:
-        model=(Area,Catalogo,Entregable,Estatus,GerenciaSoporteTemm,GerenciaTemm,Gestor,Grupo,Ot,TecnologiaCatalogo,TipoProyecto,SoporteTemm,LiderTecnicoTemm,Gestion)
+        model=(Area,Catalogo,Entregable,Estatus,GerenciaSoporteTemm,GerenciaTemm,Gestor,Grupo,Ot,TecnologiaCatalogo,TipoProyecto,SoporteTemm,LiderTecnicoTemm,Gestion,CorreoProyectos)
 
 
 @admin.register(Area)
@@ -154,8 +154,6 @@ class LiderTecnicoTemmProject(ImportExportModelAdmin, admin.ModelAdmin):
     search_fields = ('name', 'apellido', 'telefono', 'email', 'created', 'updated')
     list_filter = ('gerente__name', 'gerente__apellido', 'gerente__telefono',)
 
-
-
 @admin.register(Gestion)
 class GestionProject(ImportExportModelAdmin, admin.ModelAdmin):
     resouce_class = ProblemaResource
@@ -214,3 +212,9 @@ class HistoricoProject(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ('name', 'compromiso','gestion')
     search_fields = ('name', 'compromiso',)
     list_filter = ('compromiso', )
+
+@admin.register(CorreoProyectos)
+class CorreoProyectospProject(ImportExportModelAdmin, admin.ModelAdmin):
+    resouce_class = ProblemaResource
+    list_display = ('fecha', 'asunto','remitente','anexo1','anexo2','gestion')
+    search_fields = ('fecha','asunto','gestion__name_proyecto')

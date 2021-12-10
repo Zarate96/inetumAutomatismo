@@ -428,3 +428,18 @@ def historico(sender,instance, **kwargs):
                                  comentario=instance.comentario)
     except sender.DoesNotExist:
        Historico.objects.create(gestion_id=instance.gestion.id,name=instance.name,compromiso= instance.compromiso,comentario= instance.comentario)
+
+class CorreoProyectos(models.Model):
+    fecha = models.DateField(verbose_name="Fecha")
+    asunto = models.CharField(max_length=130, verbose_name="Asunto")
+    remitente = models.CharField(max_length=130, verbose_name="Remitente")
+    anexo1 = models.CharField(max_length=130, verbose_name="Anexo1")
+    anexo2 = models.PositiveIntegerField(verbose_name="Anexo2")
+    gestion = models.ForeignKey(Gestion, on_delete=models.CASCADE, verbose_name="Proyecto")
+
+    class Meta:
+        verbose_name = "Correo proyectos"
+        verbose_name_plural = "Correo proyectos"
+    
+    def __str__(self):
+        return self.asunto
