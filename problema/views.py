@@ -180,3 +180,6 @@ def reportesHcRI(request):
 
 class IncidenciaMasiva(TemplateView):
     template_name = "problema/incidencia_masiva.html"
+
+class IncidenciaMasivaBot(TemplateView):
+    template_name = "problema/incidencia_masiva_bot.html"
