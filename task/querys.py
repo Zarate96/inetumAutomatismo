@@ -9,9 +9,9 @@ from datetime import  timedelta
 
 def get_data_problema():
     entregables = Entregable.objects.filter(estatus=False)
+    now = datetime.date.today()
     for x in entregables:
         if x.compromiso is not None:
-            now = datetime.date.today()
             diferencia = x.compromiso - now
             delta = pd.date_range(start=now, end =x.compromiso, freq='B')
             if len(delta)==4 and diferencia.days >0:

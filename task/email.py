@@ -1,7 +1,5 @@
 from django.core.mail import send_mail, send_mass_mail
 
-
-
 def enviomail():
     subject = 'TEMM | {} | {} | {}'.format("remedy", "holding", "sucursal" )
     html_message = """
