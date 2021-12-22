@@ -28,5 +28,5 @@ def notificacion_telegram(proyecto_id, name_proyecto, old_estado, new_estado):
         """
     texto = texto2.format(proyecto_id, name_proyecto, old_estado, new_estado)
     requests.post('https://api.telegram.org/bot1660736119:AAFqlINNPtKGh_Ag5tZ4SUYfocaDH7n_60c/sendMessage',
-                  data={'chat_id': '1663958489', 'text': texto})
+                  data={'chat_id': '1001763353987', 'text': texto})
 
