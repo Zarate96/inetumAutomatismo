@@ -93,7 +93,7 @@ def notificaciones(periodo, dias):
         for y in entregables:
             lista_nombre.append(y.name)
             lista_entregables.append(y.name)
-        chat_id = -672204811
+        chat_id = -1001763353987
         nombre_proyecto = lista_nombre[0]
         nombre_gestor = lista_nombre[1]
         texto = ", ".join(lista_entregables)
@@ -108,6 +108,8 @@ def notificaciones(periodo, dias):
         fecha = fin.strftime("%A, %d de %b, %Y")
         texto3 = texto2.format(dias, nombre_gestor, nombre_proyecto, texto, fecha)
         chat_bot.telegram_api(texto3, chat_id)
+
+def 
 
 
 def get_data_problema_titulo():
