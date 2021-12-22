@@ -110,6 +110,7 @@ def notificaciones(periodo, dias):
         chat_bot.telegram_api(texto3, chat_id)
 
 def get_data_problema_titulo():
+    notificaciones(1, 0)
     notificaciones(4, 3)
     notificaciones(9, 8)
     notificaciones(15, 14)
