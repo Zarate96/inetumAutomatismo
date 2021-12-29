@@ -16,4 +16,6 @@ urlpatterns = [
 	path('hc/ia', views.reportesHcIA, name="hc-ia"),
 	path('ni/', views.IncidenciaMasiva.as_view(), name="ni"),
 	path('ni/bot', views.IncidenciaMasivaBot.as_view(), name="ni-bot"),
+	path('hc/ia/bot', views.reportesHcIABot, name="hc-ia-bot"),
+	path('hc/apn/bot', views.reportesHcAPNBot, name="hc-apn-bot"),
 ]

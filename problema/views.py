@@ -170,13 +170,25 @@ def reportesHcAPN(request):
     context = {
         'titulo': "Health Check APN MVNO'S - ROAMING"
     }
-    return render(request, 'problema/reportesHc.html',context)
+    return render(request, 'problema/reportesHcAPN.html',context)
 
 def reportesHcRI(request):
     context = {
         'titulo':'HEALTH CHECK RUTAS DE INTERCONEXION'
     }
     return render(request, 'problema/reportesHc.html',context)
+
+def reportesHcIABot(request):
+    context = {
+        'titulo':'HEALTH CHECK INTERCONFIGURACION ATT'
+    }
+    return render(request, 'problema/reporteHcInterBot.html',context)
+
+def reportesHcAPNBot(request):
+    context = {
+        'titulo': "Health Check APN MVNO'S - ROAMING"
+    }
+    return render(request, 'problema/reporteHcAPNBot.html',context)
 
 class IncidenciaMasiva(TemplateView):
     template_name = "problema/incidencia_masiva.html"
