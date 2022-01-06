@@ -9,13 +9,14 @@ from selenium.webdriver.support.select import Select
 from selenium.webdriver.chrome.options import Options
 import json
 import requests
+import cv2
 
 
-path= "C:/Users/Inetum-1109/Desktop/Inetum/inetumAutomatismo/chromedriver.exe"
-URL = 'https://api.telegram.org/bot1660736119:AAFqlINNPtKGh_Ag5tZ4SUYfocaDH7n_60c/sendPhoto'
-URL2 = 'https://api.telegram.org/bot1660736119:AAFqlINNPtKGh_Ag5tZ4SUYfocaDH7n_60c/sendMessage'
-#chat_id = 1663958489
-chat_id = -1001463611893
+path= "C:/Users/MX-Inetum-1478/Desktop/Escritorio/Inetum/inetumAutomatismo/chromedriver.exe"
+URL = 'https://api.telegram.org/bot2114681560:AAGPlALNSj-TWi2ipYkkyJ7r6oKbKkJGdz0/sendPhoto'
+URL2 = 'https://api.telegram.org/bot2114681560:AAGPlALNSj-TWi2ipYkkyJ7r6oKbKkJGdz0/sendMessage'
+chat_id = 1663958489
+#chat_id = -224944366
 WINDOW_SIZE = "1920,1080"
 
 
@@ -246,4 +247,40 @@ def get_santander():
         print(data['ok'])
 
         driver.close()
+
+
+
+def get_hcInterATT():
+    now = datetime.now().strftime("%H:%M")
+    URL = 'https://api.telegram.org/bot2114681560:AAGPlALNSj-TWi2ipYkkyJ7r6oKbKkJGdz0/sendPhoto'
+    chat_id = -396809016
+    #chat_id = 1663958489
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--window-size=%s" % WINDOW_SIZE)
+    driver = webdriver.Chrome(path, chrome_options=chrome_options)
+    try:
+        driver.get("http://127.0.0.1:8000/hc/interconexionATT/")
+        time.sleep(2)
+        driver.fullscreen_window()
+        time.sleep(2)
+        check = "InterATT.png"
+        driver.save_screenshot(check)
+        image = cv2.imread("InterATT.png")
+        imageOut = image[0:1600, 0:1110]
+        cv2.imwrite('InterATT.png', imageOut)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
+
+        texto = "Se envia el HC de Interconfiguración ATT {}".format(now)
+
+        r = requests.post(URL,
+                          files={'photo': ('InterATT.png', open('InterATT.png', 'rb'))},
+                          data={'chat_id': chat_id, 'caption': texto})
+        driver.close()
+
+    except:
+        texto = "Se tuvo un Error en obtener el HC de Interconfiguració de ATT {}:{}".format(now)
+        r = requests.post(URL2,
+                          data={'chat_id': chat_id, 'text': texto})
 

@@ -1,0 +1,1568 @@
+{% load static %}
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HC INTERCONFIGURACION ATT-BOT | Inetum</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="{% static 'core/plugins/fontawesome-free/css/all.min.css' %}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{% static 'core/dist/css/adminlte.min.css' %}">
+  <style>
+    * {
+      padding:0;
+      margin:0;
+    }
+
+    body{
+      line-height: 0;
+      font-size: 0.75rem;
+      font-family: "Calibri", Times, serif;
+    }
+
+    .table thead {
+      background-color: rgb(233, 255, 253);
+      color: rgb(65, 68, 255);
+      text-align: center;
+      font-size: 20px;
+      border: 2px solid rgb(65, 68, 255);
+
+    }
+
+    .telefonicaImg {
+       height: 35px;
+      float:left;
+    }
+
+    .estadosImg {
+      width: 19vw;
+      padding-top:5px;
+    }
+
+    .table thead p {
+        padding-top: 7px;
+        background-color: rgb(233, 255, 253);
+    }
+
+    .textHead{
+      color: rgb(65, 68, 255);
+      font-size: 0.9rem;
+    }
+
+    .segunda {
+      background-color: rgb(233, 255, 253);
+      border: 2px solid rgb(65, 68, 255);
+      line-height: 0;
+    }
+
+    .segunda p {
+      text-align: center;
+      font-weight: bold;
+      padding-top: 5px;
+      padding-bottom: -2px;
+    }
+
+    .table, th, td {
+      border: 2px solid rgb(65, 68, 255);
+      font-weight: bold;
+
+    }
+
+    .elementoCelda {
+      width:14.5vw;
+    }
+
+    .redCelda{
+      width: 8vw;
+    }
+
+    .statusCelda{
+      width: 3vw;
+    }
+
+    .horaCelda{
+      width: 3.5vw;
+    }
+
+    .comentariosCelda{
+      width: 27vw;
+      text-align: center;
+      font-size: 10px;
+
+    }
+
+    .horaTd{
+      text-align: center;
+    }
+
+    .tercera{
+      background-color: rgb(65, 68, 255);
+      color: white;
+      text-align: center;
+      font-size: 0.7rem;
+    }
+
+    .tdgreen{
+      background-color: rgb(233, 255, 253);
+      vertical-align : middle !important;
+      text-align: center;
+    }
+
+    .iCheck{
+      color: green;
+      text-align: center;
+    }
+
+    .tdStatus{
+      text-align: center;
+    }
+
+    .table{
+      line-height: 0.7;
+    }
+
+    .table-sm td, .table-sm th {
+      padding: .1rem;
+      vertical-align: inherit;
+    }
+
+.OK{
+     color: green;
+     padding-left:10px;
+}
+
+.Incidencia{
+     color: #C22110;
+
+     padding-left:60px;
+}
+
+.Riesgo{
+      color: #E3ED0A;
+     padding-left:60px;
+}
+
+.iWarning{
+      color: #E3ED0A;
+      text-align: center;
+    }
+
+.iIncident{
+    color: #C22110;
+      text-align: center;
+
+}
+
+  </style>
+  <!-- Extra examples for card of project details -->
+</head>
+
+<body class="hold-transition sidebar-mini">
+           <div class="col-7">
+              <div class="table-responsive">
+                <table class="table table-sm align-middle">
+                  <thead>
+                  <tr class="primera">
+                      <th scope="col" colspan="5" >
+                        <img src="{% static 'core/img/telefonica.jpg'  %}" class="telefonicaImg" alt="">
+
+                       <strong>HEALTH CHECK INTERCONFIGURACION ATT</strong>
+
+                       <p class="textHead">{% now "l, d F Y" %}</p></th>
+                  </tr>
+
+                  </thead>
+                  <tbody>
+                   <tr class="segunda">
+                      <td scope="col" colspan="2">
+                          <i class="fas fa-circle OK"></i> OK
+                           <i class="fas fa-circle  Incidencia"></i> Incidencia
+                           <i class="fas fa-circle  Riesgo"></i> Riesgo
+
+                      </td>
+                     <td scope="col" colspan="3"><p class="textHead">{% now "H:i" %}</p></td>
+
+                    </tr>
+
+                  <tr class="tercera">
+                      <td scope="col" class="redCelda">Red</td>
+                      <td scope="col" class="elementoCelda">Elemento</td>
+                      <td scope="col" class="statusCelda">Status</td>
+                      <td scope="col" class="comentariosCelda">Comentarios</td>
+                      <td scope="col" class="horaCelda">Hora</td>
+                    </tr>
+
+                    <tr>
+                      <th scope="row" class="tdgreen" rowspan="2">PDC MSOMEX01</th>
+                      <td>MACNO CENTRO  BUNDLE-ETHER 300</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.macno_centro_bundle_ether_300_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.macno_centro_bundle_ether_300_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                          {% endfor %}
+
+                      </td>
+                      <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.macno_centro_bundle_ether_300_comentarios %}
+                                    {{comentario.macno_centro_bundle_ether_300_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+                    <tr>
+                      <td>MSOMEX01 VLAN´S</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                          {% if estado.msomex01_vlan_estatus == "OK" %}
+                          <i class="fas fa-check-circle iCheck"></i>
+                            {% elif estado.msomex01_vlan_estatus == "RIESGO"  %}
+                          <i class="fas fa-exclamation-circle iWarning"></i>
+                            {%else %}
+                          <i class="fas fa-times-circle iIncident"></i>
+                          {% endif %}
+                          {% endfor %}
+
+
+                      </td>
+                       <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.msomex01_vlan_comentarios %}
+                                    {{comentario.msomex01_vlan_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+
+                    <tr>
+                      <th scope="row" class="tdgreen" rowspan="2">PDC MSOMEX02</th>
+                      <td>MSOMEX02 BUNDLE-ETHER 500</td>
+                      <td class="tdStatus">
+                            {% for estado in estatus %}
+                              {% if estado.msomex02_bundle_ether_500_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.msomex02_bundle_ether_500_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+
+                      </td>
+                      <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.msomex02_bundle_ether_500_comentarios %}
+                                    {{comentario.msomex02_bundle_ether_500_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+                    <tr>
+                      <td>MSOMEX02 VLAN´S</td>
+                      <td class="tdStatus">
+                           {% for estado in estatus %}
+                              {% if estado.msomex02_vlan_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.msomex02_vlan_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+
+
+                      </td>
+                       <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.msomex02_vlan_comentarios %}
+                                    {{comentario.msomex02_vlan_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+
+                    <tr>
+                      <th scope="row" class="tdgreen" rowspan="2">PDC MSOMEX03</th>
+                      <td>MSOMEX03 BUNDLE-ETHER 500</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.msomex03_bundle_ether_500_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.msomex03_bundle_ether_500_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+
+                      </td>
+                     <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.msomex03_bundle_ether_500_comentarios %}
+                                    {{comentario.msomex03_bundle_ether_500_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+                    <tr>
+                      <td>MSOMEX03 VLAN´S</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.msomex03_vlan_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.msomex03_vlan_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+
+                      </td>
+                      <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.msomex03_vlan_comentarios %}
+                                    {{comentario.msomex03_vlan_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+                   <tr>
+                      <th scope="row" class="tdgreen" rowspan="2">PDC MSOMEX04</th>
+                      <td>MSOMEX04 BUNDLE-ETHER 400</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.msomex04_bundle_ether_400_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.msomex04_bundle_ether_400_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+
+                      </td>
+                     <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.msomex04_bundle_ether_400_comentarios %}
+                                    {{comentario.msomex04_bundle_ether_400_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+                    <tr>
+                      <td>MSOMEX04 VLAN´S</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.msomex04_vlan_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.msomex04_vlan_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+
+                      </td>
+                      <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.msomex04_vlan_comentarios %}
+                                    {{comentario.msomex04_vlan_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+
+
+                    <tr>
+                      <th scope="row" class="tdgreen" rowspan="2">PDC MEXZUM8148</th>
+                      <td>MEXZUM8148 BUNDLE-ETHER 500</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.mexzum8148_bundle_ether_500_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.mexzum8148_bundle_ether_500_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                      <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.mexzum8148_bundle_ether_500_comentarios %}
+                                    {{comentario.mexzum8148_bundle_ether_500_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+                    <tr>
+                      <td>MEXZUM8148 VLAN´S</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.mexzum8148_vlan_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.mexzum8148_vlan_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                     <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.mexzum8148_vlan_comentarios %}
+                                    {{comentario.mexzum8148_vlan_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+
+                    <tr>
+                      <th scope="row" class="tdgreen" rowspan="2">PDC MSOMTY01</th>
+                      <td>MSOMTY01 BUNDLE-ETHER 300</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.msomty01_bundle_ether_300_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.msomty01_bundle_ether_300_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                      <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.msomty01_bundle_ether_300_comentarios %}
+                                    {{comentario.msomty01_bundle_ether_300_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+                    <tr>
+                      <td>MSOMTY01 VLAN´S</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.msomty01_vlan_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.msomty01_vlan_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                     <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.msomty01_vlan_comentarios %}
+                                    {{comentario.msomty01_vlan_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+
+                    <tr>
+                      <th scope="row" class="tdgreen">PDC HMTY0237</th>
+                      <td style="vertical-align: middle;">HMTY0237 VLAN´S</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.hmty0237_vlan_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.hmty0237_vlan_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                    <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.hmty0237_vlan_comentarios %}
+                                    {{comentario.hmty0237_vlan_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+
+                    <tr>
+                      <th scope="row" class="tdgreen" rowspan="2">PDC MSOGDL01</th>
+                      <td>MSOGDL01 BUNDLE-ETHER 300</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.msogdl01_bundle_ether_300_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.msogdl01_bundle_ether_300_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                     <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.msogdl01_bundle_ether_300_comentarios %}
+                                    {{comentario.msogdl01_bundle_ether_300_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+                    <tr>
+                      <td>MSOGDL01 VLAN´S</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.msogdl01_vlan_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.msogdl01_vlan_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                    <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.msogdl01_vlan_comentarios %}
+                                    {{comentario.msogdl01_vlan_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+
+                    <tr>
+                      <th scope="row" class="tdgreen" rowspan="2">PDC MSOTJP01</th>
+                      <td>MSOTJP01 BUNDLE-ETHER 300</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.msotjp01_bundle_ether_300_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.msotjp01_bundle_ether_300_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                     <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.msotjp01_bundle_ether_300_comentarios %}
+                                    {{comentario.msotjp01_bundle_ether_300_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+                    <tr>
+                      <td>MSOTJP01 VLAN´S</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.msotjp01_vlan_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.msotjp01_vlan_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                     <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.msotjp01_vlan_comentarios %}
+                                    {{comentario.msotjp01_vlan_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+
+                    <tr>
+                      <th scope="row" class="tdgreen" rowspan="2">PDC MSOCJUP01</th>
+                      <td>MSOCJUP01 BUNDLE-ETHER 300</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.msocjup01_bundle_ether_300_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.msocjup01_bundle_ether_300_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                     <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.msocjup01_bundle_ether_300_comentarios %}
+                                    {{comentario.msocjup01_bundle_ether_300_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+                    <tr>
+                      <td>MSOCJUP01 VLAN´S</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.msocjup01_vlan_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.msocjup01_vlan_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                      <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.msocjup01_vlan_comentarios %}
+                                    {{comentario.msocjup01_vlan_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+
+                    <tr>
+                      <th scope="row" class="tdgreen" rowspan="2">PDC MSOPUE01</th>
+                      <td>MSOPUE01  BUNDLE-ETHER 300</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.msopue01_bundle_ether_300_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.msopue01_bundle_ether_300_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                     <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.msopue01_bundle_ether_300_comentarios %}
+                                    {{comentario.msopue01_bundle_ether_300_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+                    <tr>
+                      <td>MSOPUE01  VLAN´S</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.msopue01_vlan_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.msopue01_vlan_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                      <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.msopue01_vlan_comentarios %}
+                                    {{comentario.msopue01_vlan_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+
+                    <tr>
+                      <th scope="row" class="tdgreen">PDC RSOPUE01</th>
+                      <td style="vertical-align: middle;">RSOPUE01  VLAN´S</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.rsopue01_vlan_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.rsopue01_vlan_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                     <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.rsopue01_vlan_comentarios %}
+                                    {{comentario.rsopue01_vlan_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+
+                    <tr>
+                      <th scope="row" class="tdgreen" rowspan="2">PDC HTPC0030</th>
+                      <td>TAM_HTPC0030 BUNDLE-ETHER 300</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.tam_htpc0030_bundle_ether_300_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.tam_htpc0030_bundle_ether_300_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                     <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.tam_htpc0030_bundle_ether_300_comentarios %}
+                                    {{comentario.tam_htpc0030_bundle_ether_300_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+                    <tr>
+                      <td>TAM_HTPC0030  VLAN´S</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.tam_htpc0030_vlan_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.tam_htpc0030_vlan_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                      <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.tam_htpc0030_vlan_comentarios %}
+                                    {{comentario.tam_htpc0030_vlan_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+
+                    <tr>
+                      <th scope="row" class="tdgreen" rowspan="2">PDC RSOTPOC01</th>
+                      <td>TAM_RSOTPOC01 BUNDLE-ETHER 300</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.tam_rsotpoc01_bundle_ether_300_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.tam_rsotpoc01_bundle_ether_300_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                     <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.tam_rsotpoc01_bundle_ether_300_comentarios %}
+                                    {{comentario.tam_rsotpoc01_bundle_ether_300_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+                    <tr>
+                      <td>TAM_RSOTPOC01 VLAN´S</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.tam_rsotpoc01_vlan_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.tam_rsotpoc01_vlan_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                     <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.tam_rsotpoc01_vlan_comentarios %}
+                                    {{comentario.tam_rsotpoc01_vlan_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+
+                    <tr>
+                      <th scope="row" class="tdgreen" rowspan="2">PDC RSONLD01</th>
+                      <td>NLD_RSONLD01 BUNDLE-ETHER 300</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.nld_rsonld01_bundle_ether_300_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.nld_rsonld01_bundle_ether_300_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                      <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.nld_rsonld01_bundle_ether_300_comentarios %}
+                                    {{comentario.nld_rsonld01_bundle_ether_300_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+                    <tr>
+                      <td>NLD_RSONLD01 VLAN´S</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.nld_rsonld01_vlan_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.nld_rsonld01_vlan_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                     <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.nld_rsonld01_vlan_comentarios %}
+                                    {{comentario.nld_rsonld01_vlan_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+
+                    <tr>
+                      <th scope="row" class="tdgreen" rowspan="2">PDC TOR-250</th>
+                      <td>TOR-250 BUNDLE-ETHER 300</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.tor_250_bundle_ether_300_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.tor_250_bundle_ether_300_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                     <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.tor_250_bundle_ether_300_comentarios %}
+                                    {{comentario.tor_250_bundle_ether_300_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+                    <tr>
+                      <td>TOR-250 VLAN´S</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.tor_250_vlan_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.tor_250_vlan_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                      <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.tor_250_vlan_comentarios %}
+                                    {{comentario.tor_250_vlan_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+
+                    <tr>
+                      <th scope="row" class="tdgreen" rowspan="2">PDC RSOREY01</th>
+                      <td>REY_RSOREY01 BUNDLE-ETHER 300</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.rey_rsorey01_bundle_ether_300_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.rey_rsorey01_bundle_ether_300_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                      <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.rey_rsorey01_bundle_ether_300_comentarios %}
+                                    {{comentario.rey_rsorey01_bundle_ether_300_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+                    <tr>
+                      <td>REY_RSOREY01 VLAN´S</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.rey_rsorey01_vlan_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.rey_rsorey01_vlan_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                     <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.rey_rsorey01_vlan_comentarios %}
+                                    {{comentario.rey_rsorey01_vlan_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+                    
+                    <tr>
+                      <th scope="row" class="tdgreen" rowspan="2">PDC RSOCHI01</th>
+                      <td>RSOCHI01 BUNDLE-ETHER 300</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.rsochi01_bundle_ether_300_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.rsochi01_bundle_ether_300_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                      <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.rsochi01_bundle_ether_300_comentarios %}
+                                    {{comentario.rsochi01_bundle_ether_300_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+                    <tr>
+                      <td>RSOCHI01 VLAN´S</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.rsochi01_vlan_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.rsochi01_vlan_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                      <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.rsochi01_vlan_comentarios %}
+                                    {{comentario.rsochi01_vlan_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+
+                    <tr>
+                      <th scope="row" class="tdgreen" rowspan="2">PDC MSOCAB01</th>
+                      <td>MSOCAB01 PORT-CHANNEL 300</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.msocab01_port_channel_300_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.msocab01_port_channel_300_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                     <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.msocab01_port_channel_300_comentarios %}
+                                    {{comentario.msocab01_port_channel_300_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+                    <tr>
+                      <td>MSOCAB01 VLAN´S</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.msocab01_vlan_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.msocab01_vlan_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                      <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.msocab01_vlan_comentarios %}
+                                    {{comentario.msocab01_vlan_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+
+                    <tr>
+                      <th scope="row" class="tdgreen" rowspan="2">PDC RSOTOL01</th>
+                      <td>RSOTOL01 ETHER-TRUNK 100</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.rsotol01_ether_trunk_100_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.rsotol01_ether_trunk_100_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                     <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.rsotol01_ether_trunk_100_comentarios %}
+                                    {{comentario.rsotol01_ether_trunk_100_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+                    <tr>
+                      <td>RSOTOL01 VLAN´S</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.rsotol01_vlan_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.rsotol01_vlan_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                     <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.rsotol01_vlan_comentarios %}
+                                    {{comentario.rsotol01_vlan_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+
+                    <tr>
+                      <th scope="row" class="tdgreen" rowspan="2">PDC MSOTOL01</th>
+                      <td>MSOTOL01 ETHER-TRUNK 100</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.msotol01_ether_trunk_100_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.msotol01_ether_trunk_100_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                      <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.msotol01_ether_trunk_100_comentarios %}
+                                    {{comentario.msotol01_ether_trunk_100_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+                    <tr>
+                      <td>MSOTOL01 VLAN´S</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.msotol01_vlan_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.msotol01_vlan_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                      <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.msotol01_vlan_comentarios %}
+                                    {{comentario.msotol01_vlan_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+
+                    <tr>
+                      <th scope="row" class="tdgreen" rowspan="2">PDC RSOCUN01</th>
+                      <td>CAN_RSOCUN01-TRUNK</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.can_rsocun01_trunk_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.can_rsocun01_trunk_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                      <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.can_rsocun01_trunk_comentarios %}
+                                    {{comentario.can_rsocun01_trunk_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+                    <tr>
+                      <td>CAN_RSOCUN01-VLAN´S</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.can_rsocun01_vlan_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.can_rsocun01_vlan_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                     <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.can_rsocun01_vlan_comentarios %}
+                                    {{comentario.can_rsocun01_vlan_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+
+                    <tr>
+                      <th scope="row" class="tdgreen">PDC MSOMER01</th>
+                      <td style="vertical-align: middle;">MER_MSOMER01-TRUNK</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.mer_msomer01_trunk_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.mer_msomer01_trunk_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                      <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.mer_msomer01_trunk_comentarios %}
+                                    {{comentario.mer_msomer01_trunk_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+
+                    <tr>
+                      <th scope="row" class="tdgreen" rowspan="2">PDC MSOMER02</th>
+                      <td>MER_MSOMER02-TRUNK</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.mer_msomer02_trunk_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.mer_msomer02_trunk_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                      <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.mer_msomer02_trunk_comentarios %}
+                                    {{comentario.mer_msomer02_trunk_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+                    <tr>
+                      <td>MER_MSOMER02-VLAN´S</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.mer_msomer02_vlan_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.mer_msomer02_vlan_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                     <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.mer_msomer02_vlan_comentarios %}
+                                    {{comentario.mer_msomer02_vlan_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+
+                    <tr>
+                      <th scope="row" class="tdgreen" rowspan="2">PDC CHPTAP0102</th>
+                      <td>TAP_CHPTAP0102  PORT-CHANNEL 300</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.tap_chptap0102_port_channel_300_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.tap_chptap0102_port_channel_300_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                     <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.tap_chptap0102_port_channel_300_comentarios %}
+                                    {{comentario.tap_chptap0102_port_channel_300_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+                    <tr>
+                      <td>TEP_CHPTAP0102-VLAN´S</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.tep_chptap0102_vlan_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.tep_chptap0102_vlan_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                     <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.tep_chptap0102_vlan_comentarios %}
+                                    {{comentario.tep_chptap0102_vlan_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+
+                    <tr>
+                      <th scope="row" class="tdgreen" rowspan="2">PDC MICURU1210</th>
+                      <td>URU_MICURU1210  PORT-CHANNEL 300</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.uru_micuru1210_port_channel_300_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.uru_micuru1210_port_channel_300_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                      <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.uru_micuru1210_port_channel_300_comentarios %}
+                                    {{comentario.uru_micuru1210_port_channel_300_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+                    <tr>
+                      <td>URU_MICURU1210-VLAN´S</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.uru_micuru1210_vlan_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.uru_micuru1210_vlan_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                      <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.uru_micuru1210_vlan_comentarios %}
+                                    {{comentario.uru_micuru1210_vlan_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+
+                    <tr>
+                      <th scope="row" class="tdgreen" rowspan="2">PDC MSOVHE01</th>
+                      <td>VHE_MSOVHE01-TRUNK</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.vhe_msovhe01_trunk_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.vhe_msovhe01_trunk_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                     <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.vhe_msovhe01_trunk_comentarios %}
+                                    {{comentario.vhe_msovhe01_trunk_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+                    <tr>
+                      <td>VHE_MSOVHE01-VLAN´S  </td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.vhe_msovhe01_vlan_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.vhe_msovhe01_vlan_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                      <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.vhe_msovhe01_vlan_comentarios %}
+                                    {{comentario.vhe_msovhe01_vlan_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+
+                    <tr>
+                      <th scope="row" class="tdgreen" rowspan="2">PDC MICSAE1190</th>
+                      <td>URU_MICSAE1190-TRUNK</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.uru_micsae1190_trunk_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.uru_micsae1190_trunk_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                     <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.uru_micsae1190_trunk_comentarios %}
+                                    {{comentario.uru_micsae1190_trunk_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+                    <tr>
+                      <td>URU_MICSAE119-VLAN´S</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.uru_micsae119_vlan_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.uru_micsae119_vlan_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                      <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.uru_micsae119_vlan_comentarios %}
+                                    {{comentario.uru_micsae119_vlan_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+
+                    <tr>
+                      <th scope="row" class="tdgreen" rowspan="2">PDC MICRYS1186</th>
+                      <td>URU_MICRYS1186-TRUNK</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.uru_micrys1186_trunk_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.uru_micrys1186_trunk_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                     <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.uru_micrys1186_trunk_comentarios %}
+                                    {{comentario.uru_micrys1186_trunk_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+                    <tr>
+                      <td>URU_MICRYS1186-VLAN´S</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.uru_micrys1186_vlan_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.uru_micrys1186_vlan_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                     <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.uru_micrys1186_vlan_comentarios %}
+                                    {{comentario.uru_micrys1186_vlan_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+
+                    <tr>
+                      <th scope="row" class="tdgreen" rowspan="2">PDC MICZAM1225</th>
+                      <td>MOR_MICZAM1225-TRUNK</td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.mor_miczam1225_trunk_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.mor_miczam1225_trunk_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                      <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.mor_miczam1225_trunk_comentarios %}
+                                    {{comentario.mor_miczam1225_trunk_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+                    <tr>
+                      <td>MOR_MICZAM1225-VLAN´S  </td>
+                      <td class="tdStatus">
+                          {% for estado in estatus %}
+                              {% if estado.mor_miczam1225_vlan_estatus == "OK" %}
+                                    <i class="fas fa-check-circle iCheck"></i>
+                              {% elif estado.mor_miczam1225_vlan_estatus == "RIESGO"  %}
+                                    <i class="fas fa-exclamation-circle iWarning"></i>
+                               {%else %}
+                                    <i class="fas fa-times-circle iIncident"></i>
+                              {% endif %}
+                            {% endfor %}
+                      </td>
+                      <td class="comentariosCelda">
+                           {% for comentario in estatus %}
+                               {% if comentario.mor_miczam1225_vlan_comentarios %}
+                                    {{comentario.mor_miczam1225_vlan_comentarios}}
+                               {% endif %}
+                          {% endfor %}
+                      </td>
+                      <td class="horaTd">{{hora|time:"H:i"}}</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+
+              </div>
+              </div>
+        <div class="container">
+            <div class="row">
+            <a class="float-sm-right" href="{% url 'healtcheaks:envioHealtcheaksInterAtt' %}" target="_blank" >
+                <button type="submit" class="form-control btn btn-success" style="width:500px;">Enviar</button>
+            </a>
+
+
+             </div>
+        </div>
+           <hr>
+
+
+
+<!-- jQuery -->
+<script src="{% static 'core/plugins/jquery/jquery.min.js' %}"></script>
+<!-- Bootstrap 4 -->
+<script src="{% static 'core/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+<script src="{% static 'core/plugins/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'core/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'core/plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'core/plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+<script src="{% static 'core/plugins/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{% static 'core/plugins/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'core/plugins/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{% static 'core/plugins/jszip/jszip.min.js' %}"></script>
+<script src="{% static 'core/plugins/pdfmake/pdfmake.min.js' %}"></script>
+<script src="{% static 'core/plugins/pdfmake/vfs_fonts.js' %}"></script>
+<script src="{% static 'core/plugins/datatables-buttons/js/buttons.html5.min.js' %}"></script>
+<script src="{% static 'core/plugins/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
+
+<!-- AdminLTE App -->
+<script src="{% static 'core/dist/js/adminlte.min.js' %}"></script>
+
+<!-- Extra examples for card of project details -->
+</body>
+</html>

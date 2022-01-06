@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'kpi.apps.KpiConfig',
     'performance.apps.PerformanceConfig',
     'cambio_gics.apps.CambioGicsConfig',
+    'healtcheaks.apps.HealtcheaksConfig',
 
     #EXTRAS
     'ckeditor',
