@@ -11,8 +11,8 @@ import json
 import requests
 import cv2
 
-
-path= "/root/inetumAutomatismo/chromedriver"
+path= "/home/zarate/Documents/inetumAutomatismo/chromedriver"
+#path= "/root/inetumAutomatismo/chromedriver"
 URL = 'https://api.telegram.org/bot2114681560:AAGPlALNSj-TWi2ipYkkyJ7r6oKbKkJGdz0/sendPhoto'
 URL2 = 'https://api.telegram.org/bot2114681560:AAGPlALNSj-TWi2ipYkkyJ7r6oKbKkJGdz0/sendMessage'
 chat_id = 1663958489
