@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e9282bd9-6a52-49f4-a04e-698c6a731581" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/core/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/problema/forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/problema/templates/problema/problema_create.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/problema/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task/chat_bot.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task/email.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task/selenium.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task/updater.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/templates/core/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/core/templates/core/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/siteInetum/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/siteInetum/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/siteInetum/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/siteInetum/urls.py" afterDir="false" />
-    </list>
+    <list default="true" id="e9282bd9-6a52-49f4-a04e-698c6a731581" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
