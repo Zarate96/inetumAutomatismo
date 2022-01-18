@@ -108,7 +108,6 @@ def notificaciones(periodo, dias):
         fecha = fin.strftime("%A, %d de %b, %Y")
         texto3 = texto2.format(dias, nombre_gestor, nombre_proyecto, texto, fecha)
         chat_bot.telegram_api(texto3, chat_id)
-        time.sleep(3)
 
 def get_data_problema_titulo():
     notificaciones(1, 0)
