@@ -42,7 +42,8 @@ def get_data_problema():
 def get_migraciones_dalia():
     now = datetime.date.today()
     migraciones = Dalia.objects.filter(fecha=now)
-    #print(len(migraciones))
+    print(len(migraciones))
+    print(migraciones)
     chat_id = -1001322382371
     if len(migraciones) != 0:
         texto = 'Buenos días estimados, les comparto las actividades programadas para el día de hoy: {}\n'
