@@ -124,6 +124,10 @@ def get_ordenes_movil():
     redes = Notificacion_red.objects.filter(fecha_inicio=tomorrow)
     tis = Notificacion_ti.objects.filter(fecha_inicio=tomorrow)
     chat_id = -224944366
+    print(f'Redes len: {len(redes)}')
+    print(f'Redes: {redes}')
+    print(f'Tis len: {len(tis)}')
+    print(f'Tis: {tis}')
     if len(redes) != 0:
         texto = 'Buenas Noches estimados, les comparto las actividades de **RED** para ser validadas el día de hoy: {}\n'
         texto2 = texto.format(now)
