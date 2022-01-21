@@ -4,7 +4,7 @@ from task import chat_bot, email, querys
 
 def start():
     scheduler = BackgroundScheduler()
-    scheduler.add_job(querys.get_migraciones_dalia, 'cron', day_of_week='0-6', hour='16', minutes='08')
+    scheduler.add_job(querys.get_migraciones_dalia, 'cron', day_of_week='0-6', hour='16', minute='08')
     scheduler.add_job(querys.get_data_problema_titulo, 'cron', day_of_week='0-4', hour='10')
     scheduler.add_job(querys.get_ordenes_movil, 'cron', day_of_week='0-6', hour='20')
     #scheduler.add_job(querys.get_migraciones_dalia, 'interval', minutes=1)
