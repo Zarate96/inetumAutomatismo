@@ -4,9 +4,9 @@ from task import chat_bot, email, querys
 
 def start():
     scheduler = BackgroundScheduler()
-    scheduler.add_job(querys.get_migraciones_dalia, 'cron', day_of_week='0-6', hour='16', minute='10')
+    scheduler.add_job(querys.get_migraciones_dalia, 'cron', day_of_week='0-6', hour='16')
     scheduler.add_job(querys.get_data_problema_titulo, 'cron', day_of_week='0-4', hour='10')
-    scheduler.add_job(querys.get_ordenes_movil, 'cron', day_of_week='0-6', hour='20')
+    scheduler.add_job(querys.get_ordenes_movil, 'cron', day_of_week='0-6', hour='7')
     #scheduler.add_job(querys.get_migraciones_dalia, 'interval', minutes=1)
     #scheduler.add_job(chat_bot.telegram_api, 'interval', minutes=1)
     #scheduler.add_job(email.enviomail, 'interval', minutes=5)
@@ -17,7 +17,7 @@ def start():
     #scheduler.add_job(querys.get_data, 'interval', minutes=1)
     #scheduler.add_job(querys.get_data_problema_titulo, 'cron', day_of_week='0-4', hour='10')
     #scheduler.add_job(querys.get_data_problema_titulo, 'interval', minutes=1)
-    scheduler.add_job(querys.get_ordenes_movil, 'interval', minutes=1)
+    #scheduler.add_job(querys.get_ordenes_movil, 'interval', minutes=1)
     #scheduler.add_job(querys.get_migraciones_dalia, 'interval', minutes=1)
     #scheduler.add_job(selenium.get_hcInterATT, 'interval', hours=1)
     scheduler.start()
