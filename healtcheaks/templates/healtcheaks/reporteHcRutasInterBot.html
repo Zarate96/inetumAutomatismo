@@ -1,0 +1,569 @@
+{% load static %}
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HC INTERCONFIGURACION ATT-BOT | Inetum</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="{% static 'core/plugins/fontawesome-free/css/all.min.css' %}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{% static 'core/dist/css/adminlte.min.css' %}">
+  <style>
+    * {
+      padding:0;
+      margin:0;
+    }
+
+    body{
+      line-height: 0;
+      font-size: 0.75rem;
+      font-family: "Calibri", Times, serif;
+    }
+
+    .table thead {
+      background-color: rgb(233, 255, 253);
+      color: rgb(65, 68, 255);
+      text-align: center;
+      font-size: 20px;
+      border: 2px solid rgb(65, 68, 255);
+
+    }
+
+    .telefonicaImg {
+       height: 35px;
+      float:left;
+    }
+
+    .estadosImg {
+      width: 19vw;
+      padding-top:5px;
+    }
+
+    .table thead p {
+        padding-top: 7px;
+        background-color: rgb(233, 255, 253);
+    }
+
+    .textHead{
+      color: rgb(65, 68, 255);
+      font-size: 0.9rem;
+    }
+
+    .segunda {
+      background-color: rgb(233, 255, 253);
+      border: 2px solid rgb(65, 68, 255);
+      line-height: 0;
+    }
+
+    .segunda p {
+      text-align: center;
+      font-weight: bold;
+      padding-top: 5px;
+      padding-bottom: -2px;
+    }
+
+    .table, th, td {
+        border: 2px solid rgb(65, 68, 255);
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .interconexionCelda {
+      width:11vw;
+    }
+
+    .iobCelda{
+      width: 2vw;
+    }
+
+    .statusCelda{
+      width: 3vw;
+    }
+
+    .elementoCelda{
+      width: 20vw;
+    }
+
+    .comentariosCelda{
+      width: 27vw;
+      text-align: center;
+      font-size: 10px;
+
+    }
+
+    .horaTd{
+      text-align: center;
+    }
+
+    .tercera{
+      background-color: rgb(65, 68, 255);
+      color: white;
+      text-align: center;
+      font-size: 0.7rem;
+    }
+
+    .tdgreen{
+      background-color: rgb(233, 255, 253);
+      vertical-align : middle !important;
+      text-align: center;
+    }
+
+    .iCheck{
+      color: green;
+      text-align: center;
+    }
+
+    .tdStatus{
+      text-align: center;
+    }
+
+    .table{
+      line-height: 0.7;
+    }
+
+    .table-sm td, .table-sm th {
+      padding: .1rem;
+      vertical-align: inherit;
+    }
+
+.OK{
+     color: green;
+     padding-left:10px;
+}
+
+.Incidencia{
+     color: #C22110;
+
+     padding-left:60px;
+}
+
+.Riesgo{
+      color: #E3ED0A;
+     padding-left:60px;
+}
+
+.iWarning{
+      color: #E3ED0A;
+      text-align: center;
+    }
+
+.iIncident{
+    color: #C22110;
+      text-align: center;
+
+}
+
+  </style>
+  <!-- Extra examples for card of project details -->
+</head>
+
+<body>
+    <div class="col-8">
+        <table class="table table-sm align-middle">
+            <thead>
+                <tr class="primera">
+                    <th scope="col" colspan="4">
+                    <img src="{% static 'core/img/telefonica.jpg'  %}" class="telefonicaImg" alt="">
+                    <strong>HEALTH CHECK RUTAS INTERCONEXIÓN</strong>
+                    <p class="textHead">{% now "l, d F Y" %}</p></th>
+                </tr>
+            </thead>
+                    
+            <tbody>
+                <tr class="segunda">
+                    <td scope="col" colspan="3">
+                        <i class="fas fa-circle OK"></i> OK
+                        <i class="fas fa-circle  Incidencia"></i> Incidencia
+                        <i class="fas fa-circle  Riesgo"></i> Riesgo
+                    </td>   
+                    <td scope="col" colspan="4"><p class="textHead">{% now "H:i" %}</p></td>
+                </tr>
+
+
+            </tbody>
+        </table>
+
+        <table class="table table-sm align-middle">
+            <thead>
+            </thead>
+                    
+            <tbody>
+                
+
+                <tr class="tercera">
+                    <td scope="col" class="interconexionCelda">Interconexión</td>
+                    <td scope="col" class="iobCelda"></td>
+                    <td scope="col" class="elementoCelda">Elemento</td>
+                    <td scope="col" class="statusCelda">Estado</td>
+                    <td scope="col" class="">Comentarios</td>
+                    <td scope="col" class="">FG</td>
+                </tr>
+
+                <tr>
+                    <th scope="row" class="tdgreen" rowspan="12">TELMEX</th>
+                    <th scope="row" class="tdgreen" rowspan="7">IN</th>
+                    <td>PUEBLA CTI FUERTES</td>
+                    <td>OK</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>TIJUANA CTI PIO PICO</td>
+                    <td>OK</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>PRESA CTI NEXTENGO </td>
+                    <td>OK</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>GUADALAJARA CTI TLAQUEPAQUE</td>
+                    <td>OK</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>MONTERREY CTI MAYO</td>
+                    <td>OK</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>MONTERREY CTI REVOLUCION</td>
+                    <td>OK</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>TLANE CTI VALLEJO </td>
+                    <td>OK</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="tdgreen" rowspan="5">OUT</th>
+                    <td>PRESA CTI NEXTENGO</td>
+                    <td>OK</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>MONTERREY CTI MAYO</td>
+                    <td>OK</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>TLANE CTI VALLEJO</td>
+                    <td>OK</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>TIJUANA OTAY</td>
+                    <td>OK</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>MONTERREY CTI REVOLUCION</td>
+                    <td>OK</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-sm align-middle">
+            <thead>
+            </thead>
+                    
+            <tbody>
+                
+
+                <tr class="tercera">
+                    <td scope="col" class="interconexionCelda">Interconexión</td>
+                    <td scope="col" class="iobCelda"></td>
+                    <td scope="col" class="elementoCelda">Elemento</td>
+                    <td scope="col" class="statusCelda">Estado</td>
+                    <td scope="col" class="">Comentarios</td>
+                    <td scope="col" class="">FG</td>
+                </tr>
+
+                <tr>
+                    <th scope="row" class="tdgreen" rowspan="4">ATT (SBCQ21)</th>
+                    <th scope="row" class="tdgreen" rowspan="3">IN</th>
+                    <td>TLAQUEPAQUE_SBCQ21PRE_GDL</td>
+                    <td>OK</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>APODACA_SBCQ21MTY_MTY</td>
+                    <td>OK</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>MEGACENTRO_SBCQ21PRE_CDMX</td>
+                    <td>OK</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="tdgreen" rowspan="3">OUT</th>
+                    <td>SBCQ21MTY_APODACA</td>
+                    <td>OK</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="tdgreen" rowspan="2">ATT (SBG ERICSSON)</th>
+                    <td>SBG_ERICCSON LEO_TLAQUEPAQUE</td>
+                    <td>OK</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>SBG_ERICCSON GDL_MEGACENTRO</td>
+                    <td>OK</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-sm align-middle">
+            <thead>
+            </thead>
+                    
+            <tbody>
+                
+
+                <tr class="tercera">
+                    <td scope="col" class="interconexionCelda">Interconexión</td>
+                    <td scope="col" class="iobCelda"></td>
+                    <td scope="col" class="elementoCelda">Elemento</td>
+                    <td scope="col" class="statusCelda">Estado</td>
+                    <td scope="col" class="">Comentarios</td>
+                    <td scope="col" class="">FG</td>
+                </tr>
+
+                <tr>
+                    <th scope="row" class="tdgreen" rowspan="3">TOTAL PLAY</th>
+                    <th scope="row" class="tdgreen" rowspan="3">IN</th>
+                    <td>PRESA SAE-2884</td>
+                    <td>OK</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>GDL SAE-2876</td>
+                    <td>OK</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>MTY SAE-2885</td>
+                    <td>OK</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-sm align-middle">
+            <thead>
+            </thead>
+                    
+            <tbody>
+                
+
+                <tr class="tercera">
+                    <td scope="col" class="interconexionCelda">Interconexión</td>
+                    <td scope="col" class="iobCelda"></td>
+                    <td scope="col" class="elementoCelda">Elemento</td>
+                    <td scope="col" class="statusCelda">Estado</td>
+                    <td scope="col" class="">Comentarios</td>
+                    <td scope="col" class="">FG</td>
+                </tr>
+
+                <tr>
+                    <th scope="row" class="tdgreen" rowspan="11">TELCEL</th>
+                    <th scope="row" class="tdgreen" rowspan="8">IN</th>
+                    <td>DFP_TCL_IN_VALLEJO</td>
+                    <td>OK</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>DFN_TCL_IN_NEXTENGO</td>
+                    <td>OK</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>MTY_TCL_IN_SANPEDRO</td>
+                    <td>OK</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>MTP_TCL_IN_REVOLUCION</td>
+                    <td>OK</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>GDL_TCL_IN_BANDERA</td>
+                    <td>OK</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>GDL_TCL_IN_TLAQUEPAQUE</td>
+                    <td>OK</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>PUE_TCL_IN_FUERTES</td>
+                    <td>OK</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>PUE_TCL_IN_CTP</td>
+                    <td>OK</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="tdgreen" rowspan="3">OUT</th>
+                    <td>GDL SIP BANDERA </td>
+                    <td>OK</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>MTY SIP SAN PEDRO</td>
+                    <td>OK</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>TLN SIP NEXTENGO</td>
+                    <td>OK</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-sm align-middle">
+            <thead>
+            </thead>
+                    
+            <tbody>
+                
+                <tr class="tercera">
+                    <td scope="col" class="interconexionCelda">Interconexión</td>
+                    <td scope="col" class="iobCelda"></td>
+                    <td scope="col" class="elementoCelda">Elemento</td>
+                    <td scope="col" class="statusCelda">Estado</td>
+                    <td scope="col" class="">Comentarios</td>
+                    <td scope="col" class="">FG</td>
+                </tr>
+
+                <tr>
+                    <th scope="row" class="tdgreen" rowspan="2">MARCATEL</th>
+                    <th scope="row" class="tdgreen" rowspan="2">IN</th>
+                    <td>ICX_MARCATEL_GDL</td>
+                    <td>OK</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>MTY_ICX_VSBGMTY</td>
+                    <td>OK</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-sm align-middle">
+            <thead>
+            </thead>
+                    
+            <tbody>
+
+                <tr class="tercera">
+                    <td scope="col" class="interconexionCelda">Interconexión</td>
+                    <td scope="col" class="iobCelda"></td>
+                    <td scope="col" class="elementoCelda">Elemento</td>
+                    <td scope="col" class="statusCelda">Estado</td>
+                    <td scope="col" class="">Comentarios</td>
+                    <td scope="col" class="">FG</td>
+                </tr>
+
+                <tr>
+                    <th scope="row" class="tdgreen" rowspan="2">ALTAN</th>
+                    <th scope="row" class="tdgreen" rowspan="2">BI</th>
+                    <td>ALTAN_vSBG2_MTY</td>
+                    <td>OK</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>ALTAN_vSBG2_TLANE</td>
+                    <td>OK</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="container">
+            <div class="row">
+                <a class="float-sm-right" href="{% url 'healtcheaks:envioHealtcheaksInterAtt' %}" target="_blank" >
+                        <button type="submit" class="form-control btn btn-success" style="width:500px;">Enviar</button>
+                </a>
+            </div>
+        </div>
+
+<!-- jQuery -->
+<script src="{% static 'core/plugins/jquery/jquery.min.js' %}"></script>
+<!-- Bootstrap 4 -->
+<script src="{% static 'core/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+<script src="{% static 'core/plugins/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'core/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'core/plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'core/plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+<script src="{% static 'core/plugins/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{% static 'core/plugins/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'core/plugins/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{% static 'core/plugins/jszip/jszip.min.js' %}"></script>
+<script src="{% static 'core/plugins/pdfmake/pdfmake.min.js' %}"></script>
+<script src="{% static 'core/plugins/pdfmake/vfs_fonts.js' %}"></script>
+<script src="{% static 'core/plugins/datatables-buttons/js/buttons.html5.min.js' %}"></script>
+<script src="{% static 'core/plugins/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
+
+<!-- AdminLTE App -->
+<script src="{% static 'core/dist/js/adminlte.min.js' %}"></script>
+
+<!-- Extra examples for card of project details -->
+</body>
+</html>

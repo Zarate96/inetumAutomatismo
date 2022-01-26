@@ -14,6 +14,15 @@ def healtcheaksInterAtt(request):
     }
     return render(request, "healtcheaks/reporteHcInterBot.html", contexto )
 
+def healtcheaksRutasInter(request):
+    estatus = EstatusInterATT.objects.all()
+    hora = timezone.now() - timedelta(minutes=30)
+    contexto ={
+        'estatus': estatus,
+        'hora':hora
+    }
+    return render(request, "healtcheaks/reporteHcRutasInterBot.html", contexto )
+
 
 def envioHealtcheaksInterAtt(request):
     get_hcInterATT()

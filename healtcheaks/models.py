@@ -12,250 +12,193 @@ ESTATUS = (
 
 class EstatusInterATT(models.Model):
     macno_centro_bundle_ether_300_estatus = models.CharField(choices=ESTATUS, max_length=45,
-                                                                verbose_name="MACNO CENTRO  BUNDLE-ETHER 300",
-                                                                blank=True, null=True, default='OK')
+                                                            verbose_name="MACNO CENTRO  BUNDLE-ETHER 300",
+                                                            blank=True, null=True, default='OK')
+    
     macno_centro_bundle_ether_300_comentarios = models.CharField(max_length=200,
-                                                                 verbose_name="MACNO CENTRO  BUNDLE-ETHER 300",
-                                                                 blank=True, null=True)
-
+                                                                verbose_name="MACNO CENTRO  BUNDLE-ETHER 300",
+                                                                blank=True, null=True)
 
     msomex01_vlan_estatus = models.CharField(choices=ESTATUS, max_length=45, verbose_name="MSOMEX01 VLAN´S",
-                                             blank=True, null=True, default='OK')
+                                            blank=True, null=True, default='OK')
+    
     msomex01_vlan_comentarios = models.CharField(max_length=200, verbose_name="MSOMEX01 VLAN´S", blank=True,
                                                  null=True)
-
 
     msomex02_bundle_ether_500_estatus = models.CharField(choices=ESTATUS, max_length=45,
                                                            verbose_name="MSOMEX02 BUNDLE-ETHER 500", blank=True,
                                                            null=True, default='OK')
+
     msomex02_bundle_ether_500_comentarios = models.CharField(max_length=200,
                                                              verbose_name="MSOMEX02 BUNDLE-ETHER 500",
                                                              blank=True, null=True)
-
 
     msomex02_vlan_estatus = models.CharField(choices=ESTATUS, max_length=45, verbose_name="MSOMEX02 VLAN´S",
                                              blank=True, null=True, default='OK')
     msomex02_vlan_comentarios = models.CharField(max_length=200, verbose_name="MSOMEX02 VLAN´S", blank=True,
                                                  null=True)
 
-
     msomex03_bundle_ether_500_estatus = models.CharField(choices=ESTATUS, max_length=45,
                                                            verbose_name="MSOMEX03 BUNDLE-ETHER 500", blank=True,
                                                            null=True, default='OK')
+
     msomex03_bundle_ether_500_comentarios = models.CharField(max_length=200,
                                                              verbose_name="MSOMEX03 BUNDLE-ETHER 500",
                                                              blank=True, null=True)
 
-
     msomex03_vlan_estatus = models.CharField(choices=ESTATUS, max_length=45, verbose_name="MSOMEX03 VLAN´S",
                                              blank=True, null=True, default='OK')
+
     msomex03_vlan_comentarios = models.CharField(max_length=200, verbose_name="MSOMEX03 VLAN´S", blank=True,
                                                  null=True)
-
-
 
     msomex04_bundle_ether_400_estatus = models.CharField(choices=ESTATUS, max_length=45,
                                                            verbose_name="MSOMEX04 BUNDLE-ETHER 400", blank=True,
                                                            null=True, default='OK')
+
     msomex04_bundle_ether_400_comentarios = models.CharField(max_length=200,
                                                              verbose_name="MSOMEX04 BUNDLE-ETHER 400",
                                                              blank=True, null=True)
 
-
     msomex04_vlan_estatus = models.CharField(choices=ESTATUS, max_length=45, verbose_name="MSOMEX04 VLAN´S",
                                              blank=True, null=True, default='OK')
+
     msomex04_vlan_comentarios = models.CharField(max_length=200, verbose_name="MSOMEX04 VLAN´S", blank=True,
                                                  null=True)
-
-
 
     mexzum8148_bundle_ether_500_estatus = models.CharField(choices=ESTATUS, max_length=45,
                                                              verbose_name="MEXZUM8148 BUNDLE-ETHER 500",
                                                              blank=True, null=True, default='OK')
+
     mexzum8148_bundle_ether_500_comentarios = models.CharField(max_length=200,
                                                                verbose_name="MEXZUM8148 BUNDLE-ETHER 500",
                                                                blank=True, null=True)
 
-
-
-
     mexzum8148_vlan_estatus = models.CharField(choices=ESTATUS, max_length=45, verbose_name="MEXZUM8148 VLAN´S",
                                                blank=True, null=True, default='OK')
+
     mexzum8148_vlan_comentarios = models.CharField(max_length=200, verbose_name="MEXZUM8148 VLAN´S",
                                                    blank=True, null=True)
-
-
 
     msomty01_bundle_ether_300_estatus = models.CharField(choices=ESTATUS, max_length=45,
                                                            verbose_name="MSOGDL01 BUNDLE-ETHER 300", blank=True,
                                                            null=True, default='OK')
+
     msomty01_bundle_ether_300_comentarios = models.CharField(max_length=200,
                                                              verbose_name="MSOMTY01 BUNDLE-ETHER 300",
                                                              blank=True, null=True)
 
-
-
-
     msomty01_vlan_estatus = models.CharField(choices=ESTATUS, max_length=45, verbose_name="MSOMTY01 VLAN´S",
                                              blank=True, null=True, default='OK')
+                                             
     msomty01_vlan_comentarios = models.CharField(max_length=200, verbose_name="MSOMTY01 VLAN´S", blank=True,
                                                  null=True)
 
-
-
-
     hmty0237_vlan_estatus = models.CharField(choices=ESTATUS, max_length=45, verbose_name="HMTY0237 VLAN´S",
                                              blank=True, null=True, default='OK')
+    
     hmty0237_vlan_comentarios = models.CharField(max_length=200, verbose_name="HMTY0237 VLAN´S", blank=True,
                                                  null=True)
-
-
-
 
     msogdl01_bundle_ether_300_estatus = models.CharField(choices=ESTATUS, max_length=45,
                                                            verbose_name="MSOGDL01 BUNDLE-ETHER 300", blank=True,
                                                            null=True, default='OK')
+
     msogdl01_bundle_ether_300_comentarios = models.CharField(max_length=200,
                                                              verbose_name="MSOGDL01 BUNDLE-ETHER 300",
                                                              blank=True, null=True)
 
-
-
-
     msogdl01_vlan_estatus = models.CharField(choices=ESTATUS, max_length=45, verbose_name="MSOGDL01 VLAN´S",
                                              blank=True, null=True, default='OK')
+
     msogdl01_vlan_comentarios = models.CharField(max_length=200, verbose_name="MSOGDL01 VLAN´S", blank=True,
                                                  null=True)
-
-
-
-
 
     msotjp01_bundle_ether_300_estatus = models.CharField(choices=ESTATUS, max_length=45,
                                                            verbose_name="MSOTJP01 BUNDLE-ETHE", blank=True,
                                                            null=True, default='OK')
+    
     msotjp01_bundle_ether_300_comentarios = models.CharField(max_length=200,
                                                              verbose_name="MSOTJP01 BUNDLE-ETHER 300",
                                                              blank=True, null=True)
 
-
-
-
-
     msotjp01_vlan_estatus = models.CharField(choices=ESTATUS, max_length=45, verbose_name="MSOTJP01 VLAN´S",
                                              blank=True, null=True, default='OK')
+    
     msotjp01_vlan_comentarios = models.CharField(max_length=200, verbose_name="MSOTJP01 VLAN´S", blank=True,
                                                  null=True)
-
-
-
 
     msocjup01_bundle_ether_300_estatus = models.CharField(choices=ESTATUS, max_length=45,
                                                             verbose_name="MSOCJUP01 BUNDLE-ETHER 300",
                                                             blank=True, null=True, default='OK')
+    
     msocjup01_bundle_ether_300_comentarios = models.CharField(max_length=200,
                                                               verbose_name="MSOCJUP01 BUNDLE-ETHER 300",
                                                               blank=True, null=True)
 
-
-
-
-
     msocjup01_vlan_estatus = models.CharField(choices=ESTATUS, max_length=45, verbose_name="MSOCJUP01 VLAN´S",
                                               blank=True, null=True, default='OK')
+    
     msocjup01_vlan_comentarios = models.CharField(max_length=200, verbose_name="MSOCJUP01 VLAN´S", blank=True,
                                                   null=True)
-
-
-
-
 
     msopue01_bundle_ether_300_estatus = models.CharField(choices=ESTATUS, max_length=45,
                                                             verbose_name="MSOPUE01  BUNDLE-ETHER 300",
                                                             blank=True, null=True, default='OK')
+    
     msopue01_bundle_ether_300_comentarios = models.CharField(max_length=200,
                                                              verbose_name="MSOPUE01  BUNDLE-ETHER 300",
                                                              blank=True, null=True)
 
-
-
-
     msopue01_vlan_estatus = models.CharField(choices=ESTATUS, max_length=45, verbose_name="MSOPUE01  VLAN´S",
                                               blank=True, null=True, default='OK')
+    
     msopue01_vlan_comentarios = models.CharField(max_length=200, verbose_name="MSOPUE01  VLAN´S", blank=True,
                                                  null=True)
 
-
-
-
-
-
     rsopue01_vlan_estatus = models.CharField(choices=ESTATUS, max_length=45, verbose_name="RSOPUE01  VLAN´S",
                                               blank=True, null=True, default='OK')
+    
     rsopue01_vlan_comentarios = models.CharField(max_length=200, verbose_name="RSOPUE01  VLAN´S", blank=True,
                                                  null=True)
-
-
-
 
     tam_htpc0030_bundle_ether_300_estatus = models.CharField(choices=ESTATUS, max_length=45,
                                                                verbose_name="TAM_HTPC0030 BUNDLE-ETHER 300",
                                                                blank=True, null=True, default='OK')
+
     tam_htpc0030_bundle_ether_300_comentarios = models.CharField(max_length=200,
                                                                  verbose_name="TAM_HTPC0030 BUNDLE-ETHER 300",
                                                                  blank=True, null=True)
 
-
-
-
-
     tam_htpc0030_vlan_estatus = models.CharField(choices=ESTATUS, max_length=45,
                                                   verbose_name="TAM_HTPC0030  VLAN´S", blank=True, null=True,
                                                   default='OK')
+
     tam_htpc0030_vlan_comentarios = models.CharField(max_length=200, verbose_name="TAM_HTPC0030  VLAN´S",
                                                      blank=True, null=True)
-
-
-
-
-
-
-
 
     tam_rsotpoc01_bundle_ether_300_estatus = models.CharField(choices=ESTATUS, max_length=45,
                                                                 verbose_name="TAM_RSOTPOC01 BUNDLE-ETHER 300",
                                                                 blank=True, null=True, default='OK')
+
     tam_rsotpoc01_bundle_ether_300_comentarios = models.CharField(max_length=200,
                                                                   verbose_name="TAM_RSOTPOC01 BUNDLE-ETHER 300",
                                                                   blank=True, null=True)
 
-
-
-
-
-
-
     tam_rsotpoc01_vlan_estatus = models.CharField(choices=ESTATUS, max_length=45,
                                                   verbose_name="TAM_RSOTPOC01 VLAN´S", blank=True, null=True,
                                                   default='OK')
+
     tam_rsotpoc01_vlan_comentarios = models.CharField(max_length=200, verbose_name="TAM_RSOTPOC01 VLAN´S",
                                                       blank=True, null=True)
-
-
-
-
 
     nld_rsonld01_bundle_ether_300_estatus = models.CharField(choices=ESTATUS, max_length=45,
                                                                verbose_name="NLD_RSONLD01 BUNDLE-ETHER 300",
                                                                blank=True, null=True, default='OK')
+
     nld_rsonld01_bundle_ether_300_comentarios = models.CharField(max_length=200,
                                                                  verbose_name="NLD_RSONLD01 BUNDLE-ETHER 300",
                                                                  blank=True, null=True)
-
-
-
-
-
 
     nld_rsonld01_vlan_estatus = models.CharField(choices=ESTATUS, max_length=45,
                                                  verbose_name="NLD_RSONLD01 VLAN´S", blank=True, null=True,
@@ -541,11 +484,6 @@ class EstatusInterATT(models.Model):
     class Meta:
         verbose_name = "Interconfiguración ATT"
         verbose_name_plural = "Interconfiguración ATT"
-
-
-
-
-
 
 
 class RutasInterEstatus(models.Model):
