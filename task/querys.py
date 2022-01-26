@@ -41,6 +41,7 @@ def get_data_problema():
 
 def get_migraciones_dalia():
     now = datetime.date.today()
+    print(now)
     migraciones = Dalia.objects.filter(fecha=now)
     print(len(migraciones))
     print(migraciones)
