@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import   EstatusInterATT
+from .models import   EstatusInterATT,RutasInterEstatus,RutasInterComentarios,RutasInterFolioGuio
 from django.utils import timezone
 from datetime import timedelta
 from task.selenium import get_hcInterATT
@@ -15,13 +15,24 @@ def healtcheaksInterAtt(request):
     return render(request, "healtcheaks/reporteHcInterBot.html", contexto )
 
 def healtcheaksRutasInter(request):
-    estatus = EstatusInterATT.objects.all()
+    estatus = RutasInterEstatus.objects.all()
+    comentarios = RutasInterComentarios.objects.all()
+    folios = RutasInterFolioGuio.objects.all()
     hora = timezone.now() - timedelta(minutes=30)
     contexto ={
         'estatus': estatus,
+        'comentarios': comentarios,
+        'folios': folios,
         'hora':hora
     }
     return render(request, "healtcheaks/reporteHcRutasInterBot.html", contexto )
+
+def healtcheaksAPN(request):
+    estatus = RutasInterEstatus.objects.all()
+    contexto ={
+        'estatus': estatus,
+    }
+    return render(request, "healtcheaks/reporteHcAPNBot.html", contexto )
 
 
 def envioHealtcheaksInterAtt(request):

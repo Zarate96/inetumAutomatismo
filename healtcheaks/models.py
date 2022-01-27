@@ -722,3 +722,276 @@ class RutasInterFolioGuio(models.Model):
     class Meta:
         verbose_name = "Folios Guios de Rutas Interconexión"
         verbose_name_plural = "Health Check Folios Guios de Rutas de Interconexión"
+    
+class HcAPN(models.Model):
+    apn_mvn0_helppy_status = models.CharField(choices=ESTATUS, max_length=45,
+                                            verbose_name="APN-MVN0 HELPPY STATUS",
+                                            blank=True, null=True, default='OK')
+    
+    apn_mvn0_helppy_comentarios = models.CharField(max_length=200,
+                                                verbose_name="APN-MVN0 HELPPY COMENTARIOS",
+                                                blank=True, null=True, default='TRAFICO ESTABLE')
+    
+    apn_mvn0_helppy_folios = models.CharField(max_length=200, 
+                                            verbose_name="APN-MVN0 HELPPY FOLIOS", 
+                                            blank=True, null=True)
+    
+    
+    apn_mvn0_tokamovil_status = models.CharField(choices=ESTATUS, max_length=45,
+                                            verbose_name="APN-MVN0 TOKAMOVIL STATUS",
+                                            blank=True, null=True, default='OK')
+    
+    apn_mvn0_tokamovil_comentarios = models.CharField(max_length=200,
+                                                verbose_name="APN-MVN0 TOKAMOVIL COMENTARIOS",
+                                                blank=True, null=True, default='TRAFICO ESTABLE')
+    
+    apn_mvn0_tokamovil_folios = models.CharField(max_length=200, 
+                                            verbose_name="APN-MVN0 TOKAMOVIL FOLIOS", 
+                                            blank=True, null=True)
+    
+    
+    apn_mvn0_simpati_status = models.CharField(choices=ESTATUS, max_length=45,
+                                            verbose_name="APN-MVN0 simpati STATUS",
+                                            blank=True, null=True, default='OK')
+    
+    apn_mvn0_simpati_comentarios = models.CharField(max_length=200,
+                                                verbose_name="APN-MVN0 simpati COMENTARIOS",
+                                                blank=True, null=True, default='TRAFICO ESTABLE')
+    
+    apn_mvn0_simpati_folios = models.CharField(max_length=200, 
+                                            verbose_name="APN-MVN0 simpati FOLIOS", 
+                                            blank=True, null=True)
+
+
+    apn_mvn0_flashmobile_status = models.CharField(choices=ESTATUS, max_length=45,
+                                            verbose_name="APN-MVN0 flashmobile STATUS",
+                                            blank=True, null=True, default='OK')
+    
+    apn_mvn0_flashmobile_comentarios = models.CharField(max_length=200,
+                                                verbose_name="APN-MVN0 flashmobile COMENTARIOS",
+                                                blank=True, null=True, default='TRAFICO ESTABLE')
+    
+    apn_mvn0_flashmobile_folios = models.CharField(max_length=200, 
+                                            verbose_name="APN-MVN0 flashmobile FOLIOS", 
+                                            blank=True, null=True)
+
+
+    apn_mvn0_hermobile_status = models.CharField(choices=ESTATUS, max_length=45,
+                                            verbose_name="APN-MVN0 HERMOBILE STATUS",
+                                            blank=True, null=True, default='OK')
+    
+    apn_mvn0_hermobile_comentarios = models.CharField(max_length=200,
+                                                verbose_name="APN-MVN0 HERMOBILE COMENTARIOS",
+                                                blank=True, null=True, default='TRAFICO ESTABLE')
+    
+    apn_mvn0_hermobile_folios = models.CharField(max_length=200, 
+                                            verbose_name="APN-MVN0 HERMOBILE FOLIOS", 
+                                            blank=True, null=True)
+
+
+    apn_mvn0_weex_status = models.CharField(choices=ESTATUS, max_length=45,
+                                            verbose_name="APN-MVN0 WEEX STATUS",
+                                            blank=True, null=True, default='OK')
+    
+    apn_mvn0_weex_comentarios = models.CharField(max_length=200,
+                                                verbose_name="APN-MVN0 WEEX COMENTARIOS",
+                                                blank=True, null=True, default='TRAFICO ESTABLE')
+    
+    apn_mvn0_weex_folios = models.CharField(max_length=200, 
+                                            verbose_name="APN-MVN0 WEEX FOLIOS", 
+                                            blank=True, null=True)
+
+    
+    apn_mvn0_movistar_status = models.CharField(choices=ESTATUS, max_length=45,
+                                            verbose_name="APN-MVN0 MOVISTAR STATUS",
+                                            blank=True, null=True, default='OK')
+    
+    apn_mvn0_movistar_comentarios = models.CharField(max_length=200,
+                                                verbose_name="APN-MVN0 MOVISTAR COMENTARIOS",
+                                                blank=True, null=True, default='TRAFICO ESTABLE')
+    
+    apn_mvn0_movistar_folios = models.CharField(max_length=200, 
+                                            verbose_name="APN-MVN0 MOVISTAR FOLIOS", 
+                                            blank=True, null=True) 
+
+
+    apn_mvn0_virgin_mobile_status = models.CharField(choices=ESTATUS, max_length=45,
+                                            verbose_name="APN-MVN0 VIRGIN MOBILE STATUS",
+                                            blank=True, null=True, default='OK')
+    
+    apn_mvn0_virgin_mobile_comentarios = models.CharField(max_length=200,
+                                                verbose_name="APN-MVN0 VIRGIN MOBILE COMENTARIOS",
+                                                blank=True, null=True, default='TRAFICO ESTABLE')
+    
+    apn_mvn0_virgin_mobile_folios = models.CharField(max_length=200, 
+                                            verbose_name="APN-MVN0 VIRGIN MOBILE FOLIOS", 
+                                            blank=True, null=True) 
+
+
+    apn_mvn0_six_status = models.CharField(choices=ESTATUS, max_length=45,
+                                            verbose_name="APN-MVN0 SIX STATUS",
+                                            blank=True, null=True, default='OK')
+    
+    apn_mvn0_six_comentarios = models.CharField(max_length=200,
+                                                verbose_name="APN-MVN0 SIX COMENTARIOS",
+                                                blank=True, null=True, default='TRAFICO ESTABLE')
+    
+    apn_mvn0_six_folios = models.CharField(max_length=200, 
+                                            verbose_name="APN-MVN0 SIX FOLIOS", 
+                                            blank=True, null=True)
+
+
+    apn_mvn0_internet_fijo_status = models.CharField(choices=ESTATUS, max_length=45,
+                                            verbose_name="APN-MVN0 INTERNET FIJO STATUS",
+                                            blank=True, null=True, default='OK')
+    
+    apn_mvn0_internet_fijo_comentarios = models.CharField(max_length=200,
+                                                verbose_name="APN-MVN0 INTERNET FIJO COMENTARIOS",
+                                                blank=True, null=True, default='TRAFICO ESTABLE')
+    
+    apn_mvn0_internet_fijo_folios = models.CharField(max_length=200, 
+                                            verbose_name="APN-MVN0 INTERNET FIJO FOLIOS", 
+                                            blank=True, null=True)
+
+
+    grx_roaming_telcel_2852_status = models.CharField(choices=ESTATUS, max_length=45,
+                                            verbose_name="GRX Roaming Telcel 2852 STATUS",
+                                            blank=True, null=True, default='OK')
+    
+    grx_roaming_telcel_2852_comentarios = models.CharField(max_length=200,
+                                                verbose_name="GRX Roaming Telcel 2852 COMENTARIOS",
+                                                blank=True, null=True, default='TRAFICO ESTABLE')
+    
+    grx_roaming_telcel_2852_folios = models.CharField(max_length=200, 
+                                            verbose_name="GRX Roaming Telcel 2852 FOLIOS", 
+                                            blank=True, null=True)
+
+
+    grx_roaming_telcel_305_status = models.CharField(choices=ESTATUS, max_length=45,
+                                            verbose_name="GRX Roaming Telcel 305 STATUS",
+                                            blank=True, null=True, default='OK')
+    
+    grx_roaming_telcel_305_comentarios = models.CharField(max_length=200,
+                                                verbose_name="GRX Roaming Telcel 305 COMENTARIOS",
+                                                blank=True, null=True, default='TRAFICO ESTABLE')
+    
+    grx_roaming_telcel_305_folios = models.CharField(max_length=200, 
+                                            verbose_name="GRX Roaming Telcel 305 FOLIOS", 
+                                            blank=True, null=True)      
+
+
+    grx_roaming_telcel_301_status = models.CharField(choices=ESTATUS, max_length=45,
+                                            verbose_name="GRX Roaming Telcel 301 STATUS",
+                                            blank=True, null=True, default='OK')
+    
+    grx_roaming_telcel_301_comentarios = models.CharField(max_length=200,
+                                                verbose_name="GRX Roaming Telcel 301 COMENTARIOS",
+                                                blank=True, null=True, default='TRAFICO ESTABLE')
+    
+    grx_roaming_telcel_301_folios = models.CharField(max_length=200, 
+                                            verbose_name="GRX Roaming Telcel 301 FOLIOS", 
+                                            blank=True, null=True)     
+
+
+    grx_roaming_telcel_2851_status = models.CharField(choices=ESTATUS, max_length=45,
+                                            verbose_name="GRX Roaming Telcel 2851 STATUS",
+                                            blank=True, null=True, default='OK')
+    
+    grx_roaming_telcel_2851_comentarios = models.CharField(max_length=200,
+                                                verbose_name="GRX Roaming Telcel 2851 COMENTARIOS",
+                                                blank=True, null=True, default='TRAFICO ESTABLE')
+    
+    grx_roaming_telcel_2851_folios = models.CharField(max_length=200, 
+                                            verbose_name="GRX Roaming Telcel 2851 FOLIOS", 
+                                            blank=True, null=True)
+
+
+    grx_roaming_telcel_interconexión_status = models.CharField(choices=ESTATUS, max_length=45,
+                                            verbose_name="GRX Roaming Telcel Interconexión STATUS",
+                                            blank=True, null=True, default='OK')
+    
+    grx_roaming_telcel_interconexión_comentarios = models.CharField(max_length=200,
+                                                verbose_name="GRX Roaming Telcel Interconexión COMENTARIOS",
+                                                blank=True, null=True, default='TRAFICO ESTABLE')
+    
+    grx_roaming_telcel_interconexión_folios = models.CharField(max_length=200, 
+                                            verbose_name="GRX Roaming Telcel Interconexión FOLIOS", 
+                                            blank=True, null=True)
+
+
+    grx_roaming_telcel_212_status = models.CharField(choices=ESTATUS, max_length=45,
+                                            verbose_name="GRX Roaming Telcel 212 STATUS",
+                                            blank=True, null=True, default='OK')
+    
+    grx_roaming_telcel_212_comentarios = models.CharField(max_length=200,
+                                                verbose_name="GRX Roaming Telcel 212 COMENTARIOS",
+                                                blank=True, null=True, default='TRAFICO ESTABLE')
+    
+    grx_roaming_telcel_212_folios = models.CharField(max_length=200, 
+                                            verbose_name="GRX Roaming Telcel 212 FOLIOS", 
+                                            blank=True, null=True)
+
+
+    grx_roaming_telcel_entrante_status = models.CharField(choices=ESTATUS, max_length=45,
+                                            verbose_name="GRX Roaming Telcel ENTRANTE STATUS",
+                                            blank=True, null=True, default='OK')
+    
+    grx_roaming_telcel_entrante_comentarios = models.CharField(max_length=200,
+                                                verbose_name="GRX Roaming Telcel ENTRANTE COMENTARIOS",
+                                                blank=True, null=True, default='TRAFICO ESTABLE')
+    
+    grx_roaming_telcel_entrante_folios = models.CharField(max_length=200, 
+                                            verbose_name="GRX Roaming Telcel ENTRANTE FOLIOS", 
+                                            blank=True, null=True)
+
+    
+    grx_roaming_telcel_suma_status = models.CharField(choices=ESTATUS, max_length=45,
+                                            verbose_name="GRX Roaming Telcel SUMA STATUS",
+                                            blank=True, null=True, default='OK')
+    
+    grx_roaming_telcel_suma_comentarios = models.CharField(max_length=200,
+                                                verbose_name="GRX Roaming Telcel SUMA COMENTARIOS",
+                                                blank=True, null=True, default='TRAFICO ESTABLE')
+    
+    grx_roaming_telcel_suma_folios = models.CharField(max_length=200, 
+                                            verbose_name="GRX Roaming Telcel SUMA FOLIOS", 
+                                            blank=True, null=True)
+
+
+    grx_roaming_nextel_tlalnemty_status = models.CharField(choices=ESTATUS, max_length=45,
+                                            verbose_name="GRX Roaming Nextel TLALNE + MTY STATUS",
+                                            blank=True, null=True, default='OK')
+    
+    grx_roaming_nextel_tlalnemty_comentarios = models.CharField(max_length=200,
+                                                verbose_name="GRX Roaming Nextel TLALNE + MTY COMENTARIOS",
+                                                blank=True, null=True, default='TRAFICO ESTABLE')
+    
+    grx_roaming_nextel_tlalnemty_folios = models.CharField(max_length=200, 
+                                            verbose_name="GRX Roaming Nextel TLALNE + MTY FOLIOS", 
+                                            blank=True, null=True)                                                                                                                                           
+
+
+    grx_roaming_altan_tln_vlan_355_status = models.CharField(choices=ESTATUS, max_length=45,
+                                            verbose_name="GRX Roaming Altan TLN VLAN 355 STATUS",
+                                            blank=True, null=True, default='OK')
+    
+    grx_roaming_altan_tln_vlan_355_comentarios = models.CharField(max_length=200,
+                                                verbose_name="GRX Roaming Altan TLN VLAN 355 COMENTARIOS",
+                                                blank=True, null=True, default='TRAFICO ESTABLE')
+    
+    grx_roaming_altan_tln_vlan_355_folios = models.CharField(max_length=200, 
+                                            verbose_name="GRX Roaming Altan TLN VLAN 355 FOLIOS", 
+                                            blank=True, null=True)        
+
+
+    grx_roaming_altan_mty_vlan_355_status = models.CharField(choices=ESTATUS, max_length=45,
+                                            verbose_name="GRX Roaming Altan MTY VLAN 355 STATUS",
+                                            blank=True, null=True, default='OK')
+    
+    grx_roaming_altan_mty_vlan_355_comentarios = models.CharField(max_length=200,
+                                                verbose_name="GRX Roaming Altan MTY VLAN 355 COMENTARIOS",
+                                                blank=True, null=True, default='TRAFICO ESTABLE')
+    
+    grx_roaming_altan_mty_vlan_355_folios = models.CharField(max_length=200, 
+                                            verbose_name="GRX Roaming Altan MTY VLAN 355 FOLIOS", 
+                                            blank=True, null=True)                                              

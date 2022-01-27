@@ -6,6 +6,7 @@ urlpatterns = [
     #Vistas para los HC
     path('interconfiguracionATT/', views.healtcheaksInterAtt, name="healtcheaksInterAtt"),
     path('rutasInterconexion/', views.healtcheaksRutasInter, name="healtcheaksRutasInter"),
+    path('APN/', views.healtcheaksAPN, name="healtcheaksAPN"),
     path('interconfiguracionATT/enviar', views.envioHealtcheaksInterAtt, name="envioHealtcheaksInterAtt"),
 ]
 

@@ -17,149 +17,900 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Theme style -->
   <link rel="stylesheet" href="{% static 'core/dist/css/adminlte.min.css' %}">
   <style>
-    .table thead{
-      background-color: rgb(0, 3, 196);
-      color: white;
-      text-align: center;
-      font-size: 1vw;
+    * {
+        padding:0;
+        margin:0;
     }
-    tbody, td{
-      font-weight: bold;
+
+    body{
+        line-height: 1;
+        font-size: 0.8rem;
+        font-family: "Calibri", Times, serif;
     }
+
+    .table thead {
+        background-color: rgb(233, 255, 253);
+        color: rgb(65, 68, 255);
+        text-align: center;
+        font-size: 1.2rem;
+    }
+
     .telefonicaImg {
-      width: 60%;
-      height: 80%;
+        height: 35px;
+        float:left;
     }
+
     .estadosImg {
-      width: 70%;
-      height: 4vh;
+        width: 19vw;
+        padding-top:5px;
     }
-    .title{
-      color: rgb(0, 4, 243);
-      font-weight: bold;
-      font-size: 2vw;
+
+    .table thead p {
+        padding-top: 7px;
+        background-color: rgb(233, 255, 253);
     }
-    .textHead{
-      color: rgb(0, 4, 243);
-      font-size: 1.5vw;
+
+    .segunda {
+        background-color: rgb(233, 255, 253);
+        border: 2px solid rgb(65, 68, 255);
+        line-height: 0;
     }
-    .tdgreen{
-      background-color: rgb(233, 255, 253);
-      text-align: center;
+
+    .segunda p {
+        text-align: center;
+        font-weight: bold;
+        padding-top: 5px;
+        padding-bottom: -2px;
     }
-    .iCheck{
-      color: rgb(151, 192, 3);
-    }
+
     .table, th, td {
-      border: 1px solid rgb(0, 4, 243);
+        border: 2px solid rgb(65, 68, 255);
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .interconexionCelda {
+        width:12vw;
+    }
+
+    .iobCelda{
+        width: 3vw;
+    }
+
+    .statusCelda{
+        width: 3vw;
+    }
+
+    .elementoCelda{
+        width: 13vw;
+    }
+
+    .tdHora{
+        width: 15vw;
+        text-align: right;
+        color: rgb(65, 68, 255);
+        font-size: 1.2rem;
+    }
+
+    .comentariosCelda{
+        width: 27vw;
+        text-align: center;
+        font-size: 10px;
+    }
+
+    .horaTd{
+        text-align: center;
+    }
+
+    .tercera{
+        background-color: rgb(65, 68, 255);
+        color: white;
+        text-align: center;
+        font-size: 0.8rem;
+    }
+
+    .tdgreen{
+        background-color: rgb(233, 255, 253);
+        vertical-align : middle !important;
+        text-align: center;
+    }
+
+    .iCheck{
+        color: green;
+        text-align: center;
+    }
+
+    .tdStatus{
+        text-align: center;
+    }
+
+    .table-sm td, .table-sm th {
+        line-height: 0.8;
+        padding: .1rem;
+        vertical-align: inherit;
+    }
+
+    .OK{
+        color: green;
+        padding-left:10px;
+    }
+
+    .Incidencia{
+        color: #C22110;
+        padding-left:60px;
+    }
+
+    .Riesgo{
+        color: #E3ED0A;
+        padding-left:60px;
+    }
+
+    .iWarning{
+        color: #E3ED0A;
+        text-align: center;
+    }
+
+    .iIncident{
+        color: #C22110;
+        text-align: center;
+    }
+
+    .borderless table {
+        border-top-style: none;
+        border-left-style: none;
+        border-right-style: none;
+        border-bottom-style: none;
     }
   </style>
   <!-- Extra examples for card of project details -->
 </head>
 
-<body class="hold-transition sidebar-mini">
+<body>
+    <div class="col-8">
+        <table class="table table-borderless table-sm">
+            <thead class="">
+                <tr>
+                    <th colspan="2">
+                    <img src="http://94.74.76.125:8057/media/IneTelefonica.png" class="telefonicaImg" alt="">
+                    <strong>Health Check APN MVNO'S - ROAMING</strong>
+                    <p>{% now "l, d F Y" %}</p></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <i class="fas fa-circle OK"></i> OK
+                        <i class="fas fa-circle  Incidencia"></i> Incidencia
+                        <i class="fas fa-circle  Riesgo"></i> Riesgo
+                    </td>   
+                    <td><p class="tdHora">{% now "H:i" %}</p></td>
+                </tr>
+            </tbody>
+        </table>
 
-<div class="wrapper">
+        <table class="table table-sm align-middle">
+            <thead>
+            </thead>
+                    
+            <tbody>
+                
 
-  <!-- Preloader -->
-  <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="{% static 'core/dist/img/inetum.png' %}" alt="AdminLTELogo" height="60" width="60">
-  </div>
-    <!-- Main content -->
-    <div class="content mt-3">
-        <div class="container-fluid">
-          <div class="row">
-            <!-- /.col-md-6 -->
-            <div class="col-12">
-              <div class="card">
-                <div class="card-header">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <img src="http://94.74.76.125:8057/media/IneTelefonica.png" class="telefonicaImg" alt="">
-                    </div>
-                    <div class="col-md-8 d-flex flex-column text-center">
-                      <strong class="title">{{titulo}}</strong>
-                      <p class="textHead">{% now "l, d F Y" %}</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-4">
-                      <img src="http://94.74.76.125:8057/media/IneEstado.png" class="estadosImg" alt="">
-                    </div>
-                    <div class="col-md-8 d-flex justify-content-center">
-                      <p class="textHead">{% now "H:i" %}</p>
-                    </div>
-                  </div>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                    <div class="row">
-                      <div class="table-responsive">
-                        <table class="table table-sm align-middle">
-                          <thead>
-                            <tr>
-                              <th scope="col">Red</th>
-                              <th scope="col">Elemento</th>
-                              <th scope="col">Status</th>
-                              <th scope="col">Comentarios</th>
-                              <th scope="col">FG</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <th class="tdgreen" rowspan="7">APN-MVN0</th>
-                              <td>HELPPY</td>
-                              <td><i class="fas fa-check-circle iCheck"></i></td>
-                              <td>TRAFICO ESTABLE</td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                              <td>TOKAMOVIL</td>
-                              <td><i class="fas fa-check-circle iCheck"></i></td>
-                              <td>TRAFICO ESTABLE</td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                              <td>SIMPATI</td>
-                              <td><i class="fas fa-check-circle iCheck"></i></td>
-                              <td>TRAFICO ESTABLE</td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                              <td>FLASHMOBILE</td>
-                              <td><i class="fas fa-check-circle iCheck"></i></td>
-                              <td>TRAFICO ESTABLE</td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                              <td>HERMOBILE</td>
-                              <td><i class="fas fa-check-circle iCheck"></i></td>
-                              <td>TRAFICO ESTABLE</td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                                <td>WEEX</td>
-                                <td><i class="fas fa-check-circle iCheck"></i></td>
-                                <td>TRAFICO ESTABLE</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>MOVISTAR</td>
-                                <td><i class="fas fa-check-circle iCheck"></i></td>
-                                <td>TRAFICO ESTABLE</td>
-                                <td></td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                </div>
-                <!-- /.card-body -->
-              </div>
+                <tr class="tercera">
+                    <td scope="col" class="interconexionCelda">Red</td>
+                    <td scope="col" class="elementoCelda">Elemento</td>
+                    <td scope="col" class="statusCelda">Status</td>
+                    <td scope="col" class="">Comentarios</td>
+                    <td scope="col" class="">FG</td>
+                </tr>
+
+                <tr>
+                    <th scope="row" class="tdgreen" rowspan="10">APN-MVN0</th>
+                    <td>HELPPY</td>
+                    
+                    <td>
+                    {% for estado in estatus %}
+                        {% if estado.puebla_cti_fuertes_estatus == "OK" %}
+                            <i class="fas fa-check-circle iCheck"></i>
+                        {% elif estado.puebla_cti_fuertes_estatus == "RIESGO"  %}
+                            <i class="fas fa-exclamation-circle iWarning"></i>
+                        {%else %}
+                            <i class="fas fa-times-circle iIncident"></i>
+                        {% endif %}
+                    {% endfor %}
+                    </td>
+                    
+                    <td>
+                    {% for comentario in comentarios %}
+                        {% if comentario.puebla_cti_fuertes_comentarios_IN %}
+                            {{comentario.puebla_cti_fuertes_comentarios_IN}}
+                        {% endif %}
+                    {% endfor %}  
+                    </td>
+                    
+                    <td>
+                        {% for folio in folios %}
+                            {% if folio.puebla_cti_fuertes_folios_IN %}
+                                {{folio.puebla_cti_fuertes_folios_IN}}
+                            {% endif %}
+                        {% endfor %}  
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>TOKAMOVIL</td>
+                    <td>
+                    {% for estado in estatus %}
+                        {% if estado.tijuana_cti_pio_pico_estatus == "OK" %}
+                            <i class="fas fa-check-circle iCheck"></i>
+                        {% elif estado.tijuana_cti_pio_pico_estatus == "RIESGO"  %}
+                            <i class="fas fa-exclamation-circle iWarning"></i>
+                        {%else %}
+                            <i class="fas fa-times-circle iIncident"></i>
+                        {% endif %}
+                    {% endfor %}
+                    </td>
+                    
+                    <td>
+                        {% for comentario in comentarios %}
+                            {% if comentario.tijuana_cti_pio_pico_comentarios_IN %}
+                                {{comentario.tijuana_cti_pio_pico_comentarios_IN}}
+                            {% endif %}
+                        {% endfor %}  
+                    </td>
+                    
+                    <td>
+                        {% for folio in folios %}
+                            {% if folio.tijuana_cti_pio_pico_folios_IN %}
+                                {{folio.tijuana_cti_pio_pico_folios_IN}}
+                            {% endif %}
+                        {% endfor %}  
+                    </td>
+                </tr>
+                <tr>
+                    <td>SIMPATI </td>
+                    <td>
+                    {% for estado in estatus %}
+                        {% if estado.presa_cti_nextengo_estatus == "OK" %}
+                            <i class="fas fa-check-circle iCheck"></i>
+                        {% elif estado.presa_cti_nextengo_estatus == "RIESGO"  %}
+                            <i class="fas fa-exclamation-circle iWarning"></i>
+                        {%else %}
+                            <i class="fas fa-times-circle iIncident"></i>
+                        {% endif %}
+                    {% endfor %}
+                    </td>
+
+                    <td>
+                        {% for comentario in comentarios %}
+                            {% if comentario.presa_cti_nextengo_comentarios_IN %}
+                                {{comentario.presa_cti_nextengo_comentarios_IN}}
+                            {% endif %}
+                        {% endfor %}  
+                    </td>
+
+                    <td>
+                        {% for folio in folios %}
+                            {% if folio.presa_cti_nextengo_folios_IN %}
+                                {{folio.presa_cti_nextengo_folios_IN}}
+                            {% endif %}
+                        {% endfor %}  
+                    </td>
+                </tr>
+                <tr>
+                    <td>FLASHMOBILE</td>
+                    <td>
+                    {% for estado in estatus %}
+                        {% if estado.guadalajara_cti_tlaquepaque_estatus == "OK" %}
+                            <i class="fas fa-check-circle iCheck"></i>
+                        {% elif estado.guadalajara_cti_tlaquepaque_estatus == "RIESGO"  %}
+                            <i class="fas fa-exclamation-circle iWarning"></i>
+                        {%else %}
+                            <i class="fas fa-times-circle iIncident"></i>
+                        {% endif %}
+                    {% endfor %}
+                    </td>
+                    
+                    <td>
+                        {% for comentario in comentarios %}
+                            {% if comentario.guadalajara_cti_tlaquepaque_comentarios_IN %}
+                                {{comentario.guadalajara_cti_tlaquepaque_comentarios_IN}}
+                            {% endif %}
+                        {% endfor %}  
+                    </td>
+                    
+                    <td>
+                        {% for folio in folios %}
+                            {% if folio.guadalajara_cti_tlaquepaque_folios_IN %}
+                                {{folio.guadalajara_cti_tlaquepaque_folios_IN}}
+                            {% endif %}
+                        {% endfor %}  
+                    </td>
+                </tr>
+                <tr>
+                    <td>HERMOBILE</td>
+                    <td>
+                    {% for estado in estatus %}
+                        {% if estado.monterrey_cti_mayo_estatus == "OK" %}
+                            <i class="fas fa-check-circle iCheck"></i>
+                        {% elif estado.monterrey_cti_mayo_estatus == "RIESGO"  %}
+                            <i class="fas fa-exclamation-circle iWarning"></i>
+                        {%else %}
+                            <i class="fas fa-times-circle iIncident"></i>
+                        {% endif %}
+                    {% endfor %}
+                    </td>
+                    
+                    <td>
+                        {% for comentario in comentarios %}
+                            {% if comentario.monterrey_cti_mayo_comentarios_IN %}
+                                {{comentario.monterrey_cti_mayo_comentarios_IN}}
+                            {% endif %}
+                        {% endfor %}  
+                    </td>
+                    
+                    <td>
+                        {% for folio in folios %}
+                            {% if folio.monterrey_cti_mayo_folios_IN %}
+                                {{folio.monterrey_cti_mayo_folios_IN}}
+                            {% endif %}
+                        {% endfor %}  
+                    </td>
+                </tr>
+                <tr>
+                    <td>WEEX</td>
+                    <td>
+                    {% for estado in estatus %}
+                        {% if estado.monterrey_cti_revolucion_estatus == "OK" %}
+                            <i class="fas fa-check-circle iCheck"></i>
+                        {% elif estado.monterrey_cti_revolucion_estatus == "RIESGO"  %}
+                            <i class="fas fa-exclamation-circle iWarning"></i>
+                        {%else %}
+                            <i class="fas fa-times-circle iIncident"></i>
+                        {% endif %}
+                    {% endfor %}
+                    </td>
+                    
+                    <td>
+                        {% for comentario in comentarios %}
+                            {% if comentario.monterrey_cti_revolucion_comentarios_IN %}
+                                {{comentario.monterrey_cti_revolucion_comentarios_IN}}
+                            {% endif %}
+                        {% endfor %}  
+                    </td>
+                    
+                    <td>
+                        {% for folio in folios %}
+                            {% if folio.monterrey_cti_revolucion_folios_IN %}
+                                {{folio.monterrey_cti_revolucion_folios_IN}}
+                            {% endif %}
+                        {% endfor %}  
+                    </td>
+                </tr>
+                <tr>
+                    <td>MOVISTAR</td>
+                    <td>
+                    {% for estado in estatus %}
+                        {% if estado.tlane_cti_vallejo_estatus == "OK" %}
+                            <i class="fas fa-check-circle iCheck"></i>
+                        {% elif estado.tlane_cti_vallejo_estatus == "RIESGO"  %}
+                            <i class="fas fa-exclamation-circle iWarning"></i>
+                        {%else %}
+                            <i class="fas fa-times-circle iIncident"></i>
+                        {% endif %}
+                    {% endfor %}
+                    </td>
+                    
+                    <td>
+                        {% for comentario in comentarios %}
+                            {% if comentario.tlane_cti_vallejo_comentarios_IN %}
+                                {{comentario.tlane_cti_vallejo_comentarios_IN}}
+                            {% endif %}
+                        {% endfor %}  
+                    </td>
+                    
+                    <td>
+                        {% for folio in folios %}
+                            {% if folio.tlane_cti_vallejo_folios_IN %}
+                                {{folio.tlane_cti_vallejo_folios_IN}}
+                            {% endif %}
+                        {% endfor %}  
+                    </td>
+                </tr>
+                <tr>
+                    <td>VIRGIN MOBILE</td>
+                    <td>
+                    {% for estado in estatus %}
+                        {% if estado.presa_cti_nextengo_estatus_out == "OK" %}
+                            <i class="fas fa-check-circle iCheck"></i>
+                        {% elif estado.presa_cti_nextengo_estatus_out == "RIESGO"  %}
+                            <i class="fas fa-exclamation-circle iWarning"></i>
+                        {%else %}
+                            <i class="fas fa-times-circle iIncident"></i>
+                        {% endif %}
+                    {% endfor %}
+                    </td>
+                    
+                    <td>
+                        {% for comentario in comentarios %}
+                            {% if comentario.presa_cti_nextengo_comentarios %}
+                                {{comentario.presa_cti_nextengo_comentarios}}
+                            {% endif %}
+                        {% endfor %}  
+                    </td>
+                    
+                    <td>
+                        {% for folio in folios %}
+                            {% if folio.presa_cti_nextengo_folios %}
+                                {{folio.presa_cti_nextengo_folios}}
+                            {% endif %}
+                        {% endfor %}  
+                    </td>
+                </tr>
+                <tr>
+                    <td>SIX</td>
+                    <td>
+                    {% for estado in estatus %}
+                        {% if estado.monterrey_cti_mayo_estatus_out == "OK" %}
+                            <i class="fas fa-check-circle iCheck"></i>
+                        {% elif estado.monterrey_cti_mayo_estatus_out == "RIESGO"  %}
+                            <i class="fas fa-exclamation-circle iWarning"></i>
+                        {%else %}
+                            <i class="fas fa-times-circle iIncident"></i>
+                        {% endif %}
+                    {% endfor %}
+                    </td>
+                    
+                    <td>
+                        {% for comentario in comentarios %}
+                            {% if comentario.monterrey_cti_mayo_comentarios %}
+                                {{comentario.monterrey_cti_mayo_comentarios}}
+                            {% endif %}
+                        {% endfor %}  
+                    </td>
+                    
+                    <td>
+                        {% for folio in folios %}
+                            {% if folio.monterrey_cti_mayo_folios %}
+                                {{folio.monterrey_cti_mayo_folios}}
+                            {% endif %}
+                        {% endfor %}  
+                    </td>
+                </tr>
+                <tr>
+                    <td>INTERNET FIJO</td>
+                    <td>
+                    {% for estado in estatus %}
+                        {% if estado.tlane_cti_vallejo_estatus_out == "OK" %}
+                            <i class="fas fa-check-circle iCheck"></i>
+                        {% elif estado.tlane_cti_vallejo_estatus_out == "RIESGO"  %}
+                            <i class="fas fa-exclamation-circle iWarning"></i>
+                        {%else %}
+                            <i class="fas fa-times-circle iIncident"></i>
+                        {% endif %}
+                    {% endfor %}
+                    </td>
+                    
+                    <td>
+                        {% for comentario in comentarios %}
+                            {% if comentario.tlane_cti_vallejo_comentarios %}
+                                {{comentario.tlane_cti_vallejo_comentarios}}
+                            {% endif %}
+                        {% endfor %}  
+                    </td>
+                    
+                    <td>
+                        {% for folio in folios %}
+                            {% if folio.tlane_cti_vallejo_folios %}
+                                {{folio.tlane_cti_vallejo_folios}}
+                            {% endif %}
+                        {% endfor %}  
+                    </td>
+                </tr>
+                
+            </tbody>
+        </table>
+
+        <table class="table table-sm align-middle">
+            <thead>
+            </thead>
+                    
+            <tbody>
+                
+
+                <tr class="tercera">
+                    <td scope="col" class="interconexionCelda">Red</td>
+                    <td scope="col" class="elementoCelda">Elemento</td>
+                    <td scope="col" class="statusCelda">Status</td>
+                    <td scope="col" class="">Comentarios</td>
+                    <td scope="col" class="">FG</td>
+                </tr>
+
+                <tr>
+                    <th scope="row" class="tdgreen" rowspan="10">GRX Roaming Telcel</th>
+                    <td>2852</td>
+                    
+                    <td>
+                    {% for estado in estatus %}
+                        {% if estado.puebla_cti_fuertes_estatus == "OK" %}
+                            <i class="fas fa-check-circle iCheck"></i>
+                        {% elif estado.puebla_cti_fuertes_estatus == "RIESGO"  %}
+                            <i class="fas fa-exclamation-circle iWarning"></i>
+                        {%else %}
+                            <i class="fas fa-times-circle iIncident"></i>
+                        {% endif %}
+                    {% endfor %}
+                    </td>
+                    
+                    <td>
+                    {% for comentario in comentarios %}
+                        {% if comentario.puebla_cti_fuertes_comentarios_IN %}
+                            {{comentario.puebla_cti_fuertes_comentarios_IN}}
+                        {% endif %}
+                    {% endfor %}  
+                    </td>
+                    
+                    <td>
+                        {% for folio in folios %}
+                            {% if folio.puebla_cti_fuertes_folios_IN %}
+                                {{folio.puebla_cti_fuertes_folios_IN}}
+                            {% endif %}
+                        {% endfor %}  
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>305</td>
+                    <td>
+                    {% for estado in estatus %}
+                        {% if estado.tijuana_cti_pio_pico_estatus == "OK" %}
+                            <i class="fas fa-check-circle iCheck"></i>
+                        {% elif estado.tijuana_cti_pio_pico_estatus == "RIESGO"  %}
+                            <i class="fas fa-exclamation-circle iWarning"></i>
+                        {%else %}
+                            <i class="fas fa-times-circle iIncident"></i>
+                        {% endif %}
+                    {% endfor %}
+                    </td>
+                    
+                    <td>
+                        {% for comentario in comentarios %}
+                            {% if comentario.tijuana_cti_pio_pico_comentarios_IN %}
+                                {{comentario.tijuana_cti_pio_pico_comentarios_IN}}
+                            {% endif %}
+                        {% endfor %}  
+                    </td>
+                    
+                    <td>
+                        {% for folio in folios %}
+                            {% if folio.tijuana_cti_pio_pico_folios_IN %}
+                                {{folio.tijuana_cti_pio_pico_folios_IN}}
+                            {% endif %}
+                        {% endfor %}  
+                    </td>
+                </tr>
+                <tr>
+                    <td>301</td>
+                    <td>
+                    {% for estado in estatus %}
+                        {% if estado.presa_cti_nextengo_estatus == "OK" %}
+                            <i class="fas fa-check-circle iCheck"></i>
+                        {% elif estado.presa_cti_nextengo_estatus == "RIESGO"  %}
+                            <i class="fas fa-exclamation-circle iWarning"></i>
+                        {%else %}
+                            <i class="fas fa-times-circle iIncident"></i>
+                        {% endif %}
+                    {% endfor %}
+                    </td>
+
+                    <td>
+                        {% for comentario in comentarios %}
+                            {% if comentario.presa_cti_nextengo_comentarios_IN %}
+                                {{comentario.presa_cti_nextengo_comentarios_IN}}
+                            {% endif %}
+                        {% endfor %}  
+                    </td>
+
+                    <td>
+                        {% for folio in folios %}
+                            {% if folio.presa_cti_nextengo_folios_IN %}
+                                {{folio.presa_cti_nextengo_folios_IN}}
+                            {% endif %}
+                        {% endfor %}  
+                    </td>
+                </tr>
+                <tr>
+                    <td>2851</td>
+                    <td>
+                    {% for estado in estatus %}
+                        {% if estado.guadalajara_cti_tlaquepaque_estatus == "OK" %}
+                            <i class="fas fa-check-circle iCheck"></i>
+                        {% elif estado.guadalajara_cti_tlaquepaque_estatus == "RIESGO"  %}
+                            <i class="fas fa-exclamation-circle iWarning"></i>
+                        {%else %}
+                            <i class="fas fa-times-circle iIncident"></i>
+                        {% endif %}
+                    {% endfor %}
+                    </td>
+                    
+                    <td>
+                        {% for comentario in comentarios %}
+                            {% if comentario.guadalajara_cti_tlaquepaque_comentarios_IN %}
+                                {{comentario.guadalajara_cti_tlaquepaque_comentarios_IN}}
+                            {% endif %}
+                        {% endfor %}  
+                    </td>
+                    
+                    <td>
+                        {% for folio in folios %}
+                            {% if folio.guadalajara_cti_tlaquepaque_folios_IN %}
+                                {{folio.guadalajara_cti_tlaquepaque_folios_IN}}
+                            {% endif %}
+                        {% endfor %}  
+                    </td>
+                </tr>
+                <tr>
+                    <td>Interconexión</td>
+                    <td>
+                    {% for estado in estatus %}
+                        {% if estado.monterrey_cti_mayo_estatus == "OK" %}
+                            <i class="fas fa-check-circle iCheck"></i>
+                        {% elif estado.monterrey_cti_mayo_estatus == "RIESGO"  %}
+                            <i class="fas fa-exclamation-circle iWarning"></i>
+                        {%else %}
+                            <i class="fas fa-times-circle iIncident"></i>
+                        {% endif %}
+                    {% endfor %}
+                    </td>
+                    
+                    <td>
+                        {% for comentario in comentarios %}
+                            {% if comentario.monterrey_cti_mayo_comentarios_IN %}
+                                {{comentario.monterrey_cti_mayo_comentarios_IN}}
+                            {% endif %}
+                        {% endfor %}  
+                    </td>
+                    
+                    <td>
+                        {% for folio in folios %}
+                            {% if folio.monterrey_cti_mayo_folios_IN %}
+                                {{folio.monterrey_cti_mayo_folios_IN}}
+                            {% endif %}
+                        {% endfor %}  
+                    </td>
+                </tr>
+                <tr>
+                    <td>212</td>
+                    <td>
+                    {% for estado in estatus %}
+                        {% if estado.monterrey_cti_revolucion_estatus == "OK" %}
+                            <i class="fas fa-check-circle iCheck"></i>
+                        {% elif estado.monterrey_cti_revolucion_estatus == "RIESGO"  %}
+                            <i class="fas fa-exclamation-circle iWarning"></i>
+                        {%else %}
+                            <i class="fas fa-times-circle iIncident"></i>
+                        {% endif %}
+                    {% endfor %}
+                    </td>
+                    
+                    <td>
+                        {% for comentario in comentarios %}
+                            {% if comentario.monterrey_cti_revolucion_comentarios_IN %}
+                                {{comentario.monterrey_cti_revolucion_comentarios_IN}}
+                            {% endif %}
+                        {% endfor %}  
+                    </td>
+                    
+                    <td>
+                        {% for folio in folios %}
+                            {% if folio.monterrey_cti_revolucion_folios_IN %}
+                                {{folio.monterrey_cti_revolucion_folios_IN}}
+                            {% endif %}
+                        {% endfor %}  
+                    </td>
+                </tr>
+                <tr>
+                    <td>ENTRANTE</td>
+                    <td>
+                    {% for estado in estatus %}
+                        {% if estado.tlane_cti_vallejo_estatus == "OK" %}
+                            <i class="fas fa-check-circle iCheck"></i>
+                        {% elif estado.tlane_cti_vallejo_estatus == "RIESGO"  %}
+                            <i class="fas fa-exclamation-circle iWarning"></i>
+                        {%else %}
+                            <i class="fas fa-times-circle iIncident"></i>
+                        {% endif %}
+                    {% endfor %}
+                    </td>
+                    
+                    <td>
+                        {% for comentario in comentarios %}
+                            {% if comentario.tlane_cti_vallejo_comentarios_IN %}
+                                {{comentario.tlane_cti_vallejo_comentarios_IN}}
+                            {% endif %}
+                        {% endfor %}  
+                    </td>
+                    
+                    <td>
+                        {% for folio in folios %}
+                            {% if folio.tlane_cti_vallejo_folios_IN %}
+                                {{folio.tlane_cti_vallejo_folios_IN}}
+                            {% endif %}
+                        {% endfor %}  
+                    </td>
+                </tr>
+                <tr>
+                    <td>SUMA</td>
+                    <td>
+                    {% for estado in estatus %}
+                        {% if estado.presa_cti_nextengo_estatus_out == "OK" %}
+                            <i class="fas fa-check-circle iCheck"></i>
+                        {% elif estado.presa_cti_nextengo_estatus_out == "RIESGO"  %}
+                            <i class="fas fa-exclamation-circle iWarning"></i>
+                        {%else %}
+                            <i class="fas fa-times-circle iIncident"></i>
+                        {% endif %}
+                    {% endfor %}
+                    </td>
+                    
+                    <td>
+                        {% for comentario in comentarios %}
+                            {% if comentario.presa_cti_nextengo_comentarios %}
+                                {{comentario.presa_cti_nextengo_comentarios}}
+                            {% endif %}
+                        {% endfor %}  
+                    </td>
+                    
+                    <td>
+                        {% for folio in folios %}
+                            {% if folio.presa_cti_nextengo_folios %}
+                                {{folio.presa_cti_nextengo_folios}}
+                            {% endif %}
+                        {% endfor %}  
+                    </td>
+                </tr>
+                
+            </tbody>
+        </table>
+
+        <table class="table table-sm align-middle">
+            <thead>
+            </thead>
+                    
+            <tbody>
+                
+
+                <tr class="tercera">
+                    <td scope="col" class="interconexionCelda">Red</td>
+                    <td scope="col" class="elementoCelda">Elemento</td>
+                    <td scope="col" class="statusCelda">Status</td>
+                    <td scope="col" class="">Comentarios</td>
+                    <td scope="col" class="">FG</td>
+                </tr>
+
+                <tr>
+                    <th scope="row" class="tdgreen" rowspan="1">GRX Roaming Nextel</th>
+                    <td>TLALNE + MTY</td>
+                    
+                    <td>
+                    {% for estado in estatus %}
+                        {% if estado.puebla_cti_fuertes_estatus == "OK" %}
+                            <i class="fas fa-check-circle iCheck"></i>
+                        {% elif estado.puebla_cti_fuertes_estatus == "RIESGO"  %}
+                            <i class="fas fa-exclamation-circle iWarning"></i>
+                        {%else %}
+                            <i class="fas fa-times-circle iIncident"></i>
+                        {% endif %}
+                    {% endfor %}
+                    </td>
+                    
+                    <td>
+                    {% for comentario in comentarios %}
+                        {% if comentario.puebla_cti_fuertes_comentarios_IN %}
+                            {{comentario.puebla_cti_fuertes_comentarios_IN}}
+                        {% endif %}
+                    {% endfor %}  
+                    </td>
+                    
+                    <td>
+                        {% for folio in folios %}
+                            {% if folio.puebla_cti_fuertes_folios_IN %}
+                                {{folio.puebla_cti_fuertes_folios_IN}}
+                            {% endif %}
+                        {% endfor %}  
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-sm align-middle">
+            <thead>
+            </thead>
+                    
+            <tbody>
+                
+
+                <tr class="tercera">
+                    <td scope="col" class="interconexionCelda">Red</td>
+                    <td scope="col" class="elementoCelda">Elemento</td>
+                    <td scope="col" class="statusCelda">Status</td>
+                    <td scope="col" class="">Comentarios</td>
+                    <td scope="col" class="">FG</td>
+                </tr>
+
+                <tr>
+                    <th scope="row" class="tdgreen" rowspan="2">GRX Roaming Altan</th>
+                    <td>TLN VLAN 355</td>
+                    
+                    <td>
+                    {% for estado in estatus %}
+                        {% if estado.puebla_cti_fuertes_estatus == "OK" %}
+                            <i class="fas fa-check-circle iCheck"></i>
+                        {% elif estado.puebla_cti_fuertes_estatus == "RIESGO"  %}
+                            <i class="fas fa-exclamation-circle iWarning"></i>
+                        {%else %}
+                            <i class="fas fa-times-circle iIncident"></i>
+                        {% endif %}
+                    {% endfor %}
+                    </td>
+                    
+                    <td>
+                    {% for comentario in comentarios %}
+                        {% if comentario.puebla_cti_fuertes_comentarios_IN %}
+                            {{comentario.puebla_cti_fuertes_comentarios_IN}}
+                        {% endif %}
+                    {% endfor %}  
+                    </td>
+                    
+                    <td>
+                        {% for folio in folios %}
+                            {% if folio.puebla_cti_fuertes_folios_IN %}
+                                {{folio.puebla_cti_fuertes_folios_IN}}
+                            {% endif %}
+                        {% endfor %}  
+                    </td>
+                </tr>
+                <tr>
+                    <td>MTY VLAN 355</td>
+                    <td>
+                    {% for estado in estatus %}
+                        {% if estado.tijuana_cti_pio_pico_estatus == "OK" %}
+                            <i class="fas fa-check-circle iCheck"></i>
+                        {% elif estado.tijuana_cti_pio_pico_estatus == "RIESGO"  %}
+                            <i class="fas fa-exclamation-circle iWarning"></i>
+                        {%else %}
+                            <i class="fas fa-times-circle iIncident"></i>
+                        {% endif %}
+                    {% endfor %}
+                    </td>
+                    
+                    <td>
+                        {% for comentario in comentarios %}
+                            {% if comentario.tijuana_cti_pio_pico_comentarios_IN %}
+                                {{comentario.tijuana_cti_pio_pico_comentarios_IN}}
+                            {% endif %}
+                        {% endfor %}  
+                    </td>
+                    
+                    <td>
+                        {% for folio in folios %}
+                            {% if folio.tijuana_cti_pio_pico_folios_IN %}
+                                {{folio.tijuana_cti_pio_pico_folios_IN}}
+                            {% endif %}
+                        {% endfor %}  
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="container">
+            <div class="row">
+                <a class="float-sm-right" href="{% url 'healtcheaks:envioHealtcheaksInterAtt' %}" target="_blank" >
+                        <button type="submit" class="form-control btn btn-success" style="width:500px;">Enviar</button>
+                </a>
             </div>
-          </div>
         </div>
-      </div>
+
 <!-- jQuery -->
 <script src="{% static 'core/plugins/jquery/jquery.min.js' %}"></script>
 <!-- Bootstrap 4 -->
@@ -184,4 +935,3 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- Extra examples for card of project details -->
 </body>
 </html>
-

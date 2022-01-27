@@ -204,15 +204,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <th scope="row" class="tdgreen" rowspan="2">PDC MSOMEX01</th>
                       <td>MACNO CENTRO  BUNDLE-ETHER 300</td>
                       <td class="tdStatus">
-                          {% for estado in estatus %}
+                         {% for estado in estatus %}
                               {% if estado.macno_centro_bundle_ether_300_estatus == "OK" %}
-                                    <i class="fas fa-check-circle iCheck"></i>
+                                        <i class="fas fa-check-circle iCheck"></i>
                               {% elif estado.macno_centro_bundle_ether_300_estatus == "RIESGO"  %}
-                                    <i class="fas fa-exclamation-circle iWarning"></i>
-                               {%else %}
-                                    <i class="fas fa-times-circle iIncident"></i>
+                                        <i class="fas fa-exclamation-circle iWarning"></i>
+                                   {%else %}
+                                        <i class="fas fa-times-circle iIncident"></i>
                               {% endif %}
-                          {% endfor %}
+                         {% endfor %}
 
                       </td>
                       <td class="comentariosCelda">
