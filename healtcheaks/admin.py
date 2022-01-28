@@ -18,3 +18,8 @@ class RutasInterComentariosProject(admin.ModelAdmin):
 @admin.register(RutasInterFolioGuio)
 class RutasInterFolioGuioProject(admin.ModelAdmin):
     list_display = ('altan_vsbg2_tlane_folios',)
+
+
+@admin.register(HcAPN)
+class HcAPN(admin.ModelAdmin):
+    list_display = ('apn_mvn0_helppy_status',)

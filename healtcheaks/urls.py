@@ -8,5 +8,7 @@ urlpatterns = [
     path('rutasInterconexion/', views.healtcheaksRutasInter, name="healtcheaksRutasInter"),
     path('APN/', views.healtcheaksAPN, name="healtcheaksAPN"),
     path('interconfiguracionATT/enviar', views.envioHealtcheaksInterAtt, name="envioHealtcheaksInterAtt"),
+    path('APN/enviar', views.envioHealtcheaksAPN, name="envioHealtcheaksAPN"),
+    path('rutasInterconexion/enviar', views.envioHealtcheaksRutasInter, name="envioHealtcheaksRutasInter"),
 ]
 

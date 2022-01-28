@@ -107,6 +107,7 @@ DATABASES = {
         'USER': 'root',
         'PASSWORD': 'Inetum*root391',
         'HOST': '94.74.76.125',
+        'CONN_MAX_AGE': 90,
         'PORT': '5432',
     }
 }

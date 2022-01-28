@@ -285,3 +285,72 @@ def get_hcInterATT():
         r = requests.post(URL2,
                           data={'chat_id': chat_id, 'text': texto})
 
+def get_hcAPN():
+    now = datetime.now().strftime("%H:%M")
+    URL = 'https://api.telegram.org/bot2114681560:AAGPlALNSj-TWi2ipYkkyJ7r6oKbKkJGdz0/sendPhoto'
+    #chat_id = -396809016
+    #chat_id = 1663958489
+    chat_id = 1994982383
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--window-size=%s" % WINDOW_SIZE)
+    driver = webdriver.Chrome(path, chrome_options=chrome_options)
+    try:
+        driver.get("http://127.0.0.1:8000/hc/APN/")
+        time.sleep(2)
+        driver.fullscreen_window()
+        time.sleep(2)
+        check = "hcAPN.png"
+        driver.save_screenshot(check)
+        image = cv2.imread("hcAPN.png")
+        imageOut = image[0:1300, 0:1110]
+        cv2.imwrite('hcAPN.png', imageOut)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
+
+        texto = "Se envia el HC de APN MVNO'S - ROAMING {}".format(now)
+
+        r = requests.post(URL,
+                          files={'photo': ('hcAPN.png', open('hcAPN.png', 'rb'))},
+                          data={'chat_id': chat_id, 'caption': texto})
+        driver.close()
+
+    except:
+        texto = "Se tuvo un Error en obtener el HC de APN MVNO'S - ROAMING{}:{}".format(now)
+        r = requests.post(URL2,
+                          data={'chat_id': chat_id, 'text': texto})
+
+def get_hcRutasInter():
+    now = datetime.now().strftime("%H:%M")
+    URL = 'https://api.telegram.org/bot2114681560:AAGPlALNSj-TWi2ipYkkyJ7r6oKbKkJGdz0/sendPhoto'
+    #chat_id = -396809016
+    #chat_id = 1663958489
+    chat_id = 1994982383
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--window-size=%s" % WINDOW_SIZE)
+    driver = webdriver.Chrome(path, chrome_options=chrome_options)
+    try:
+        driver.get("http://127.0.0.1:8000/hc/rutasInterconexion/")
+        time.sleep(2)
+        driver.fullscreen_window()
+        time.sleep(2)
+        check = "hcRutasInterconexion.png"
+        driver.save_screenshot(check)
+        image = cv2.imread("hcRutasInterconexion.png")
+        imageOut = image[0:1300, 0:1110]
+        cv2.imwrite('hcRutasInterconexion.png', imageOut)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
+
+        texto = "Se envia el HC de RUTAS INTERCONEXIÓN {}".format(now)
+
+        r = requests.post(URL,
+                          files={'photo': ('hcRutasInterconexion.png', open('hcRutasInterconexion.png', 'rb'))},
+                          data={'chat_id': chat_id, 'caption': texto})
+        driver.close()
+
+    except:
+        texto = "Se tuvo un Error en obtener el HC de RUTAS INTERCONEXIÓN{}:{}".format(now)
+        r = requests.post(URL2,
+                          data={'chat_id': chat_id, 'text': texto})

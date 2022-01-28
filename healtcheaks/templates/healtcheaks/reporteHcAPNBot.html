@@ -208,10 +208,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <td>HELPPY</td>
                     
                     <td>
-                    {% for estado in estatus %}
-                        {% if estado.puebla_cti_fuertes_estatus == "OK" %}
+                    {% for estado in data %}
+                        {% if estado.apn_mvn0_helppy_status == "OK" %}
                             <i class="fas fa-check-circle iCheck"></i>
-                        {% elif estado.puebla_cti_fuertes_estatus == "RIESGO"  %}
+                        {% elif estado.apn_mvn0_helppy_status == "RIESGO"  %}
                             <i class="fas fa-exclamation-circle iWarning"></i>
                         {%else %}
                             <i class="fas fa-times-circle iIncident"></i>
@@ -220,29 +220,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </td>
                     
                     <td>
-                    {% for comentario in comentarios %}
-                        {% if comentario.puebla_cti_fuertes_comentarios_IN %}
-                            {{comentario.puebla_cti_fuertes_comentarios_IN}}
+                    {% for comentario in data %}
+                        {% if comentario.apn_mvn0_helppy_comentarios %}
+                            {{comentario.apn_mvn0_helppy_comentarios}}
                         {% endif %}
                     {% endfor %}  
                     </td>
                     
                     <td>
-                        {% for folio in folios %}
-                            {% if folio.puebla_cti_fuertes_folios_IN %}
-                                {{folio.puebla_cti_fuertes_folios_IN}}
+                        {% for folio in data %}
+                            {% if folio.apn_mvn0_helppy_folios %}
+                                {{folio.apn_mvn0_helppy_folios}}
                             {% endif %}
                         {% endfor %}  
                     </td>
-
                 </tr>
+
                 <tr>
                     <td>TOKAMOVIL</td>
                     <td>
-                    {% for estado in estatus %}
-                        {% if estado.tijuana_cti_pio_pico_estatus == "OK" %}
+                    {% for estado in data %}
+                        {% if estado.apn_mvn0_tokamovil_status == "OK" %}
                             <i class="fas fa-check-circle iCheck"></i>
-                        {% elif estado.tijuana_cti_pio_pico_estatus == "RIESGO"  %}
+                        {% elif estado.apn_mvn0_tokamovil_status == "RIESGO"  %}
                             <i class="fas fa-exclamation-circle iWarning"></i>
                         {%else %}
                             <i class="fas fa-times-circle iIncident"></i>
@@ -251,17 +251,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </td>
                     
                     <td>
-                        {% for comentario in comentarios %}
-                            {% if comentario.tijuana_cti_pio_pico_comentarios_IN %}
-                                {{comentario.tijuana_cti_pio_pico_comentarios_IN}}
-                            {% endif %}
-                        {% endfor %}  
+                    {% for comentario in data %}
+                        {% if comentario.apn_mvn0_tokamovil_comentarios %}
+                            {{comentario.apn_mvn0_tokamovil_comentarios}}
+                        {% endif %}
+                    {% endfor %}  
                     </td>
                     
                     <td>
-                        {% for folio in folios %}
-                            {% if folio.tijuana_cti_pio_pico_folios_IN %}
-                                {{folio.tijuana_cti_pio_pico_folios_IN}}
+                        {% for folio in data %}
+                            {% if folio.apn_mvn0_tokamovil_folios %}
+                                {{folio.apn_mvn0_tokamovil_folios}}
                             {% endif %}
                         {% endfor %}  
                     </td>
@@ -269,29 +269,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <tr>
                     <td>SIMPATI </td>
                     <td>
-                    {% for estado in estatus %}
-                        {% if estado.presa_cti_nextengo_estatus == "OK" %}
+                    {% for estado in data %}
+                        {% if estado.apn_mvn0_simpati_status == "OK" %}
                             <i class="fas fa-check-circle iCheck"></i>
-                        {% elif estado.presa_cti_nextengo_estatus == "RIESGO"  %}
+                        {% elif estado.apn_mvn0_simpati_status == "RIESGO"  %}
                             <i class="fas fa-exclamation-circle iWarning"></i>
                         {%else %}
                             <i class="fas fa-times-circle iIncident"></i>
                         {% endif %}
                     {% endfor %}
                     </td>
-
+                    
                     <td>
-                        {% for comentario in comentarios %}
-                            {% if comentario.presa_cti_nextengo_comentarios_IN %}
-                                {{comentario.presa_cti_nextengo_comentarios_IN}}
-                            {% endif %}
-                        {% endfor %}  
+                    {% for comentario in data %}
+                        {% if comentario.apn_mvn0_simpati_comentarios %}
+                            {{comentario.apn_mvn0_simpati_comentarios}}
+                        {% endif %}
+                    {% endfor %}  
                     </td>
-
+                    
                     <td>
-                        {% for folio in folios %}
-                            {% if folio.presa_cti_nextengo_folios_IN %}
-                                {{folio.presa_cti_nextengo_folios_IN}}
+                        {% for folio in data %}
+                            {% if folio.apn_mvn0_simpati_folios %}
+                                {{folio.apn_mvn0_simpati_folios}}
                             {% endif %}
                         {% endfor %}  
                     </td>
@@ -299,10 +299,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <tr>
                     <td>FLASHMOBILE</td>
                     <td>
-                    {% for estado in estatus %}
-                        {% if estado.guadalajara_cti_tlaquepaque_estatus == "OK" %}
+                    {% for estado in data %}
+                        {% if estado.apn_mvn0_flashmobile_status == "OK" %}
                             <i class="fas fa-check-circle iCheck"></i>
-                        {% elif estado.guadalajara_cti_tlaquepaque_estatus == "RIESGO"  %}
+                        {% elif estado.apn_mvn0_flashmobile_status == "RIESGO"  %}
                             <i class="fas fa-exclamation-circle iWarning"></i>
                         {%else %}
                             <i class="fas fa-times-circle iIncident"></i>
@@ -311,17 +311,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </td>
                     
                     <td>
-                        {% for comentario in comentarios %}
-                            {% if comentario.guadalajara_cti_tlaquepaque_comentarios_IN %}
-                                {{comentario.guadalajara_cti_tlaquepaque_comentarios_IN}}
-                            {% endif %}
-                        {% endfor %}  
+                    {% for comentario in data %}
+                        {% if comentario.apn_mvn0_flashmobile_comentarios %}
+                            {{comentario.apn_mvn0_flashmobile_comentarios}}
+                        {% endif %}
+                    {% endfor %}  
                     </td>
                     
                     <td>
-                        {% for folio in folios %}
-                            {% if folio.guadalajara_cti_tlaquepaque_folios_IN %}
-                                {{folio.guadalajara_cti_tlaquepaque_folios_IN}}
+                        {% for folio in data %}
+                            {% if folio.apn_mvn0_flashmobile_folios %}
+                                {{folio.apn_mvn0_flashmobile_folios}}
                             {% endif %}
                         {% endfor %}  
                     </td>
@@ -329,10 +329,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <tr>
                     <td>HERMOBILE</td>
                     <td>
-                    {% for estado in estatus %}
-                        {% if estado.monterrey_cti_mayo_estatus == "OK" %}
+                    {% for estado in data %}
+                        {% if estado.apn_mvn0_hermobile_status == "OK" %}
                             <i class="fas fa-check-circle iCheck"></i>
-                        {% elif estado.monterrey_cti_mayo_estatus == "RIESGO"  %}
+                        {% elif estado.apn_mvn0_hermobile_status == "RIESGO"  %}
                             <i class="fas fa-exclamation-circle iWarning"></i>
                         {%else %}
                             <i class="fas fa-times-circle iIncident"></i>
@@ -341,17 +341,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </td>
                     
                     <td>
-                        {% for comentario in comentarios %}
-                            {% if comentario.monterrey_cti_mayo_comentarios_IN %}
-                                {{comentario.monterrey_cti_mayo_comentarios_IN}}
-                            {% endif %}
-                        {% endfor %}  
+                    {% for comentario in data %}
+                        {% if comentario.apn_mvn0_hermobile_comentarios %}
+                            {{comentario.apn_mvn0_hermobile_comentarios}}
+                        {% endif %}
+                    {% endfor %}  
                     </td>
                     
                     <td>
-                        {% for folio in folios %}
-                            {% if folio.monterrey_cti_mayo_folios_IN %}
-                                {{folio.monterrey_cti_mayo_folios_IN}}
+                        {% for folio in data %}
+                            {% if folio.apn_mvn0_hermobile_folios %}
+                                {{folio.apn_mvn0_hermobile_folios}}
                             {% endif %}
                         {% endfor %}  
                     </td>
@@ -359,10 +359,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <tr>
                     <td>WEEX</td>
                     <td>
-                    {% for estado in estatus %}
-                        {% if estado.monterrey_cti_revolucion_estatus == "OK" %}
+                    {% for estado in data %}
+                        {% if estado.apn_mvn0_weex_status == "OK" %}
                             <i class="fas fa-check-circle iCheck"></i>
-                        {% elif estado.monterrey_cti_revolucion_estatus == "RIESGO"  %}
+                        {% elif estado.apn_mvn0_weex_status == "RIESGO"  %}
                             <i class="fas fa-exclamation-circle iWarning"></i>
                         {%else %}
                             <i class="fas fa-times-circle iIncident"></i>
@@ -371,17 +371,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </td>
                     
                     <td>
-                        {% for comentario in comentarios %}
-                            {% if comentario.monterrey_cti_revolucion_comentarios_IN %}
-                                {{comentario.monterrey_cti_revolucion_comentarios_IN}}
-                            {% endif %}
-                        {% endfor %}  
+                    {% for comentario in data %}
+                        {% if comentario.apn_mvn0_weex_comentarios %}
+                            {{comentario.apn_mvn0_weex_comentarios}}
+                        {% endif %}
+                    {% endfor %}  
                     </td>
                     
                     <td>
-                        {% for folio in folios %}
-                            {% if folio.monterrey_cti_revolucion_folios_IN %}
-                                {{folio.monterrey_cti_revolucion_folios_IN}}
+                        {% for folio in data %}
+                            {% if folio.apn_mvn0_weex_folios %}
+                                {{folio.apn_mvn0_weex_folios}}
                             {% endif %}
                         {% endfor %}  
                     </td>
@@ -389,10 +389,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <tr>
                     <td>MOVISTAR</td>
                     <td>
-                    {% for estado in estatus %}
-                        {% if estado.tlane_cti_vallejo_estatus == "OK" %}
+                    {% for estado in data %}
+                        {% if estado.apn_mvn0_movistar_status == "OK" %}
                             <i class="fas fa-check-circle iCheck"></i>
-                        {% elif estado.tlane_cti_vallejo_estatus == "RIESGO"  %}
+                        {% elif estado.apn_mvn0_movistar_status == "RIESGO"  %}
                             <i class="fas fa-exclamation-circle iWarning"></i>
                         {%else %}
                             <i class="fas fa-times-circle iIncident"></i>
@@ -401,17 +401,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </td>
                     
                     <td>
-                        {% for comentario in comentarios %}
-                            {% if comentario.tlane_cti_vallejo_comentarios_IN %}
-                                {{comentario.tlane_cti_vallejo_comentarios_IN}}
-                            {% endif %}
-                        {% endfor %}  
+                    {% for comentario in data %}
+                        {% if comentario.apn_mvn0_movistar_comentarios %}
+                            {{comentario.apn_mvn0_movistar_comentarios}}
+                        {% endif %}
+                    {% endfor %}  
                     </td>
                     
                     <td>
-                        {% for folio in folios %}
-                            {% if folio.tlane_cti_vallejo_folios_IN %}
-                                {{folio.tlane_cti_vallejo_folios_IN}}
+                        {% for folio in data %}
+                            {% if folio.apn_mvn0_movistar_folios %}
+                                {{folio.apn_mvn0_movistar_folios}}
                             {% endif %}
                         {% endfor %}  
                     </td>
@@ -419,10 +419,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <tr>
                     <td>VIRGIN MOBILE</td>
                     <td>
-                    {% for estado in estatus %}
-                        {% if estado.presa_cti_nextengo_estatus_out == "OK" %}
+                    {% for estado in data %}
+                        {% if estado.apn_mvn0_virgin_mobile_status == "OK" %}
                             <i class="fas fa-check-circle iCheck"></i>
-                        {% elif estado.presa_cti_nextengo_estatus_out == "RIESGO"  %}
+                        {% elif estado.apn_mvn0_virgin_mobile_status == "RIESGO"  %}
                             <i class="fas fa-exclamation-circle iWarning"></i>
                         {%else %}
                             <i class="fas fa-times-circle iIncident"></i>
@@ -431,17 +431,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </td>
                     
                     <td>
-                        {% for comentario in comentarios %}
-                            {% if comentario.presa_cti_nextengo_comentarios %}
-                                {{comentario.presa_cti_nextengo_comentarios}}
-                            {% endif %}
-                        {% endfor %}  
+                    {% for comentario in data %}
+                        {% if comentario.apn_mvn0_virgin_mobile_comentarios %}
+                            {{comentario.apn_mvn0_virgin_mobile_comentarios}}
+                        {% endif %}
+                    {% endfor %}  
                     </td>
                     
                     <td>
-                        {% for folio in folios %}
-                            {% if folio.presa_cti_nextengo_folios %}
-                                {{folio.presa_cti_nextengo_folios}}
+                        {% for folio in data %}
+                            {% if folio.apn_mvn0_virgin_mobile_folios %}
+                                {{folio.apn_mvn0_virgin_mobile_folios}}
                             {% endif %}
                         {% endfor %}  
                     </td>
@@ -449,10 +449,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <tr>
                     <td>SIX</td>
                     <td>
-                    {% for estado in estatus %}
-                        {% if estado.monterrey_cti_mayo_estatus_out == "OK" %}
+                    {% for estado in data %}
+                        {% if estado.apn_mvn0_six_status == "OK" %}
                             <i class="fas fa-check-circle iCheck"></i>
-                        {% elif estado.monterrey_cti_mayo_estatus_out == "RIESGO"  %}
+                        {% elif estado.apn_mvn0_six_status == "RIESGO"  %}
                             <i class="fas fa-exclamation-circle iWarning"></i>
                         {%else %}
                             <i class="fas fa-times-circle iIncident"></i>
@@ -461,17 +461,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </td>
                     
                     <td>
-                        {% for comentario in comentarios %}
-                            {% if comentario.monterrey_cti_mayo_comentarios %}
-                                {{comentario.monterrey_cti_mayo_comentarios}}
-                            {% endif %}
-                        {% endfor %}  
+                    {% for comentario in data %}
+                        {% if comentario.apn_mvn0_six_comentarios %}
+                            {{comentario.apn_mvn0_six_comentarios}}
+                        {% endif %}
+                    {% endfor %}  
                     </td>
                     
                     <td>
-                        {% for folio in folios %}
-                            {% if folio.monterrey_cti_mayo_folios %}
-                                {{folio.monterrey_cti_mayo_folios}}
+                        {% for folio in data %}
+                            {% if folio.apn_mvn0_six_folios %}
+                                {{folio.apn_mvn0_six_folios}}
                             {% endif %}
                         {% endfor %}  
                     </td>
@@ -479,10 +479,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <tr>
                     <td>INTERNET FIJO</td>
                     <td>
-                    {% for estado in estatus %}
-                        {% if estado.tlane_cti_vallejo_estatus_out == "OK" %}
+                    {% for estado in data %}
+                        {% if estado.apn_mvn0_internet_fijo_status == "OK" %}
                             <i class="fas fa-check-circle iCheck"></i>
-                        {% elif estado.tlane_cti_vallejo_estatus_out == "RIESGO"  %}
+                        {% elif estado.apn_mvn0_internet_fijo_status == "RIESGO"  %}
                             <i class="fas fa-exclamation-circle iWarning"></i>
                         {%else %}
                             <i class="fas fa-times-circle iIncident"></i>
@@ -491,21 +491,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </td>
                     
                     <td>
-                        {% for comentario in comentarios %}
-                            {% if comentario.tlane_cti_vallejo_comentarios %}
-                                {{comentario.tlane_cti_vallejo_comentarios}}
-                            {% endif %}
-                        {% endfor %}  
+                    {% for comentario in data %}
+                        {% if comentario.apn_mvn0_internet_fijo_comentarios %}
+                            {{comentario.apn_mvn0_internet_fijo_comentarios}}
+                        {% endif %}
+                    {% endfor %}  
                     </td>
                     
                     <td>
-                        {% for folio in folios %}
-                            {% if folio.tlane_cti_vallejo_folios %}
-                                {{folio.tlane_cti_vallejo_folios}}
+                        {% for folio in data %}
+                            {% if folio.apn_mvn0_internet_fijo_folios %}
+                                {{folio.apn_mvn0_internet_fijo_folios}}
                             {% endif %}
                         {% endfor %}  
                     </td>
-                </tr>
+            </tr>
                 
             </tbody>
         </table>
@@ -530,10 +530,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <td>2852</td>
                     
                     <td>
-                    {% for estado in estatus %}
-                        {% if estado.puebla_cti_fuertes_estatus == "OK" %}
+                    {% for estado in data %}
+                        {% if estado.grx_roaming_telcel_2852_status == "OK" %}
                             <i class="fas fa-check-circle iCheck"></i>
-                        {% elif estado.puebla_cti_fuertes_estatus == "RIESGO"  %}
+                        {% elif estado.grx_roaming_telcel_2852_status == "RIESGO"  %}
                             <i class="fas fa-exclamation-circle iWarning"></i>
                         {%else %}
                             <i class="fas fa-times-circle iIncident"></i>
@@ -542,29 +542,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </td>
                     
                     <td>
-                    {% for comentario in comentarios %}
-                        {% if comentario.puebla_cti_fuertes_comentarios_IN %}
-                            {{comentario.puebla_cti_fuertes_comentarios_IN}}
+                    {% for comentario in data %}
+                        {% if comentario.grx_roaming_telcel_2852_comentarios %}
+                            {{comentario.grx_roaming_telcel_2852_comentarios}}
                         {% endif %}
                     {% endfor %}  
                     </td>
                     
                     <td>
-                        {% for folio in folios %}
-                            {% if folio.puebla_cti_fuertes_folios_IN %}
-                                {{folio.puebla_cti_fuertes_folios_IN}}
+                        {% for folio in data %}
+                            {% if folio.grx_roaming_telcel_2852_folios %}
+                                {{folio.grx_roaming_telcel_2852_folios}}
                             {% endif %}
                         {% endfor %}  
                     </td>
-
                 </tr>
                 <tr>
                     <td>305</td>
                     <td>
-                    {% for estado in estatus %}
-                        {% if estado.tijuana_cti_pio_pico_estatus == "OK" %}
+                    {% for estado in data %}
+                        {% if estado.grx_roaming_telcel_305_status == "OK" %}
                             <i class="fas fa-check-circle iCheck"></i>
-                        {% elif estado.tijuana_cti_pio_pico_estatus == "RIESGO"  %}
+                        {% elif estado.grx_roaming_telcel_305_status == "RIESGO"  %}
                             <i class="fas fa-exclamation-circle iWarning"></i>
                         {%else %}
                             <i class="fas fa-times-circle iIncident"></i>
@@ -573,17 +572,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </td>
                     
                     <td>
-                        {% for comentario in comentarios %}
-                            {% if comentario.tijuana_cti_pio_pico_comentarios_IN %}
-                                {{comentario.tijuana_cti_pio_pico_comentarios_IN}}
+                        {% for comentario in data %}
+                            {% if comentario.grx_roaming_telcel_305_comentarios %}
+                                {{comentario.grx_roaming_telcel_305_comentarios}}
                             {% endif %}
                         {% endfor %}  
                     </td>
                     
                     <td>
-                        {% for folio in folios %}
-                            {% if folio.tijuana_cti_pio_pico_folios_IN %}
-                                {{folio.tijuana_cti_pio_pico_folios_IN}}
+                        {% for folio in data %}
+                            {% if folio.grx_roaming_telcel_305_folios %}
+                                {{folio.grx_roaming_telcel_305_folios}}
                             {% endif %}
                         {% endfor %}  
                     </td>
@@ -591,29 +590,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <tr>
                     <td>301</td>
                     <td>
-                    {% for estado in estatus %}
-                        {% if estado.presa_cti_nextengo_estatus == "OK" %}
+                    {% for estado in data %}
+                        {% if estado.grx_roaming_telcel_301_status == "OK" %}
                             <i class="fas fa-check-circle iCheck"></i>
-                        {% elif estado.presa_cti_nextengo_estatus == "RIESGO"  %}
+                        {% elif estado.grx_roaming_telcel_301_status == "RIESGO"  %}
                             <i class="fas fa-exclamation-circle iWarning"></i>
                         {%else %}
                             <i class="fas fa-times-circle iIncident"></i>
                         {% endif %}
                     {% endfor %}
                     </td>
-
+                    
                     <td>
-                        {% for comentario in comentarios %}
-                            {% if comentario.presa_cti_nextengo_comentarios_IN %}
-                                {{comentario.presa_cti_nextengo_comentarios_IN}}
+                        {% for comentario in data %}
+                            {% if comentario.grx_roaming_telcel_301_comentarios %}
+                                {{comentario.grx_roaming_telcel_301_comentarios}}
                             {% endif %}
                         {% endfor %}  
                     </td>
-
+                    
                     <td>
-                        {% for folio in folios %}
-                            {% if folio.presa_cti_nextengo_folios_IN %}
-                                {{folio.presa_cti_nextengo_folios_IN}}
+                        {% for folio in data %}
+                            {% if folio.grx_roaming_telcel_301_folios %}
+                                {{folio.grx_roaming_telcel_301_folios}}
                             {% endif %}
                         {% endfor %}  
                     </td>
@@ -621,10 +620,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <tr>
                     <td>2851</td>
                     <td>
-                    {% for estado in estatus %}
-                        {% if estado.guadalajara_cti_tlaquepaque_estatus == "OK" %}
+                    {% for estado in data %}
+                        {% if estado.grx_roaming_telcel_2851_status == "OK" %}
                             <i class="fas fa-check-circle iCheck"></i>
-                        {% elif estado.guadalajara_cti_tlaquepaque_estatus == "RIESGO"  %}
+                        {% elif estado.grx_roaming_telcel_2851_status == "RIESGO"  %}
                             <i class="fas fa-exclamation-circle iWarning"></i>
                         {%else %}
                             <i class="fas fa-times-circle iIncident"></i>
@@ -633,17 +632,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </td>
                     
                     <td>
-                        {% for comentario in comentarios %}
-                            {% if comentario.guadalajara_cti_tlaquepaque_comentarios_IN %}
-                                {{comentario.guadalajara_cti_tlaquepaque_comentarios_IN}}
+                        {% for comentario in data %}
+                            {% if comentario.grx_roaming_telcel_2851_comentarios %}
+                                {{comentario.grx_roaming_telcel_2851_comentarios}}
                             {% endif %}
                         {% endfor %}  
                     </td>
                     
                     <td>
-                        {% for folio in folios %}
-                            {% if folio.guadalajara_cti_tlaquepaque_folios_IN %}
-                                {{folio.guadalajara_cti_tlaquepaque_folios_IN}}
+                        {% for folio in data %}
+                            {% if folio.grx_roaming_telcel_2851_folios %}
+                                {{folio.grx_roaming_telcel_2851_folios}}
                             {% endif %}
                         {% endfor %}  
                     </td>
@@ -651,10 +650,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <tr>
                     <td>Interconexión</td>
                     <td>
-                    {% for estado in estatus %}
-                        {% if estado.monterrey_cti_mayo_estatus == "OK" %}
+                    {% for estado in data %}
+                        {% if estado.grx_roaming_telcel_interconexión_status == "OK" %}
                             <i class="fas fa-check-circle iCheck"></i>
-                        {% elif estado.monterrey_cti_mayo_estatus == "RIESGO"  %}
+                        {% elif estado.grx_roaming_telcel_interconexión_status == "RIESGO"  %}
                             <i class="fas fa-exclamation-circle iWarning"></i>
                         {%else %}
                             <i class="fas fa-times-circle iIncident"></i>
@@ -663,17 +662,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </td>
                     
                     <td>
-                        {% for comentario in comentarios %}
-                            {% if comentario.monterrey_cti_mayo_comentarios_IN %}
-                                {{comentario.monterrey_cti_mayo_comentarios_IN}}
+                        {% for comentario in data %}
+                            {% if comentario.grx_roaming_telcel_interconexión_comentarios %}
+                                {{comentario.grx_roaming_telcel_interconexión_comentarios}}
                             {% endif %}
                         {% endfor %}  
                     </td>
                     
                     <td>
-                        {% for folio in folios %}
-                            {% if folio.monterrey_cti_mayo_folios_IN %}
-                                {{folio.monterrey_cti_mayo_folios_IN}}
+                        {% for folio in data %}
+                            {% if folio.grx_roaming_telcel_interconexión_folios %}
+                                {{folio.grx_roaming_telcel_interconexión_folios}}
                             {% endif %}
                         {% endfor %}  
                     </td>
@@ -681,10 +680,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <tr>
                     <td>212</td>
                     <td>
-                    {% for estado in estatus %}
-                        {% if estado.monterrey_cti_revolucion_estatus == "OK" %}
+                    {% for estado in data %}
+                        {% if estado.grx_roaming_telcel_212_status == "OK" %}
                             <i class="fas fa-check-circle iCheck"></i>
-                        {% elif estado.monterrey_cti_revolucion_estatus == "RIESGO"  %}
+                        {% elif estado.grx_roaming_telcel_212_status == "RIESGO"  %}
                             <i class="fas fa-exclamation-circle iWarning"></i>
                         {%else %}
                             <i class="fas fa-times-circle iIncident"></i>
@@ -693,17 +692,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </td>
                     
                     <td>
-                        {% for comentario in comentarios %}
-                            {% if comentario.monterrey_cti_revolucion_comentarios_IN %}
-                                {{comentario.monterrey_cti_revolucion_comentarios_IN}}
+                        {% for comentario in data %}
+                            {% if comentario.grx_roaming_telcel_212_comentarios %}
+                                {{comentario.grx_roaming_telcel_212_comentarios}}
                             {% endif %}
                         {% endfor %}  
                     </td>
                     
                     <td>
-                        {% for folio in folios %}
-                            {% if folio.monterrey_cti_revolucion_folios_IN %}
-                                {{folio.monterrey_cti_revolucion_folios_IN}}
+                        {% for folio in data %}
+                            {% if folio.grx_roaming_telcel_212_folios %}
+                                {{folio.grx_roaming_telcel_212_folios}}
                             {% endif %}
                         {% endfor %}  
                     </td>
@@ -711,10 +710,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <tr>
                     <td>ENTRANTE</td>
                     <td>
-                    {% for estado in estatus %}
-                        {% if estado.tlane_cti_vallejo_estatus == "OK" %}
+                    {% for estado in data %}
+                        {% if estado.grx_roaming_telcel_entrante_status == "OK" %}
                             <i class="fas fa-check-circle iCheck"></i>
-                        {% elif estado.tlane_cti_vallejo_estatus == "RIESGO"  %}
+                        {% elif estado.grx_roaming_telcel_entrante_status == "RIESGO"  %}
                             <i class="fas fa-exclamation-circle iWarning"></i>
                         {%else %}
                             <i class="fas fa-times-circle iIncident"></i>
@@ -723,17 +722,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </td>
                     
                     <td>
-                        {% for comentario in comentarios %}
-                            {% if comentario.tlane_cti_vallejo_comentarios_IN %}
-                                {{comentario.tlane_cti_vallejo_comentarios_IN}}
+                        {% for comentario in data %}
+                            {% if comentario.grx_roaming_telcel_entrante_comentarios %}
+                                {{comentario.grx_roaming_telcel_entrante_comentarios}}
                             {% endif %}
                         {% endfor %}  
                     </td>
                     
                     <td>
-                        {% for folio in folios %}
-                            {% if folio.tlane_cti_vallejo_folios_IN %}
-                                {{folio.tlane_cti_vallejo_folios_IN}}
+                        {% for folio in data %}
+                            {% if folio.grx_roaming_telcel_entrante_folios %}
+                                {{folio.grx_roaming_telcel_entrante_folios}}
                             {% endif %}
                         {% endfor %}  
                     </td>
@@ -741,10 +740,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <tr>
                     <td>SUMA</td>
                     <td>
-                    {% for estado in estatus %}
-                        {% if estado.presa_cti_nextengo_estatus_out == "OK" %}
+                    {% for estado in data %}
+                        {% if estado.grx_roaming_telcel_suma_status == "OK" %}
                             <i class="fas fa-check-circle iCheck"></i>
-                        {% elif estado.presa_cti_nextengo_estatus_out == "RIESGO"  %}
+                        {% elif estado.grx_roaming_telcel_suma_status == "RIESGO"  %}
                             <i class="fas fa-exclamation-circle iWarning"></i>
                         {%else %}
                             <i class="fas fa-times-circle iIncident"></i>
@@ -753,17 +752,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </td>
                     
                     <td>
-                        {% for comentario in comentarios %}
-                            {% if comentario.presa_cti_nextengo_comentarios %}
-                                {{comentario.presa_cti_nextengo_comentarios}}
+                        {% for comentario in data %}
+                            {% if comentario.grx_roaming_telcel_suma_comentarios %}
+                                {{comentario.grx_roaming_telcel_suma_comentarios}}
                             {% endif %}
                         {% endfor %}  
                     </td>
                     
                     <td>
-                        {% for folio in folios %}
-                            {% if folio.presa_cti_nextengo_folios %}
-                                {{folio.presa_cti_nextengo_folios}}
+                        {% for folio in data %}
+                            {% if folio.grx_roaming_telcel_suma_folios %}
+                                {{folio.grx_roaming_telcel_suma_folios}}
                             {% endif %}
                         {% endfor %}  
                     </td>
@@ -792,10 +791,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <td>TLALNE + MTY</td>
                     
                     <td>
-                    {% for estado in estatus %}
-                        {% if estado.puebla_cti_fuertes_estatus == "OK" %}
+                    {% for estado in data %}
+                        {% if estado.grx_roaming_nextel_tlalnemty_status == "OK" %}
                             <i class="fas fa-check-circle iCheck"></i>
-                        {% elif estado.puebla_cti_fuertes_estatus == "RIESGO"  %}
+                        {% elif estado.grx_roaming_nextel_tlalnemty_status == "RIESGO"  %}
                             <i class="fas fa-exclamation-circle iWarning"></i>
                         {%else %}
                             <i class="fas fa-times-circle iIncident"></i>
@@ -804,17 +803,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </td>
                     
                     <td>
-                    {% for comentario in comentarios %}
-                        {% if comentario.puebla_cti_fuertes_comentarios_IN %}
-                            {{comentario.puebla_cti_fuertes_comentarios_IN}}
+                    {% for comentario in data %}
+                        {% if comentario.grx_roaming_nextel_tlalnemty_comentarios %}
+                            {{comentario.grx_roaming_nextel_tlalnemty_comentarios}}
                         {% endif %}
                     {% endfor %}  
                     </td>
                     
                     <td>
-                        {% for folio in folios %}
-                            {% if folio.puebla_cti_fuertes_folios_IN %}
-                                {{folio.puebla_cti_fuertes_folios_IN}}
+                        {% for folio in data %}
+                            {% if folio.grx_roaming_nextel_tlalnemty_folios %}
+                                {{folio.grx_roaming_nextel_tlalnemty_folios}}
                             {% endif %}
                         {% endfor %}  
                     </td>
@@ -843,10 +842,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <td>TLN VLAN 355</td>
                     
                     <td>
-                    {% for estado in estatus %}
-                        {% if estado.puebla_cti_fuertes_estatus == "OK" %}
+                    {% for estado in data %}
+                        {% if estado.grx_roaming_altan_tln_vlan_355_status == "OK" %}
                             <i class="fas fa-check-circle iCheck"></i>
-                        {% elif estado.puebla_cti_fuertes_estatus == "RIESGO"  %}
+                        {% elif estado.grx_roaming_altan_tln_vlan_355_status == "RIESGO"  %}
                             <i class="fas fa-exclamation-circle iWarning"></i>
                         {%else %}
                             <i class="fas fa-times-circle iIncident"></i>
@@ -855,17 +854,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </td>
                     
                     <td>
-                    {% for comentario in comentarios %}
-                        {% if comentario.puebla_cti_fuertes_comentarios_IN %}
-                            {{comentario.puebla_cti_fuertes_comentarios_IN}}
+                    {% for comentario in data %}
+                        {% if comentario.grx_roaming_altan_tln_vlan_355_comentarios %}
+                            {{comentario.grx_roaming_altan_tln_vlan_355_comentarios}}
                         {% endif %}
                     {% endfor %}  
                     </td>
                     
                     <td>
-                        {% for folio in folios %}
-                            {% if folio.puebla_cti_fuertes_folios_IN %}
-                                {{folio.puebla_cti_fuertes_folios_IN}}
+                        {% for folio in data %}
+                            {% if folio.grx_roaming_altan_tln_vlan_355_folios %}
+                                {{folio.grx_roaming_altan_tln_vlan_355_folios}}
                             {% endif %}
                         {% endfor %}  
                     </td>
@@ -873,10 +872,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <tr>
                     <td>MTY VLAN 355</td>
                     <td>
-                    {% for estado in estatus %}
-                        {% if estado.tijuana_cti_pio_pico_estatus == "OK" %}
+                    {% for estado in data %}
+                        {% if estado.grx_roaming_altan_mty_vlan_355_status == "OK" %}
                             <i class="fas fa-check-circle iCheck"></i>
-                        {% elif estado.tijuana_cti_pio_pico_estatus == "RIESGO"  %}
+                        {% elif estado.grx_roaming_altan_mty_vlan_355_status == "RIESGO"  %}
                             <i class="fas fa-exclamation-circle iWarning"></i>
                         {%else %}
                             <i class="fas fa-times-circle iIncident"></i>
@@ -885,17 +884,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </td>
                     
                     <td>
-                        {% for comentario in comentarios %}
-                            {% if comentario.tijuana_cti_pio_pico_comentarios_IN %}
-                                {{comentario.tijuana_cti_pio_pico_comentarios_IN}}
+                        {% for comentario in data %}
+                            {% if comentario.grx_roaming_altan_mty_vlan_355_comentarios %}
+                                {{comentario.grx_roaming_altan_mty_vlan_355_comentarios}}
                             {% endif %}
                         {% endfor %}  
                     </td>
                     
                     <td>
-                        {% for folio in folios %}
-                            {% if folio.tijuana_cti_pio_pico_folios_IN %}
-                                {{folio.tijuana_cti_pio_pico_folios_IN}}
+                        {% for folio in data %}
+                            {% if folio.grx_roaming_altan_mty_vlan_355_folios %}
+                                {{folio.grx_roaming_altan_mty_vlan_355_folios}}
                             {% endif %}
                         {% endfor %}  
                     </td>
@@ -905,7 +904,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <div class="container">
             <div class="row">
-                <a class="float-sm-right" href="{% url 'healtcheaks:envioHealtcheaksInterAtt' %}" target="_blank" >
+                <a class="float-sm-right" href="{% url 'healtcheaks:envioHealtcheaksAPN' %}" target="_blank" >
                         <button type="submit" class="form-control btn btn-success" style="width:500px;">Enviar</button>
                 </a>
             </div>
