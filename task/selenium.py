@@ -290,9 +290,9 @@ def get_hcAPN():
     URL = 'https://api.telegram.org/bot2114681560:AAGPlALNSj-TWi2ipYkkyJ7r6oKbKkJGdz0/sendPhoto'
     #chat_id = -396809016
     #chat_id = 1663958489
-    #chat_id = 1994982383
+    chat_id = 1994982383
     #id de chat de grupo
-    chat_id = -290434793
+    #chat_id = -290434793
     chrome_options = Options()
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--window-size=%s" % WINDOW_SIZE)
