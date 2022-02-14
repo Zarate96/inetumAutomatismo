@@ -262,8 +262,8 @@ def get_hcInterATT():
     #my_chat_id
     chat_id = 1994982383
     options = Options()
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--window-size=%s" % WINDOW_SIZE)
+    options.add_argument("--headless")
+    options.add_argument("--window-size=%s" % WINDOW_SIZE)
     driver = webdriver.Chrome(ChromeDriverManager().install(),options=options)
     try:
         driver.get("http://127.0.0.1:8000/hc/interconexionATT/")
