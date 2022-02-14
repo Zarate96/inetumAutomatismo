@@ -24,5 +24,5 @@ def start():
     #scheduler.add_job(querys.get_data_problema_titulo, 'interval', minutes=1)
     #scheduler.add_job(querys.get_ordenes_movil, 'interval', minutes=1)
     #scheduler.add_job(querys.get_migraciones_dalia, 'interval', minutes=1)
-    #scheduler.add_job(selenium.get_hcInterATT, 'interval', hours=1)
+    scheduler.add_job(selenium.get_hcInterATT, 'interval', minutes=1)
     scheduler.start()
