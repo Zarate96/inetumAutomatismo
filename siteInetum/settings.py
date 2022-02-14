@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-2@tsr_-y=^0e&5@d^*$r)f@*a^9_2dhleoa_kh5)-oz@-e-i(&'
+SECRET_KEY = config('SECRET_KEY', default=False)
 #SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -100,12 +100,16 @@ WSGI_APPLICATION = 'siteInetum.wsgi.application'
 #     }
 # }
 
+NAME_DB = config('NAME_DB', default=False)
+USER_DB = config('USER_DB', default=False)
+PASSWORD_DB = config('PASSWORD_DB', default=False)
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'inetum',
-        'USER': 'root',
-        'PASSWORD': 'Inetum*root391',
+        'NAME': NAME_DB,
+        'USER': USER_DB,
+        'PASSWORD': PASSWORD_DB,
         'HOST': '94.74.76.125',
         'CONN_MAX_AGE': 400,
         'PORT': '5432',
@@ -205,8 +209,8 @@ CKEDITOR_CONFIGS = {
 LOGIN_REDIRECT_URL = 'core:home'
 LOGIN_URL = 'core:login'
 
-EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=False, cast=bool)
-EMAIL_HOST =  config('EMAIL_HOST', default='localhost')
-EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
-EMAIL_PORT = config('EMAIL_PORT', default=25, cast=int)
+# EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=False, cast=bool)
+# EMAIL_HOST =  config('EMAIL_HOST', default='localhost')
+# EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
+# EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
+# EMAIL_PORT = config('EMAIL_PORT', default=25, cast=int)
