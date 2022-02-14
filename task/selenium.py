@@ -264,6 +264,7 @@ def get_hcInterATT():
     options = Options()
     options.add_argument("--headless")
     options.add_argument("--window-size=%s" % WINDOW_SIZE)
+    options.add_argument('--no-sandbox')
     driver = webdriver.Chrome(ChromeDriverManager().install(),options=options)
     try:
         driver.get("http://127.0.0.1:8000/hc/interconexionATT/")
