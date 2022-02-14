@@ -261,7 +261,7 @@ def get_hcInterATT():
     #chat_id = -1001592300794
     #my_chat_id
     chat_id = 1994982383
-    chrome_options = Options()
+    options = Options()
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--window-size=%s" % WINDOW_SIZE)
     driver = webdriver.Chrome(ChromeDriverManager().install(),options=options)
