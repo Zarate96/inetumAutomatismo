@@ -7,6 +7,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver import ActionChains
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
 import json
 import requests
 import cv2
@@ -254,12 +255,16 @@ def get_santander():
 def get_hcInterATT():
     now = datetime.now().strftime("%H:%M")
     URL = 'https://api.telegram.org/bot2114681560:AAGPlALNSj-TWi2ipYkkyJ7r6oKbKkJGdz0/sendPhoto'
-    chat_id = -396809016
+    #chat_id = -396809016
     #chat_id = 1663958489
+    #chat_grupo
+    #chat_id = -1001592300794
+    #my_chat_id
+    chat_id = 1994982383
     chrome_options = Options()
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--window-size=%s" % WINDOW_SIZE)
-    driver = webdriver.Chrome(path, chrome_options=chrome_options)
+    driver = webdriver.Chrome(ChromeDriverManager().install(),options=options)
     try:
         driver.get("http://127.0.0.1:8000/hc/interconexionATT/")
         time.sleep(2)
@@ -290,7 +295,7 @@ def get_hcAPN():
     URL = 'https://api.telegram.org/bot2114681560:AAGPlALNSj-TWi2ipYkkyJ7r6oKbKkJGdz0/sendPhoto'
     #chat_id = -396809016
     #chat_id = 1663958489
-    chat_id = 1994982383
+    #chat_id = 1994982383
     #id de chat de grupo
     #chat_id = -290434793
     chrome_options = Options()
@@ -327,7 +332,9 @@ def get_hcRutasInter():
     URL = 'https://api.telegram.org/bot2114681560:AAGPlALNSj-TWi2ipYkkyJ7r6oKbKkJGdz0/sendPhoto'
     #chat_id = -396809016
     #chat_id = 1663958489
-    chat_id = 1994982383
+    #chat_id = 1994982383
+    #chat_grupo
+    chat_id = -1001204398411
     chrome_options = Options()
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--window-size=%s" % WINDOW_SIZE)
