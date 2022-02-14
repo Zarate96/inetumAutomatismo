@@ -267,7 +267,8 @@ def get_hcInterATT():
     options.add_argument('--no-sandbox')
     driver = webdriver.Chrome(ChromeDriverManager().install(),options=options)
     try:
-        driver.get("http://127.0.0.1:8000/hc/interconexionATT/")
+        #driver.get("http://127.0.0.1:8000/hc/interconexionATT/")
+        driver.get("https://www.youtube.com/")
         time.sleep(2)
         driver.fullscreen_window()
         time.sleep(2)
