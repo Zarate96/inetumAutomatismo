@@ -77,8 +77,6 @@ sqlparse==0.4.2
 ssh-import-id==5.10
 typed-ast==1.4.1
 typing-extensions==3.7.4.1
-ubuntu-advantage-tools==20.3
-ubuntu-drivers-common==0.0.0
 ufw==0.36
 unattended-upgrades==0.1
 urllib3==1.25.8
