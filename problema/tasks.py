@@ -1,4 +1,4 @@
-from celery import task, shared_task
+from celery import shared_task
 from django.core.mail import send_mail
 from datetime import datetime
 import requests
@@ -21,7 +21,7 @@ def notificacion(proyecto_id):
 
 """
 
-@task
+@shared_task
 def notificacion_telegram(proyecto_id, name_proyecto, old_estado, new_estado):
     texto2 = """
         SE HA ACTUALIZADO EL PROYECTO CON ID {} {}:\nESTABA CON EL ESTADO **{}**, Y AHORA TIENE ESTE NUEVO ESTADO **{}** 
