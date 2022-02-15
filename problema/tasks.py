@@ -1,4 +1,4 @@
-from celery import task, shared_task
+#rom celery import task, shared_task
 from django.core.mail import send_mail
 from datetime import datetime
 import requests
@@ -21,12 +21,12 @@ def notificacion(proyecto_id):
 
 """
 
-@task
-def notificacion_telegram(proyecto_id, name_proyecto, old_estado, new_estado):
-    texto2 = """
-        SE HA ACTUALIZADO EL PROYECTO CON ID {} {}:\nESTABA CON EL ESTADO **{}**, Y AHORA TIENE ESTE NUEVO ESTADO **{}** 
-        """
-    texto = texto2.format(proyecto_id, name_proyecto, old_estado, new_estado)
-    requests.post('https://api.telegram.org/bot1660736119:AAFqlINNPtKGh_Ag5tZ4SUYfocaDH7n_60c/sendMessage',
-                  data={'chat_id': '1001763353987', 'text': texto})
+# @task
+# def notificacion_telegram(proyecto_id, name_proyecto, old_estado, new_estado):
+#     texto2 = """
+#         SE HA ACTUALIZADO EL PROYECTO CON ID {} {}:\nESTABA CON EL ESTADO **{}**, Y AHORA TIENE ESTE NUEVO ESTADO **{}** 
+#         """
+#     texto = texto2.format(proyecto_id, name_proyecto, old_estado, new_estado)
+#     requests.post('https://api.telegram.org/bot1660736119:AAFqlINNPtKGh_Ag5tZ4SUYfocaDH7n_60c/sendMessage',
+#                   data={'chat_id': '1001763353987', 'text': texto})
 
