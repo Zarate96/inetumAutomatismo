@@ -52,7 +52,6 @@ pipenv==2021.5.29
 platformdirs==2.4.0
 protobuf==3.6.1
 psutil==5.5.1
-pycups==1.9.73
 Pygments==2.3.1
 PyJWT==1.7.1
 pylint==2.4.4
