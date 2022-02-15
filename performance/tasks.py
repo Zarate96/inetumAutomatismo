@@ -1,10 +1,10 @@
-from celery import task, shared_task
+from celery import shared_shared_task
 from django.core.mail import send_mail
 from datetime import datetime
 import requests
 
 
-@task
+@shared_task
 def notificacion_correo_rechado(estatus, cliente, sucursal, oi,motivo, name_ingeniero,correo_destino):
     subject = 'ESTATUS {}  SOBRE LA MT | {} | {} | {}'.format(estatus,cliente, sucursal, oi)
     message = """
@@ -18,7 +18,7 @@ def notificacion_correo_rechado(estatus, cliente, sucursal, oi,motivo, name_inge
     send_mail(subject,message2,from_email,recipient_list,)
 
 
-@task
+@shared_task
 def notificacion_correo_aceptado(estatus, cliente, sucursal, oi,name_ingeniero, correo_destino):
     subject = 'ESTATUS {}  SOBRE LA MT | {} | {} | {}'.format(estatus, cliente, sucursal, oi)
     message = """
@@ -35,7 +35,7 @@ def notificacion_correo_aceptado(estatus, cliente, sucursal, oi,name_ingeniero, 
 
 
 
-@task
+@shared_task
 def notificacion_telegram(proyecto_id, name_proyecto, old_estado, new_estado):
     texto2 = """
         SE HA ACTUALIZADO EL PROYECTO CON ID {} {}:\nESTABA CON EL ESTADO **{}**, Y AHORA TIENE ESTE NUEVO ESTADO **{}** 
