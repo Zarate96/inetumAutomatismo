@@ -119,9 +119,9 @@ WSGI_APPLICATION = 'siteInetum.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': inetum,
-        'USER': root,
-        'PASSWORD': Inetum*root391,
+        'NAME': 'inetum',
+        'USER': 'root',
+        'PASSWORD': 'Inetum*root391',
         'HOST': '94.74.76.125',
         'CONN_MAX_AGE': 400,
         'PORT': '5432',
