@@ -21,7 +21,6 @@ chat_id = 1663958489
 #chat_id = -224944366
 WINDOW_SIZE = "1920,1080"
 
-
 def get_rstat():
     now = datetime.now()
     try:
@@ -82,7 +81,6 @@ def get_rstat():
         data = json.loads(r.text)
         print(data['ok'])
         driver.close()
-
 
 def get_onstar():
     now = datetime.now()
@@ -147,8 +145,6 @@ def get_onstar():
         print(data['ok'])
         driver.close()
 
-
-
 def get_glpi():
     now = datetime.now()
     try:
@@ -196,8 +192,6 @@ def get_glpi():
         data = json.loads(r.text)
         print(data['ok'])
         driver.close()
-
-
 
 def get_santander():
     now = datetime.now()
@@ -249,8 +243,6 @@ def get_santander():
         print(data['ok'])
 
         driver.close()
-
-
 
 def get_hcInterATT():
     now = datetime.now().strftime("%H:%M")
