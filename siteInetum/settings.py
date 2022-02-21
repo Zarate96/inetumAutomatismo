@@ -100,16 +100,28 @@ WSGI_APPLICATION = 'siteInetum.wsgi.application'
 #     }
 # }
 
-NAME_DB = config('NAME_DB', default=False)
-USER_DB = config('USER_DB', default=False)
-PASSWORD_DB = config('PASSWORD_DB', default=False)
+# NAME_DB = config('NAME_DB', default=False)
+# USER_DB = config('USER_DB', default=False)
+# PASSWORD_DB = config('PASSWORD_DB', default=False)
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': NAME_DB,
+#         'USER': USER_DB,
+#         'PASSWORD': PASSWORD_DB,
+#         'HOST': '94.74.76.125',
+#         'CONN_MAX_AGE': 400,
+#         'PORT': '5432',
+#     }
+# }
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': NAME_DB,
-        'USER': USER_DB,
-        'PASSWORD': PASSWORD_DB,
+        'NAME': inetum,
+        'USER': root,
+        'PASSWORD': Inetum*root391,
         'HOST': '94.74.76.125',
         'CONN_MAX_AGE': 400,
         'PORT': '5432',
