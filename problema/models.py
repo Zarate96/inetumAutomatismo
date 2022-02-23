@@ -53,6 +53,7 @@ ENTREGABLES = (
         ('ACTUALIZACION DTS', 'ACTUALIZACION DTS'),
         ('CHECKLIST SO', 'CHECKLIST SO'),
         ('CHECKLIST BD', 'CHECKLIST BD'),
+        ('ACTUALIZACION', 'ACTUALIZACION'),
         ('Otros', 'Otros'),
     )
 
