@@ -298,6 +298,7 @@ class Gestion(models.Model):
     ola = models.BooleanField(verbose_name="OLA", blank=True, null=True, default=False)
     fecha_ola = models.DateField(verbose_name="Fecha inicio de la ola", blank=True, null=True)
     palabra_clave = models.CharField(max_length=50, verbose_name="Palabra clave", blank=True, null=True)
+    correo_seguimiento = models.BooleanField(verbose_name="Correo de segumiento", blank=True, null=True, default=True)
 
     class Meta:
         verbose_name = "Gestion de Proyectos"
