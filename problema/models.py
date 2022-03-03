@@ -297,6 +297,7 @@ class Gestion(models.Model):
     fecha_pp = models.DateField(verbose_name="Fecha puesta en producción", blank=True, null=True)
     ola = models.BooleanField(verbose_name="OLA", blank=True, null=True, default=False)
     fecha_ola = models.DateField(verbose_name="Fecha inicio de la ola", blank=True, null=True)
+    palabra_clave = models.CharField(max_length=50, verbose_name="Palabra clave", blank=True, null=True)
 
     class Meta:
         verbose_name = "Gestion de Proyectos"
@@ -363,9 +364,7 @@ class Gestion(models.Model):
         #     listaFinal = results[0] if results else lista[-1]
         # else:
         #     listaFinal = "N/A"
-
-        
-
+    
     def __str__(self):
         return self.name_proyecto
 

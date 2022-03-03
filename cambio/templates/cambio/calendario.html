@@ -1,0 +1,75 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Calendario Ot Grtc{% endblock %}
+{% load static %}
+{% block css_extra %}
+    <link rel="stylesheet" href="{% static 'core/lib/main.css' %}">
+
+{% endblock %}
+{% block content %}
+        <div class="container">
+                <form class="form-inline"  method ="GET">
+                    {% csrf_token %}
+                  <label class="my-auto mr-5 font-weight-bold" for="inlineFormCustomSelectPref">Selecciona un Area</label>
+                  <select class="custom-select my-1 mr-sm-2 col-8" id="inlineFormCustomSelectPref" name="seleccionar">
+                    <option selected>Seleccione...</option>
+                     {% for area in areas %}
+                    <option value="{{area.name}}">{{area.name}}</option>
+                      {% endfor %}
+                  </select>
+                <button type="submit" class="btn btn-secondary ml-2 my-1 float-right ">Enviar</button>
+            </form>
+        </div>
+    <div class="container my-3" id='calendar'></div>
+
+{% endblock  %}
+
+
+{% block calendario %}
+
+
+
+<script type="text/javascript" src="{% static 'core/lib/main.js' %}"></script>
+<script type="text/javascript" src="{% static 'core/lib/locales-all.js' %}"></script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded',function(){
+        var calendarUI = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarUI,{
+
+       timeZone: 'local',
+        initialView: 'dayGridMonth',
+        headerToolbar: {
+            left: 'prev next today',
+            center: 'title',
+            right: 'dayGridMonth timeGridWeek listWeek'
+        },
+
+            events:[
+               {% for notificacion in notificaciones %}
+                {
+                    title:"{{notificacion.om}}",
+                    start:"{{notificacion.fecha_inicio|date:'Y-m-d'}} {{notificacion.fecha_inicio|time:'H:i'}}",
+                    end:"{{notificacion.fecha_fin|date:'Y-m-d'}} {{notificacion.fecha_fin|time:'H:i'}}",
+                    url:"www.google.com",
+                    backgroundColor:"{{notificacion.gerente.area.color_evento}}",
+                    borderColor:"{{notificacion.gerente.area.color_borde}}",
+                    textColor:"{{notificacion.gerente.area.color_text}}",
+                },
+                 {% endfor %}
+
+            ]
+
+        });
+        calendar.render();
+        calendar.setOption('locale','es');
+    });
+
+
+
+</script>
+
+
+{% endblock  %}

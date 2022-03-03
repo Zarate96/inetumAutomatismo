@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'performance.apps.PerformanceConfig',
     'cambio_gics.apps.CambioGicsConfig',
     'healtcheaks.apps.HealtcheaksConfig',
+    'cambio.apps.CambioConfig',
 
     #EXTRAS
     'ckeditor',
