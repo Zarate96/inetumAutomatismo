@@ -296,7 +296,7 @@ class GestionNoPlanificada(models.Model):
 
 
 class Elemento(models.Model):
-    name = models.CharField(max_length=100, verbose_name="Nombre del Elemento")
+    name = models.CharField(max_length=1000, verbose_name="Nombre del Elemento")
     fecha_hora_inicio = models.DateTimeField(verbose_name="Fecha de creación", null=True, blank=True)
     fecha_hora_fin = models.DateTimeField(verbose_name="Fecha de creación", null=True, blank=True)
     gestion = models.ForeignKey(GestionNoPlanificada, on_delete=models.CASCADE, related_name="get_elemento",
