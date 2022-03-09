@@ -57,7 +57,7 @@ class NoPlanificadaProject(admin.ModelAdmin):
 
 
 @admin.register(GestionNoPlanificada)
-class GestionNoPlanificadaProject(admin.ModelAdmin):
+class GestionNoPlanificadaProject(ImportExportModelAdmin, admin.ModelAdmin):
     readonly_fields = ('created', 'updated','area','tiempo_ejecucion')
     list_display = ('om','created', 'updated')
     list_filter = ('created','fecha_inicio')
