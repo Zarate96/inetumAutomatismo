@@ -6,7 +6,7 @@ from import_export.admin import ImportExportModelAdmin
 
 class ProblemaResource(resources.ModelResource):
     class meta:
-        model=(GestionNoPlanificada)
+        model=(GestionNoPlanificada, NoPlanificada)
 
 @admin.register(Notificacion)
 class NotificacionProject(admin.ModelAdmin):
@@ -51,7 +51,7 @@ class ElementoProject(admin.ModelAdmin):
 
 
 @admin.register(NoPlanificada)
-class NoPlanificadaProject(admin.ModelAdmin):
+class NoPlanificadaProject(ImportExportModelAdmin, admin.ModelAdmin):
     readonly_fields = ('created', 'updated')
     list_display = ('created', 'updated')
 
