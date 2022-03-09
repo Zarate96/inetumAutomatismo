@@ -1,6 +1,12 @@
-from django.contrib import admin
 from .models import *
+from django.contrib import admin
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
 # Register your models here.
+
+class ProblemaResource(resources.ModelResource):
+    class meta:
+        model=(NoPlanificadaProject)
 
 @admin.register(Notificacion)
 class NotificacionProject(admin.ModelAdmin):
