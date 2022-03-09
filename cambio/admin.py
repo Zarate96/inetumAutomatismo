@@ -6,7 +6,7 @@ from import_export.admin import ImportExportModelAdmin
 
 class ProblemaResource(resources.ModelResource):
     class meta:
-        model=(NoPlanificadaProject)
+        model=(GestionNoPlanificada)
 
 @admin.register(Notificacion)
 class NotificacionProject(admin.ModelAdmin):
