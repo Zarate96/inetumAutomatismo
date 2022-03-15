@@ -5,7 +5,7 @@ from task import chat_bot, email, querys, selenium
 def start():
     scheduler = BackgroundScheduler()
     #scheduler.add_job(querys.get_migraciones_dalia, 'cron', day_of_week='0-6', hour='7')
-    scheduler.add_job(querys.get_data_problema_titulo, 'interval', minutes=1)
+    #scheduler.add_job(querys.get_data_problema_titulo, 'interval', minutes=1)
     scheduler.add_job(querys.get_data_problema_titulo, 'cron', day_of_week='0-4', hour='10')
     #scheduler.add_job(selenium.get_hcAPN, 'cron', day_of_week='0-6', hour='9')
     #scheduler.add_job(selenium.get_hcRutasInter, 'cron', day_of_week='0-6', hour='7')
