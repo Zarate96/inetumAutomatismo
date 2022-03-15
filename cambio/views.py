@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Notificacion, Area
+#from .models import Notificacion, Area
 from django.db.models import Q
 
 # Create your views here.
