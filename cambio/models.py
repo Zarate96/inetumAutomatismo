@@ -118,7 +118,7 @@ class Promotor(models.Model):
     def __str__(self):
         return self.name
 
-class Notificacion(models.Model):
+class GestionPlanificada(models.Model):
     CRITICIDAD = (
         ('Baja', 'Baja'),
         ('Media', 'Media'),
@@ -139,9 +139,9 @@ class Notificacion(models.Model):
     )
 
     gerente = models.ForeignKey(Gerente, on_delete=models.CASCADE, related_name="get_gerente_red",
-                                verbose_name="Gerente")
+                                verbose_name="Gerente",blank=True, null=True)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name="get_categoria",
-                                verbose_name="Categoria")
+                                verbose_name="Categoria",blank=True, null=True)
 
     gestor = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name="get_gestor",
                                   verbose_name="Gestor",blank=True, null=True)
@@ -149,7 +149,7 @@ class Notificacion(models.Model):
     titulo = models.CharField(max_length=2000, verbose_name="TITULO",blank=True, null=True)
     descripcion = models.TextField(max_length=2000, verbose_name="DESCRIPCIÓN",blank=True, null=True)
 
-    afectacion = models.CharField(choices=AFECTACION, max_length=200, verbose_name="AFECTACIÓN (B2B o B2C)",blank=True, null=True)
+    afectacion_b2b_b2c = models.CharField(choices=AFECTACION, max_length=200, verbose_name="AFECTACIÓN (B2B o B2C)",blank=True, null=True)
     criticidad = models.CharField(choices=CRITICIDAD, max_length=200, verbose_name="CRITICIDAD DEL CAMBIO",blank=True, null=True)
     impacto = models.CharField(choices=IMPACTO,max_length=200, verbose_name="IMPACTO",blank=True, null=True)
 
@@ -158,20 +158,52 @@ class Notificacion(models.Model):
     tiempo_afectacion = models.DurationField(max_length=200, verbose_name="TIEMPO DE AFECTACION",blank=True, null=True)
     fecha_inicio = models.DateTimeField(verbose_name="FECHA INICIO",blank=True, null=True)
     fecha_fin = models.DateTimeField(verbose_name="FECHA FIN", default=now,blank=True, null=True)
-
-    horario_inicio_afectacion = models.DateTimeField(max_length=2000, verbose_name="HORARIO INICIO DE AFECTACION",blank=True, null=True)
-    horario_entre_afectacion =  models.DateTimeField(max_length=200, verbose_name="HORARIO FIN AFECTACION" ,blank=True, null=True)
+    afectacion = models.CharField( max_length=200, verbose_name="AFECTACIÓN", blank=True, null=True)
+    horario = models.CharField( max_length=200, verbose_name="HORARIO DE AFECTACIÓN", blank=True, null=True)
+    area = models.CharField( max_length=200, verbose_name="AREA", blank=True, null=True)
+    comentarios = models.TextField(verbose_name="COMENTARIOS EXTRAS", blank=True, null=True)
+    comentarios_fechas = models.TextField(verbose_name="COMENTARIOS SOBRE FECHAS", blank=True, null=True)
+    motivo = models.TextField(verbose_name="MOTIVO DEL RECHAZO", blank=True, null=True)
+    aprobada_por_area = models.BooleanField(verbose_name="APROBADA POR EL AREA", blank=True, null=True, default=False)
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición")
 
     class Meta:
-        verbose_name = "Planificada"
-        verbose_name_plural = "Planificadas"
+        verbose_name = "Gestión Planificada"
+        verbose_name_plural = "Gestión de las Planificadas"
         ordering = ('-created',)
 
     def save(self, *args, **kwargs):
-        self.tiempo_ejecucion = self.fecha_fin - self.fecha_inicio
+        if self.fecha_fin and self.fecha_inicio:
+            self.tiempo_afectacion = self.fecha_fin - self.fecha_inicio
+            super().save(*args, **kwargs)
         super().save(*args, **kwargs)
+
+
+
+class Planificada(models.Model):
+    usuario = models.CharField(max_length=1000, verbose_name="Usuario Reviso", blank=True, null=True)
+    fecha_solicitud = models.DateTimeField(verbose_name="Fecha Solicitud", blank=True, null=True)
+    tarea = models.CharField(max_length=1000, verbose_name="Tarea", blank=True, null=True)
+    titulo_tarea = models.CharField(max_length=1000, verbose_name="Titulo Tarea", blank=True, null=True)
+    tipo_elemento = models.CharField(max_length=1000, verbose_name="Tipo de Elemento", blank=True, null=True)
+    elemento = models.CharField(max_length=1000, verbose_name="Elemento", blank=True, null=True)
+    tipo_trabajo = models.CharField(max_length=1000, verbose_name="Tipo de Trabajo", blank=True, null=True)
+    fecha_ejecucion= models.DateTimeField(verbose_name="Fecha de Ejecución", blank=True, null=True)
+    area_asignada = models.CharField(max_length=1000,verbose_name="Area Asignada", blank=True, null=True)
+    extraccion = models.BooleanField(verbose_name="Se hizo la Extracción?", blank=True, null=True, default=False)
+    area = models.CharField(max_length=1000, verbose_name="Area", blank=True, null=True)
+
+    created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación",null=True, blank=True)
+    updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición", null=True, blank=True)
+
+    class Meta:
+        verbose_name = "Cambio Planificado"
+        verbose_name_plural = "Cambios  Planificados"
+        ordering = ["-created"]
+
+    def __str__(self):
+        return self.tarea
 
 
 class NoPlanificada(models.Model):
@@ -270,6 +302,7 @@ class GestionNoPlanificada(models.Model):
                                           null=True)
     gestor = models.ForeignKey(Gestor, on_delete=models.CASCADE, related_name="get_gestor_No_planificada",
                                verbose_name="Gestor", blank=True, null=True)
+    comentarios_fechas = models.TextField(verbose_name="COMENTARIOS SOBRE FECHAS", blank=True, null=True)
     estatus_temm = models.CharField(max_length=2000, verbose_name="Estatus TEMM", blank=True,
                                              null=True)
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación", null=True, blank=True)
@@ -301,7 +334,10 @@ class Elemento(models.Model):
     fecha_hora_fin = models.DateTimeField(verbose_name="Fecha de creación", null=True, blank=True)
     gestion = models.ForeignKey(GestionNoPlanificada, on_delete=models.CASCADE, related_name="get_elemento",
                                  verbose_name="OT", blank=True, null=True)
+    gestion_planificada= models.ForeignKey(GestionPlanificada, on_delete=models.CASCADE, related_name="get_elemento_planificada",
+                                 verbose_name="OT Planificada", blank=True, null=True)
     aprobado = models.BooleanField(default=False, verbose_name="Tiene Ot aprobada?", blank=True, null=True)
+    actividad = models.CharField(max_length=1000, verbose_name="Actividad", null=True, blank=True)
     class Meta:
         verbose_name = "Elemento"
         verbose_name_plural = "Elementos"
@@ -352,6 +388,68 @@ def validador(sender,instance, **kwargs):
 
                     #Todas los elementos con OTs activos de ese dia.
                     elementos_activos = Elemento.objects.filter(name=elemento_propuesto.name).filter(fecha_hora_inicio__gte=fecha_propuesta).filter(fecha_hora_fin__lt=fecha_propuesta2).filter(aprobado=True).exclude(gestion_id=instance.pk).order_by('-fecha_hora_fin')
+
+                    if elementos_activos and flag_diario :
+
+                        delta =pd.date_range(start=fecha_propuesta_inicio, end=fecha_propuesta_fin,
+                                      freq='30min').tz_convert('America/Mexico_City')
+
+                        for x in elementos_activos:
+                            fecha_inicio_activos = pd.Timestamp(x.fecha_hora_inicio).tz_convert('America/Mexico_City')
+                            fecha_fin_activos= pd.Timestamp(x.fecha_hora_fin).tz_convert('America/Mexico_City')
+                            delta2 = pd.date_range(start=fecha_inicio_activos, end=fecha_fin_activos,
+                                      freq='30min').tz_convert('America/Mexico_City')
+                            for z in delta2[:-1]:
+                                if z in delta:
+
+                                    instance.motivo = f'Rechazada debido a que el elemento {elemento_propuesto.name} no se encuentra disponible en la fecha y hora propuesta {z} ,solapa con la ot  {x.gestion.om.ot}.'
+                                    instance.save()
+                                    elemento_propuesto.aprobado = False
+                                    elemento_propuesto.save()
+                                    flag_diario = False
+                                    break
+
+                            if flag_diario:
+                                elemento_propuesto.aprobado = True
+                                elemento_propuesto.save()
+
+                    else:
+                        if flag_diario:
+                            instance.motivo = 'REVISAR'
+                            elemento_propuesto.aprobado = True
+                            elemento_propuesto.save()
+
+    except sender.DoesNotExist:
+        pass
+
+
+
+@receiver(post_save, sender=GestionPlanificada)
+def validadorPlanificada(sender,instance, **kwargs):
+    try:
+        if not instance.motivo:
+            flag_diario= True
+            if instance.fecha_inicio:
+                delta = instance.fecha_inicio - instance.created
+                hours = delta.days * 24 + delta.seconds / 3600
+
+                if hours < 48:
+                    instance.motivo = f'Rechazada debido a que no cumple con las 48 horas.'
+                    flag_diario = False
+
+
+            elementos_propuestos = Elemento.objects.filter(gestion_planificada_id=instance.pk)
+            if elementos_propuestos:
+                for elemento_propuesto in elementos_propuestos:
+                    fecha_propuesta = pd.Timestamp(elemento_propuesto.fecha_hora_inicio.date(),tz='America/Mexico_City')
+                    fecha_p2 =elemento_propuesto.fecha_hora_inicio.date() +  timedelta(days=1)
+                    fecha_propuesta2= pd.Timestamp(fecha_p2, tz='America/Mexico_City')
+
+                    fecha_propuesta_inicio = pd.Timestamp(elemento_propuesto.fecha_hora_inicio).tz_convert('America/Mexico_City')
+                    fecha_propuesta_fin = pd.Timestamp(elemento_propuesto.fecha_hora_fin).tz_convert('America/Mexico_City')
+
+                    #Todas los elementos con OTs activos de ese dia.
+                    elementos_activos = Elemento.objects.filter(name=elemento_propuesto.name).filter(fecha_hora_inicio__gte=fecha_propuesta).filter(fecha_hora_fin__lt=fecha_propuesta2).filter(aprobado=True).exclude(gestion_planificada_id=instance.pk).order_by('-fecha_hora_fin')
 
                     if elementos_activos and flag_diario :
 

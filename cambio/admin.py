@@ -1,17 +1,8 @@
-from .models import *
 from django.contrib import admin
-from import_export import resources
-from import_export.admin import ImportExportModelAdmin
+from .models import *
 # Register your models here.
 
-class ProblemaResource(resources.ModelResource):
-    class meta:
-        model=(GestionNoPlanificada, NoPlanificada)
 
-@admin.register(Notificacion)
-class NotificacionProject(admin.ModelAdmin):
-    readonly_fields = ('tiempo_ejecucion','created', 'updated', )
-    list_display = ('om','created', 'updated')
 
 
 @admin.register(Categoria)
@@ -51,16 +42,25 @@ class ElementoProject(admin.ModelAdmin):
 
 
 @admin.register(NoPlanificada)
-class NoPlanificadaProject(ImportExportModelAdmin, admin.ModelAdmin):
+class NoPlanificadaProject(admin.ModelAdmin):
     readonly_fields = ('created', 'updated')
     list_display = ('created', 'updated')
 
 
 @admin.register(GestionNoPlanificada)
-class GestionNoPlanificadaProject(ImportExportModelAdmin, admin.ModelAdmin):
+class GestionNoPlanificadaProject(admin.ModelAdmin):
     readonly_fields = ('created', 'updated','area','tiempo_ejecucion')
     list_display = ('om','created', 'updated')
     list_filter = ('created','fecha_inicio')
     date_hierarchy = 'created'
     search_fields = ('created','om__ot')
 
+@admin.register(Planificada)
+class PlanificadaProject(admin.ModelAdmin):
+    readonly_fields = ('created', 'updated')
+    list_display = ('created', 'updated')
+
+@admin.register(GestionPlanificada)
+class GestionPlanificadaProject(admin.ModelAdmin):
+    readonly_fields = ('created', 'updated')
+    list_display = ('om','created', 'updated')
