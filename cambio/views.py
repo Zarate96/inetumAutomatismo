@@ -40,7 +40,7 @@ def reportePlanificadas(request):
         writer.writerow(['OM'])
 
         for planificada in planificadas:
-            writer.writerow(['planificada.om'])
+            writer.writerow([planificada.om])
     
         return response
 
