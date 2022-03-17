@@ -121,6 +121,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+
           <li class="nav-item {% if 'gp' in request.path %}menu-open{% endif %}">
             <a href="" class="nav-link {% if 'gp' in request.path %}active{% endif %}"">
               <i class="nav-icon fas fa-clipboard-list"></i>
@@ -150,6 +151,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
             </ul>
           </li>
+
+          <li class="nav-item {% if 'cambio' in request.path %}menu-open{% endif %}">
+            <a href="" class="nav-link {% if 'cambio' in request.path %}active{% endif %}"">
+              <i class="nav-icon fas fa-exchange-alt"></i>
+              <p>
+                Cambios
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{% url 'cambio:reporte-planificadas' %}" class="nav-link {% if request.path == '/cambio/planificadas/' %}active{% endif %}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Gestión planificadas</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
           <li class="nav-item {% if 'hc' in request.path %}menu-open{% endif %}">
             <a href="" class="nav-link {% if 'hc' in request.path %}active{% endif %}"">
               <i class="nav-icon fas fa-list"></i>
