@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.db.models import Q
 from .models import GestionPlanificada
 from django.shortcuts import render, HttpResponse, get_object_or_404
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def calendario(request):
@@ -23,6 +24,7 @@ def calendario(request):
     }
     return render(request, "cambio/calendario.html", context)
 
+@login_required
 def reportePlanificadas(request):
     planificadas = GestionPlanificada.objects.all()
     print(planificadas)
