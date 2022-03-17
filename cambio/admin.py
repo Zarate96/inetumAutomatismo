@@ -1,54 +1,48 @@
-from django.contrib import admin
 from .models import *
-# Register your models here.
+from django.contrib import admin
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
 
-
-
+class ProblemaResource(resources.ModelResource):
+    class meta:
+        model=(Categoria,Area,Gerente,Gestor,Promotor,Elemento,NoPlanificada,GestionNoPlanificada,GestionPlanificada)
 
 @admin.register(Categoria)
-class CategoriaProject(admin.ModelAdmin):
+class CategoriaProject(ImportExportModelAdmin, admin.ModelAdmin):
     readonly_fields = ('created', 'updated')
     list_display = ('name','created', 'updated')
-
 
 @admin.register(Area)
-class AreaProject(admin.ModelAdmin):
+class AreaProject(ImportExportModelAdmin, admin.ModelAdmin):
     readonly_fields = ('created', 'updated')
     list_display = ('name','created', 'updated')
-
 
 @admin.register(Gerente)
-class GerenteProject(admin.ModelAdmin):
+class GerenteProject(ImportExportModelAdmin, admin.ModelAdmin):
     readonly_fields = ('created', 'updated')
     list_display = ('name','created', 'updated')
-
 
 @admin.register(Gestor)
-class GestorProject(admin.ModelAdmin):
+class GestorProject(ImportExportModelAdmin, admin.ModelAdmin):
     readonly_fields = ('created', 'updated')
     list_display = ('name','created', 'updated')
-
 
 @admin.register(Promotor)
-class PromotorProject(admin.ModelAdmin):
+class PromotorProject(ImportExportModelAdmin, admin.ModelAdmin):
     readonly_fields = ('created', 'updated')
     list_display = ('name','created', 'updated')
 
-
-
 @admin.register(Elemento)
-class ElementoProject(admin.ModelAdmin):
+class ElementoProject(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ('name',)
 
-
 @admin.register(NoPlanificada)
-class NoPlanificadaProject(admin.ModelAdmin):
+class NoPlanificadaProject(ImportExportModelAdmin, admin.ModelAdmin):
     readonly_fields = ('created', 'updated')
     list_display = ('created', 'updated')
 
-
 @admin.register(GestionNoPlanificada)
-class GestionNoPlanificadaProject(admin.ModelAdmin):
+class GestionNoPlanificadaProject(ImportExportModelAdmin, admin.ModelAdmin):
     readonly_fields = ('created', 'updated','area','tiempo_ejecucion')
     list_display = ('om','created', 'updated')
     list_filter = ('created','fecha_inicio')
@@ -56,11 +50,11 @@ class GestionNoPlanificadaProject(admin.ModelAdmin):
     search_fields = ('created','om__ot')
 
 @admin.register(Planificada)
-class PlanificadaProject(admin.ModelAdmin):
+class PlanificadaProject(ImportExportModelAdmin, admin.ModelAdmin):
     readonly_fields = ('created', 'updated')
     list_display = ('created', 'updated')
 
 @admin.register(GestionPlanificada)
-class GestionPlanificadaProject(admin.ModelAdmin):
+class GestionPlanificadaProject(ImportExportModelAdmin, admin.ModelAdmin):
     readonly_fields = ('created', 'updated')
     list_display = ('om','created', 'updated')
