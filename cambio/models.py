@@ -178,6 +178,9 @@ class GestionPlanificada(models.Model):
             self.tiempo_afectacion = self.fecha_fin - self.fecha_inicio
             super().save(*args, **kwargs)
         super().save(*args, **kwargs)
+    
+    def getFecHorAsignadas(self):
+        return f'Fecha de inicio: {self.fecha_inicio}\nFecha de termino: {self.fecha_fin}'
 
 
 

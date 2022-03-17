@@ -37,10 +37,13 @@ def reportePlanificadas(request):
         #     writer.writerow([proyecto.soporte.gerente, proyecto.lider.gerente, proyecto.name_proyecto, proyecto.cumplimiento, proyecto.getFechaProxima(), '', '', '', '', '', '', proyecto.gestor, 
         #                     proyecto.comentarios_vista, proyecto.get_fechasEntregado(), proyecto.get_fechasNoEntregado(), proyecto.estatus, proyecto.detencion, proyecto.soporte.name])
         
-        writer.writerow(['OM'])
+        writer.writerow(['GERENTE RESPONSABLE','Categoria','OM','TÍTULO','DESCRIPCIÓN','Afectación (B2B o B2C)', 'CRITICIDAD DEL CAMBIO', 'IMPACTO', 'TIEMPO DE EJECUCIÓN', 'TIEMPO DE ROLLBACK',
+                        'FECHA Y HORA ASIGNADAS PARA LA EJECUCIÓN', 'Afectación', 'HORARIO  entre las Afectación entre las entre las  entre las', 'Gestor'])
 
         for planificada in planificadas:
-            writer.writerow([planificada.om])
+            writer.writerow([planificada.gerente, planificada.categoria, planificada.om, planificada.titulo, planificada.descripcion, planificada.afectacion_b2b_b2c, planificada.criticidad, 
+            planificada.impacto, planificada.tiempo_ejecucion,  planificada.tiempo_rollback, planificada.tiempo_afectacion, planificada.om, planificada.getFecHorAsignadas(),
+            planificada.afectacion, planificada.horario])
     
         return response
 

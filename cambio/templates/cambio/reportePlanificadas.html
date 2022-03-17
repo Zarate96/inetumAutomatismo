@@ -54,13 +54,39 @@
                       width="100%">
                       <thead>
                         <tr>
+                          <th>GERENTE RESPONSABLE</th>
+                          <th>Categoria</th>
                           <th>OM</th>
+                          <th>TÍTULO</th>
+                          <th>DESCRIPCIÓN</th>
+                          <th>Afectación (B2B o B2C)</th>
+                          <th>CRITICIDAD DEL CAMBIO</th>
+                          <th>IMPACTO</th>
+                          <th>TIEMPO DE EJECUCIÓN</th>
+                          <th>TIEMPO DE ROLLBACK</th>
+                          <th>FECHA Y HORA ASIGNADAS PARA LA EJECUCIÓN</th>
+                          <th>Afectación</th>
+                          <th>HORARIO  entre las Afectación entre las entre las  entre las</th>
+                          <th>Gestor</th>
                         </tr>
                       </thead>
                       <tbody>
                         {% for planificada in planificadas %}
                         <tr>
-                          <td>{{planificada.om}} </td>
+                          <td>{{planificada.gerente}} </td>
+                          <td>{{planificada.categoria}} </td>
+                          <td>{{planificada.titulo}} </td>
+                          <td>{{planificada.descripcion}} </td>
+                          <td>{{planificada.afectacion_b2b_b2c}} </td>
+                          <td>{{planificada.criticidad}} </td>
+                          <td>{{planificada.impacto}} </td>
+                          <td>{{planificada.tiempo_ejecucion}} </td>
+                          <td>{{planificada.tiempo_rollback}} </td>
+                          <td>{{planificada.tiempo_afectacion}} </td>
+                          <td>{{planificada.getFecHorAsignadas}} </td>
+                          <td>{{planificada.afectacion}} </td>
+                          <td>{{planificada.horario}} </td>
+                          <td></td>
                         </tr>
                         {% endfor %}
                       </tbody>
