@@ -180,7 +180,7 @@ class GestionPlanificada(models.Model):
         super().save(*args, **kwargs)
     
     def getFecHorAsignadas(self):
-        return f'Fecha de inicio: {self.fecha_inicio}\nFecha de termino: {self.fecha_fin}'
+        return f'Fecha de inicio: {self.fecha_inicio.strftime("%m/%d/%Y, %H:%M:%S")}\nFecha de termino: {self.fecha_fin.strftime("%m/%d/%Y, %H:%M:%S")}'
 
 
 

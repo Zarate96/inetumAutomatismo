@@ -42,7 +42,7 @@ def reportePlanificadas(request):
 
         for planificada in planificadas:
             writer.writerow([planificada.gerente, planificada.categoria, planificada.om, planificada.titulo, planificada.descripcion, planificada.afectacion_b2b_b2c, planificada.criticidad, 
-            planificada.impacto, planificada.tiempo_ejecucion,  planificada.tiempo_rollback, planificada.tiempo_afectacion, planificada.om, planificada.getFecHorAsignadas(),
+            planificada.impacto, planificada.tiempo_ejecucion, planificada.tiempo_rollback, planificada.tiempo_afectacion, planificada.getFecHorAsignadas(),
             planificada.afectacion, planificada.horario])
     
         return response
