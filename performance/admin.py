@@ -15,8 +15,8 @@ class PerformanceResource(resources.ModelResource):
 class EstatusProject(ImportExportModelAdmin, admin.ModelAdmin):
     resouce_class = PerformanceResource
     readonly_fields = ('created', 'updated')
-    list_display = ('name','fecha', 'ingeniero',)
-    search_fields = ('name','created', 'updated',)
+    list_display = ('name','fecha', 'tiempo_respuesta','performance','ingeniero' )
+    search_fields = ('name','performance__identificador','created', 'updated',)
     raw_id_fields = ('performance',)
 
 
@@ -33,8 +33,9 @@ class PerformanceProject(ImportExportModelAdmin, admin.ModelAdmin):
     resouce_class = PerformanceResource
     readonly_fields = ('created', 'updated')
     list_display = ('name', 'sucursal','servicio', 'troncal', 'tipo','identificador', 'categoria','get_estatus', 'region',  'unico','regio', 'ab', 'saltos')
-    list_filter = ( 'name','sucursal','identificador')
-    search_fields = ('name','sucursal','identificador','categoria__name')
+    list_filter = ('name', 'sucursal','identificador')
+    search_fields = ('name', 'sucursal','identificador', 'categoria__name')
+
 
 
     def get_estatus(self, obj):

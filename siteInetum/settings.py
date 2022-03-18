@@ -94,12 +94,12 @@ WSGI_APPLICATION = 'siteInetum.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 # NAME_DB = config('NAME_DB', default=False)
 # USER_DB = config('USER_DB', default=False)
@@ -117,17 +117,17 @@ WSGI_APPLICATION = 'siteInetum.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'inetum',
-        'USER': 'root',
-        'PASSWORD': 'Inetum*root391',
-        'HOST': '94.74.76.125',
-        'CONN_MAX_AGE': 400,
-        'PORT': '5432',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'inetum',
+#         'USER': 'root',
+#         'PASSWORD': 'Inetum*root391',
+#         'HOST': '94.74.76.125',
+#         'CONN_MAX_AGE': 400,
+#         'PORT': '5432',
+#     }
+# }
 
 # keepalive_kwargs = {
 #   "keepalives": 1,
