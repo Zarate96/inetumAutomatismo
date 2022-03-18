@@ -1,6 +1,8 @@
 from django.db import models
 from ckeditor.fields import RichTextField
-from .tasks import notificacion_correo_rechado, notificacion_correo_aceptado
+import pandas as pd
+from datetime import timedelta
+from .tasks import notificacion_correo_rechado, notificacion_correo_aceptado, notificacion_telegram, notificacion_telegram_rechazado
 
 from django.dispatch import receiver
 from django.db.models.signals import pre_save
@@ -128,7 +130,7 @@ class Performance(models.Model):
         ordering = ('created',)
 
     def __str__(self):
-        return str(self.categoria)
+        return f'Cliente: {self.name}, Sucursal : {self.sucursal}, OE : {self.identificador}.'
 
 class Estatus(models.Model):
     name = models.CharField(choices=NOMBRE, max_length=45, verbose_name="Nombre")
@@ -139,7 +141,10 @@ class Estatus(models.Model):
                                   verbose_name="Nombre del Ingeniero", blank=True, null=True)
 
     motivo = models.CharField(choices=MOTIVO, max_length=45, verbose_name="Motivo", blank=True, null=True)
-    adicionales = RichTextField(verbose_name="Comentarios Adicionales", blank=True, null=True)
+    adicionales = RichTextField(max_length=1000, verbose_name="Comentarios Adicionales", blank=True, null=True)
+    primera = models.BooleanField(default=False,verbose_name="Primera Revisión?" ,blank=True, null=True)
+    errores = models.IntegerField(default=0, verbose_name="Cantidad de Errores", blank=True, null=True)
+    tiempo_respuesta = models.DurationField(verbose_name="Tiempo de Respuesta", blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición")
 
@@ -151,19 +156,36 @@ class Estatus(models.Model):
     def __str__(self):
         return self.name
 
-    # def save(self, *args, **kwargs):
-    #     if self.name == "RECHAZADO":
-    #         notificacion_correo_rechado(self.name,self.performance.name, self.performance.sucursal,self.performance.identificador,self.motivo,self.ingeniero.name, self.ingeniero.mail)
-    #         super().save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        if self.name == "RECHAZADO":
+            #notificacion_correo_rechado(self.name,self.performance.name, self.performance.sucursal,self.performance.identificador,self.motivo,self.ingeniero.name, self.ingeniero.mail)
+            #notificacion_telegram_rechazado(self.ingeniero.name, self.name, self.performance.name, self.performance.sucursal,
+             #                     self.performance.identificador, self.motivo)
+            super().save(*args, **kwargs)
 
 
-    #     elif self.name == "ACEPTADO":
-    #         notificacion_correo_aceptado(self.name,self.performance.name, self.performance.sucursal,self.performance.identificador,self.ingeniero.name, self.ingeniero.mail)
-    #         super().save(*args, **kwargs)
+        elif self.name == "ACEPTADO":
+            #notificacion_correo_aceptado(self.name,self.performance.name, self.performance.sucursal,self.performance.identificador,self.ingeniero.name, self.ingeniero.mail)
+            #notificacion_telegram(self.ingeniero.name, self.name,self.performance.name, self.performance.sucursal,self.performance.identificador)
+            super().save(*args, **kwargs)
 
-    #     else:
-    #         super().save(*args, **kwargs)
+        else:
+            super().save(*args, **kwargs)
 
+
+
+
+@receiver(pre_save, sender=Estatus)
+def calculo_tiempo(sender,instance, **kwargs):
+    try:
+        if not instance.tiempo_respuesta:
+            estatus = Estatus.objects.filter(performance_id=instance.performance_id).latest('fecha')
+            if estatus:
+                delta = pd.date_range(start=f'{estatus.fecha}', end=f'{instance.fecha}', tz='America/Mexico_City', freq='B')
+                instance.tiempo_respuesta = timedelta(days=(len(delta) - 1))
+
+    except sender.DoesNotExist:
+        pass
 
 #########################################################################################################
 
