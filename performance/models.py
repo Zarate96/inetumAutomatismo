@@ -141,7 +141,7 @@ class Estatus(models.Model):
                                   verbose_name="Nombre del Ingeniero", blank=True, null=True)
 
     motivo = models.CharField(choices=MOTIVO, max_length=45, verbose_name="Motivo", blank=True, null=True)
-    adicionales = RichTextField(max_length=1000, verbose_name="Comentarios Adicionales", blank=True, null=True)
+    adicionales = RichTextField(verbose_name="Comentarios Adicionales", blank=True, null=True)
     primera = models.BooleanField(default=False,verbose_name="Primera Revisión?" ,blank=True, null=True)
     errores = models.IntegerField(default=0, verbose_name="Cantidad de Errores", blank=True, null=True)
     tiempo_respuesta = models.DurationField(verbose_name="Tiempo de Respuesta", blank=True, null=True)
