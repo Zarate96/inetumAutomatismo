@@ -21,7 +21,6 @@ from django.conf import settings
 urlpatterns = [
     path('', include('core.urls')),
     path('problema/', include('problema.urls')),
-    path('hc/', include('healtcheaks.urls')),
     path('cambio/', include('cambio.urls')),
 
     #administradores

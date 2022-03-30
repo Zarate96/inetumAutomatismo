@@ -44,10 +44,8 @@ INSTALLED_APPS = [
     #MY_APPS
     'core.apps.CoreConfig',
     'problema.apps.ProblemaConfig',
-    'kpi.apps.KpiConfig',
     'performance.apps.PerformanceConfig',
     'cambio_gics.apps.CambioGicsConfig',
-    'healtcheaks.apps.HealtcheaksConfig',
     'cambio.apps.CambioConfig',
 
     #EXTRAS
