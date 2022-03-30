@@ -170,35 +170,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </ul>
           </li>
 
-          <li class="nav-item {% if 'hc' in request.path %}menu-open{% endif %}">
-            <a href="" class="nav-link {% if 'hc' in request.path %}active{% endif %}"">
-              <i class="nav-icon fas fa-list"></i>
-              <p>
-                Healt Check 
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{% url 'healtcheaks:healtcheaksInterAtt' %}" class="nav-link {% if request.path == '/hc/interconfiguracionATT' %}active{% endif %}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Interconfiguración ATT</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{% url 'healtcheaks:healtcheaksAPN' %}" class="nav-link {% if request.path == '/problema/hc/apn' %}active{% endif %}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>APN MVNO'S</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{% url 'healtcheaks:healtcheaksRutasInter' %}" class="nav-link {% if request.path == '/problema/hc/ri' %}active{% endif %}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Rutas de interconexión</p>
-                </a>
-              </li>
-            </ul>
-          </li>
+          
           <!--
           <li class="nav-item">
             <a href="#" class="nav-link">
