@@ -1,0 +1,116 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %} Gestión de Proyectos {% endblock %}
+{% block content %} 
+<!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Reporte de cambios</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                <li class="breadcrumb-item active">Reportes</li>
+                </ol>
+            </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+<div class="content-header">
+  <div class="d-flex flex-row-reverse mr-3">
+      <div class="row">
+        <form action="" method="POST">
+          {% csrf_token %}
+          <a href="{% url 'cambio:reporte-no-planificadas' %}"><button class="btn btn-secondary" type="submit"><span>EXPORTAR CSV</span></button></a>
+        </form>
+      </div>
+  </div>
+</div>
+<div class="content mt-3">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- /.col-md-6 -->
+        <div class="col-12">
+          
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Reporte</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <div class="row">
+                  <div class="col-sm-12 container horizontal-scrollable" style="overflow-x: auto;">
+                    {% if no_planificadas %}
+                    <div class="card-body table-responsive p-0" style="overflow:scroll;">
+                      <table id="example1" class="table table-striped " cellspacing="0"
+                      width="100%">
+                      <thead>
+                        <tr>
+                          <th>GERENTE RESPONSABLE</th>
+                          <th>Categoria</th>
+                          <th>OM</th>
+                          <th>TÍTULO</th>
+                          <th>DESCRIPCIÓN</th>
+                          <th>Afectación (B2B o B2C)</th>
+                          <th>CRITICIDAD DEL CAMBIO</th>
+                          <th>IMPACTO</th>
+                          <th>TIEMPO DE EJECUCIÓN</th>
+                          <th>TIEMPO DE ROLLBACK</th>
+                          <th>FECHA Y HORA ASIGNADAS PARA LA EJECUCIÓN</th>
+                          <th>Afectación</th>
+                          <th>HORARIO  entre las Afectación entre las entre las  entre las</th>
+                          <th>Gestor</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for planificada in no_planificadas %}
+                        <tr>
+                          <td>{{planificada.gerente}} </td>
+                          <td>{{planificada.categoria}} </td>
+                          <td>{{planificada.titulo}} </td>
+                          <td>{{planificada.descripcion}} </td>
+                          <td>{{planificada.afectacion_b2b_b2c}} </td>
+                          <td>{{planificada.criticidad}} </td>
+                          <td>{{planificada.impacto}} </td>
+                          <td>{{planificada.tiempo_ejecucion}} </td>
+                          <td>{{planificada.tiempo_rollback}} </td>
+                          <td>{{planificada.tiempo_afectacion}} </td>
+                          <td>{{planificada.getFecHorAsignadas}} </td>
+                          <td>{{planificada.afectacion}} </td>
+                          <td>{{planificada.horario}} </td>
+                          <td></td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                      </table>
+                    </div>
+                    {% else %}
+                    <p>No existen proyectos</p>
+                    {% endif %}
+                  </div>
+                </div>
+                  <div class="row mt-3">
+                    <div class="col-lg-6">
+                      <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Total de proyectos {{no_planificadas.count}} </div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.card-body -->
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+<!-- /.content -->
+{% endblock %}
