@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'problema.apps.ProblemaConfig',
     'performance.apps.PerformanceConfig',
+    'cambio.apps.CambioConfig',
 
     #EXTRAS
     'ckeditor',
