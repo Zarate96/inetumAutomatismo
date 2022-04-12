@@ -335,6 +335,7 @@ class GestionNoPlanificada(models.Model):
         super().save(*args, **kwargs)
 
 
+
 class Elemento(models.Model):
     name = models.CharField(max_length=1000, verbose_name="Nombre del Elemento")
     fecha_hora_inicio = models.DateTimeField(verbose_name="Fecha de creación", null=True, blank=True)
@@ -351,7 +352,6 @@ class Elemento(models.Model):
 
     def __str__(self):
         return self.name
-
 
 @receiver(post_save, sender=GestionNoPlanificada)
 def validador(sender,instance, **kwargs):
