@@ -9,8 +9,15 @@ import pandas as pd
 import re
 now = timezone.now
 
+ESTATUS = (
+        ('APROBADA', 'APROBADA'),
+        ('CANCELADA', 'CANCELADA'),
+        ('EN REVISION', 'EN REVISION'),
+    )
+
+
 class Categoria(models.Model):
-    name  = models.CharField(max_length=200, verbose_name="Nombre de Categoria", blank=True, null=True)
+    name  = models.CharField(max_length=1000, verbose_name="Nombre de Categoria", blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición")
 
@@ -25,7 +32,7 @@ class Categoria(models.Model):
 
 
 class Plataforma(models.Model):
-    name  = models.CharField(max_length=200, verbose_name="Nombre de Categoria", blank=True, null=True)
+    name  = models.CharField(max_length=1000, verbose_name="Nombre de Categoria", blank=True, null=True)
     categoria= models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name="get_categpria",
                       verbose_name="Area")
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
@@ -43,7 +50,7 @@ class Plataforma(models.Model):
 
 
 class Area(models.Model):
-    name  = models.CharField(max_length=200, verbose_name="Nombre del Area", blank=True, null=True)
+    name  = models.CharField(max_length=1000, verbose_name="Nombre del Area", blank=True, null=True)
     color_evento = ColorField(verbose_name="Color de Fondo", blank=True, null=True)
     color_text = ColorField(verbose_name="Color del Texto", blank=True, null=True)
     color_borde = ColorField(verbose_name="Color del Borde", blank=True, null=True)
@@ -61,10 +68,10 @@ class Area(models.Model):
 
 
 class Gerente(models.Model):
-    name  = models.CharField(max_length=200, verbose_name="Nombre", blank=True, null=True)
-    last_name = models.CharField(max_length=200, verbose_name="Apellido", blank=True, null=True)
-    mail = models.EmailField(max_length=200, verbose_name="Correo", blank=True, null=True)
-    phone = models.CharField(max_length=200, verbose_name="Teléfono", blank=True, null=True)
+    name  = models.CharField(max_length=1000, verbose_name="Nombre", blank=True, null=True)
+    last_name = models.CharField(max_length=1000, verbose_name="Apellido", blank=True, null=True)
+    mail = models.EmailField(max_length=1000, verbose_name="Correo", blank=True, null=True)
+    phone = models.CharField(max_length=1000, verbose_name="Teléfono", blank=True, null=True)
 
     area = models.ForeignKey(Area, on_delete=models.CASCADE, related_name="get_area",
                                 verbose_name="Area")
@@ -82,10 +89,10 @@ class Gerente(models.Model):
 
 
 class Gestor(models.Model):
-    name  = models.CharField(max_length=200, verbose_name="Nombre", blank=True, null=True)
-    last_name = models.CharField(max_length=200, verbose_name="Apellido", blank=True, null=True)
-    mail = models.EmailField(max_length=200, verbose_name="Correo", blank=True, null=True)
-    phone = models.CharField(max_length=200, verbose_name="Teléfono", blank=True, null=True)
+    name  = models.CharField(max_length=1000, verbose_name="Nombre", blank=True, null=True)
+    last_name = models.CharField(max_length=1000, verbose_name="Apellido", blank=True, null=True)
+    mail = models.EmailField(max_length=1000, verbose_name="Correo", blank=True, null=True)
+    phone = models.CharField(max_length=1000, verbose_name="Teléfono", blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición")
 
@@ -100,10 +107,10 @@ class Gestor(models.Model):
 
 
 class Promotor(models.Model):
-    name  = models.CharField(max_length=200, verbose_name="Nombre", blank=True, null=True)
-    last_name = models.CharField(max_length=200, verbose_name="Apellido", blank=True, null=True)
-    mail = models.EmailField(max_length=200, verbose_name="Correo", blank=True, null=True)
-    phone = models.CharField(max_length=200, verbose_name="Teléfono", blank=True, null=True)
+    name  = models.CharField(max_length=1000, verbose_name="Nombre", blank=True, null=True)
+    last_name = models.CharField(max_length=1000, verbose_name="Apellido", blank=True, null=True)
+    mail = models.EmailField(max_length=1000, verbose_name="Correo", blank=True, null=True)
+    phone = models.CharField(max_length=1000, verbose_name="Teléfono", blank=True, null=True)
     gerente = models.ForeignKey(Gerente, on_delete=models.CASCADE, related_name="get_gerente",
                              verbose_name="Gerente")
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
@@ -138,33 +145,42 @@ class GestionPlanificada(models.Model):
         ('N/A', 'N/A'),
     )
 
-    gerente = models.ForeignKey(Gerente, on_delete=models.CASCADE, related_name="get_gerente_red",
-                                verbose_name="Gerente",blank=True, null=True)
+    gerente = models.CharField(max_length=1000, verbose_name="Gerente",blank=True, null=True)
+    autor = models.CharField(max_length=1000, verbose_name="AUTOR", blank=True, null=True)
+    gestor = models.CharField(max_length=1000, verbose_name="GESTOR", blank=True, null=True)
+
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name="get_categoria",
                                 verbose_name="Categoria",blank=True, null=True)
 
-    gestor = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name="get_gestor",
-                                  verbose_name="Gestor",blank=True, null=True)
-    om = models.CharField(max_length=200, verbose_name="OM",blank=True, null=True)
+    om = models.CharField(max_length=1000, verbose_name="OM",blank=True, null=True)
     titulo = models.CharField(max_length=2000, verbose_name="TITULO",blank=True, null=True)
     descripcion = models.TextField(max_length=2000, verbose_name="DESCRIPCIÓN",blank=True, null=True)
 
-    afectacion_b2b_b2c = models.CharField(choices=AFECTACION, max_length=200, verbose_name="AFECTACIÓN (B2B o B2C)",blank=True, null=True)
-    criticidad = models.CharField(choices=CRITICIDAD, max_length=200, verbose_name="CRITICIDAD DEL CAMBIO",blank=True, null=True)
-    impacto = models.CharField(choices=IMPACTO,max_length=200, verbose_name="IMPACTO",blank=True, null=True)
+    afectacion_b2b_b2c = models.CharField(choices=AFECTACION, max_length=1000, verbose_name="AFECTACIÓN (B2B o B2C)",blank=True, null=True)
+    criticidad = models.CharField(choices=CRITICIDAD, max_length=1000, verbose_name="CRITICIDAD DEL CAMBIO",blank=True, null=True)
+    impacto = models.CharField(choices=IMPACTO,max_length=1000, verbose_name="IMPACTO",blank=True, null=True)
 
-    tiempo_ejecucion = models.DurationField(max_length=200, verbose_name="TIEMPO DE EJECUCIÓN",blank=True, null=True)
-    tiempo_rollback = models.DurationField(max_length=200, verbose_name="TIEMPO DE ROLLBACK",blank=True, null=True)
-    tiempo_afectacion = models.DurationField(max_length=200, verbose_name="TIEMPO DE AFECTACION",blank=True, null=True)
+    tiempo_ejecucion = models.DurationField(max_length=1000, verbose_name="TIEMPO DE EJECUCIÓN",blank=True, null=True)
+    fecha_inicio_afectacion = models.DateTimeField(verbose_name="FECHA INICIO DE AFECTACION",blank=True, null=True)
+    fecha_fin_afectacion = models.DateTimeField(verbose_name="FECHA FIN DE AFECTACION", blank=True, null=True)
+    tiempo_rollback = models.DurationField(max_length=1000, verbose_name="TIEMPO DE ROLLBACK",blank=True, null=True)
+    tiempo_afectacion = models.DurationField(max_length=1000, verbose_name="TIEMPO DE AFECTACION",blank=True, null=True)
     fecha_inicio = models.DateTimeField(verbose_name="FECHA INICIO",blank=True, null=True)
     fecha_fin = models.DateTimeField(verbose_name="FECHA FIN", default=now,blank=True, null=True)
-    afectacion = models.CharField( max_length=200, verbose_name="AFECTACIÓN", blank=True, null=True)
-    horario = models.CharField( max_length=200, verbose_name="HORARIO DE AFECTACIÓN", blank=True, null=True)
-    area = models.CharField( max_length=200, verbose_name="AREA", blank=True, null=True)
+    afectacion = models.CharField( max_length=1000, verbose_name="AFECTACIÓN", blank=True, null=True)
+    horario = models.CharField( max_length=1000, verbose_name="HORARIO DE AFECTACIÓN", blank=True, null=True)
+    area = models.CharField( max_length=1000, verbose_name="AREA", blank=True, null=True)
     comentarios = models.TextField(verbose_name="COMENTARIOS EXTRAS", blank=True, null=True)
     comentarios_fechas = models.TextField(verbose_name="COMENTARIOS SOBRE FECHAS", blank=True, null=True)
     motivo = models.TextField(verbose_name="MOTIVO DEL RECHAZO", blank=True, null=True)
     aprobada_por_area = models.BooleanField(verbose_name="APROBADA POR EL AREA", blank=True, null=True, default=False)
+    estatus = models.CharField(choices=ESTATUS, max_length=1000, verbose_name="ESTATUS",
+                               blank=True, null=True, default='REVISION')
+
+    color_evento = ColorField(verbose_name="Color de Fondo", blank=True, null=True)
+    color_text = ColorField(verbose_name="Color del Texto", blank=True, null=True)
+    color_borde = ColorField(verbose_name="Color del Borde", blank=True, null=True)
+
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición")
 
@@ -175,16 +191,73 @@ class GestionPlanificada(models.Model):
 
     def save(self, *args, **kwargs):
         if self.fecha_fin and self.fecha_inicio:
-            self.tiempo_afectacion = self.fecha_fin - self.fecha_inicio
-            super().save(*args, **kwargs)
+            self.tiempo_ejecucion = self.fecha_fin - self.fecha_inicio
+        if self.fecha_inicio_afectacion and self.fecha_fin_afectacion:
+            self.tiempo_afectacion = self.fecha_fin_afectacion - self.fecha_inicio_afectacion
         super().save(*args, **kwargs)
-    
+
     def getFecHorAsignadas(self):
-        if self.fecha_inicio == None or self.fecha_inicio == "" or self.fecha_fin == None or self.fecha_fin == "":
-            return "No data"
+        return f'Fecha de inicio: {self.fecha_inicio.strftime("%d/%m/%y  %H:%M")} Fecha de termino: {self.fecha_fin.strftime("%d/%m/%y  %H:%M")}' if self.fecha_inicio and self.fecha_fin else None
+
+    def durationEjecucion(self):
+        if self.tiempo_ejecucion:
+            total_seconds = int(self.tiempo_ejecucion.total_seconds())
+            days = total_seconds // 86400
+            remaining_hours = total_seconds % 86400
+            remaining_minutes = remaining_hours % 3600
+            hours = remaining_hours // 3600
+            minutes = remaining_minutes // 60
+            seconds = remaining_minutes % 60
+
+            days_str = f'{days}d ' if days else ''
+            hours_str = f'{hours} hrs ' if hours else ''
+            minutes_str = f'{minutes} min ' if minutes else ''
+            seconds_str = f'{seconds}s' if seconds and not hours_str else ''
+
+            return f'{days_str}{hours_str}{minutes_str}{seconds_str}'
         else:
-            return f'Fecha de inicio: {self.fecha_inicio.strftime("%d/%m/%Y, %H:%M:%S")}\nFecha de termino: {self.fecha_fin.strftime("%d/%m/%Y, %H:%M:%S")}'
-            
+            return None
+
+    def durationRollback(self):
+        if self.tiempo_rollback:
+            total_seconds = int(self.tiempo_rollback.total_seconds())
+            days = total_seconds // 86400
+            remaining_hours = total_seconds % 86400
+            remaining_minutes = remaining_hours % 3600
+            hours = remaining_hours // 3600
+            minutes = remaining_minutes // 60
+            seconds = remaining_minutes % 60
+
+            days_str = f'{days}d ' if days else ''
+            hours_str = f'{hours} hrs ' if hours else ''
+            minutes_str = f'{minutes} min ' if minutes else ''
+            seconds_str = f'{seconds}s' if seconds and not hours_str else ''
+
+            return f'{days_str}{hours_str}{minutes_str}{seconds_str}'
+        else:
+            return None
+
+    def durationAfectacion(self):
+        if self.tiempo_afectacion:
+            total_seconds = int(self.tiempo_afectacion.total_seconds())
+            days = total_seconds // 86400
+            remaining_hours = total_seconds % 86400
+            remaining_minutes = remaining_hours % 3600
+            hours = remaining_hours // 3600
+            minutes = remaining_minutes // 60
+            seconds = remaining_minutes % 60
+
+            days_str = f'{days}d ' if days else ''
+            hours_str = f'{hours} hrs ' if hours else ''
+            minutes_str = f'{minutes} min ' if minutes else ''
+            seconds_str = f'{seconds}s' if seconds and not hours_str else ''
+
+            return f'{days_str}{hours_str}{minutes_str}{seconds_str}'
+        else:
+            return None
+
+    def horarioAfectacion(self):
+        return f'{self.impacto} entre las {self.fecha_inicio_afectacion.strftime("%H:%M:%S")} a {self.fecha_fin_afectacion.strftime("%H:%M:%S")}' if self.fecha_inicio_afectacion and self.fecha_fin_afectacion and self.impacto else None
 
 
 
@@ -200,7 +273,8 @@ class Planificada(models.Model):
     area_asignada = models.CharField(max_length=1000,verbose_name="Area Asignada", blank=True, null=True)
     extraccion = models.BooleanField(verbose_name="Se hizo la Extracción?", blank=True, null=True, default=False)
     area = models.CharField(max_length=1000, verbose_name="Area", blank=True, null=True)
-
+    reprogramada = models.BooleanField(verbose_name="Reprogramada?", blank=True, null=True, default=False)
+    firma = models.CharField(max_length=1000, verbose_name="Firma", blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación",null=True, blank=True)
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición", null=True, blank=True)
 
@@ -224,12 +298,13 @@ class NoPlanificada(models.Model):
     tiempo_ejecucion = models.TextField(verbose_name="Tiempo de Ejecución", blank=True, null=True)
     tiempo_rollback = models.TextField(verbose_name="Tiempo de Rollback", blank=True, null=True)
     tiempo_afectacion = models.TextField(verbose_name="Tiempo de Afectación", blank=True, null=True)
-    horario_afectacion = models.CharField(max_length=100, verbose_name="horario de Afectación", blank=True, null=True)
+    horario_afectacion = models.CharField(max_length=1000, verbose_name="horario de Afectación", blank=True, null=True)
     servicio = models.CharField(max_length=1000, verbose_name="Servicios Afectados")
     reinicio = models.CharField(max_length=1000, verbose_name="Indicar si el cambio requiere algún reinicio")
     promotor = models.ForeignKey(Promotor, on_delete=models.CASCADE, related_name="get_promotor",
                                   verbose_name="Promotor",blank=True, null=True)
     motivo = models.TextField(max_length=1000, verbose_name="Motivo de NO PLANIFICACIÓN",blank=True, null=True)
+
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación",null=True, blank=True)
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición", null=True, blank=True)
 
@@ -265,6 +340,8 @@ class GestionNoPlanificada(models.Model):
     )
 
 
+
+
     plataforma = models.ForeignKey(Plataforma, on_delete=models.CASCADE, related_name="get_plataforma",
                                 verbose_name="Plataforma",blank=True, null=True)
 
@@ -279,23 +356,23 @@ class GestionNoPlanificada(models.Model):
     titulo = models.CharField(max_length=2000, verbose_name="TITULO",blank=True, null=True)
     descripcion = models.TextField(max_length=2000, verbose_name="DESCRIPCIÓN",blank=True, null=True)
 
-    afectacion_b2b_b2c = models.CharField(choices=AFECTACION, max_length=200, verbose_name="AFECTACIÓN (B2B o B2C)",blank=True, null=True)
-    criticidad = models.CharField(choices=CRITICIDAD, max_length=200, verbose_name="CRITICIDAD DEL CAMBIO",blank=True, null=True)
-    impacto = models.CharField(choices=IMPACTO,max_length=200, verbose_name="IMPACTO",blank=True, null=True)
+    afectacion_b2b_b2c = models.CharField(choices=AFECTACION, max_length=1000, verbose_name="AFECTACIÓN (B2B o B2C)",blank=True, null=True)
+    criticidad = models.CharField(choices=CRITICIDAD, max_length=1000, verbose_name="CRITICIDAD DEL CAMBIO",blank=True, null=True)
+    impacto = models.CharField(choices=IMPACTO,max_length=1000, verbose_name="IMPACTO",blank=True, null=True)
 
-    tiempo_ejecucion = models.DurationField(max_length=200, verbose_name="TIEMPO DE EJECUCIÓN",blank=True, null=True)
-    tiempo_rollback = models.DurationField(max_length=200, verbose_name="TIEMPO DE ROLLBACK",blank=True, null=True)
-    tiempo_afectacion = models.DurationField(max_length=200, verbose_name="TIEMPO DE AFECTACION",blank=True, null=True)
+    tiempo_ejecucion = models.DurationField(max_length=1000, verbose_name="TIEMPO DE EJECUCIÓN",blank=True, null=True)
+    tiempo_rollback = models.DurationField(max_length=1000, verbose_name="TIEMPO DE ROLLBACK",blank=True, null=True)
+    tiempo_afectacion = models.DurationField(max_length=1000, verbose_name="TIEMPO DE AFECTACION",blank=True, null=True)
 
     fecha_inicio = models.DateTimeField(verbose_name="FECHA INICIO",blank=True, null=True)
     fecha_fin = models.DateTimeField(verbose_name="FECHA FIN", default=now,blank=True, null=True)
-    afectacion= models.CharField( max_length=200, verbose_name="AFECTACIÓN",
+    afectacion= models.CharField( max_length=1000, verbose_name="AFECTACIÓN",
                                           blank=True, null=True)
 
     horario_inicio_afectacion = models.DateTimeField(max_length=2000, verbose_name="HORARIO INICIO DE AFECTACION",blank=True, null=True)
-    horario_entre_afectacion =  models.DateTimeField(max_length=200, verbose_name="HORARIO FIN AFECTACION" ,blank=True, null=True)
+    horario_entre_afectacion =  models.DateTimeField(max_length=1000, verbose_name="HORARIO FIN AFECTACION" ,blank=True, null=True)
 
-    area = models.CharField(max_length=200, verbose_name="AREA",
+    area = models.CharField(max_length=1000, verbose_name="AREA",
                                   blank=True, null=True)
 
     fecha_inicio_propuesta = models.DateTimeField(verbose_name="FECHA INICIO PROPUESTA", blank=True, null=True)
@@ -312,6 +389,10 @@ class GestionNoPlanificada(models.Model):
     comentarios_fechas = models.TextField(verbose_name="COMENTARIOS SOBRE FECHAS", blank=True, null=True)
     estatus_temm = models.CharField(max_length=2000, verbose_name="Estatus TEMM", blank=True,
                                              null=True)
+
+    estatus = models.CharField(choices=ESTATUS, max_length=1000, verbose_name="ESTATUS",
+                                          blank=True, null=True, default='REVISION')
+
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación", null=True, blank=True)
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición", null=True, blank=True)
 
@@ -335,9 +416,8 @@ class GestionNoPlanificada(models.Model):
         super().save(*args, **kwargs)
 
 
-
 class Elemento(models.Model):
-    name = models.CharField(max_length=1000, verbose_name="Nombre del Elemento")
+    name = models.CharField(max_length=500, verbose_name="Nombre del Elemento")
     fecha_hora_inicio = models.DateTimeField(verbose_name="Fecha de creación", null=True, blank=True)
     fecha_hora_fin = models.DateTimeField(verbose_name="Fecha de creación", null=True, blank=True)
     gestion = models.ForeignKey(GestionNoPlanificada, on_delete=models.CASCADE, related_name="get_elemento",
@@ -352,6 +432,7 @@ class Elemento(models.Model):
 
     def __str__(self):
         return self.name
+
 
 @receiver(post_save, sender=GestionNoPlanificada)
 def validador(sender,instance, **kwargs):

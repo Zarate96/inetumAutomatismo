@@ -4,8 +4,8 @@
 {% load static %}
 {% block css_extra %}
     <link rel="stylesheet" href="{% static 'core/lib/main.css' %}">
-
 {% endblock %}
+
 {% block content %}
         <div class="container">
                 <form class="form-inline"  method ="GET">
@@ -13,22 +13,18 @@
                   <label class="my-auto mr-5 font-weight-bold" for="inlineFormCustomSelectPref">Selecciona un Area</label>
                   <select class="custom-select my-1 mr-sm-2 col-8" id="inlineFormCustomSelectPref" name="seleccionar">
                     <option selected>Seleccione...</option>
-                     {% for area in areas %}
-                    <option value="{{area.name}}">{{area.name}}</option>
-                      {% endfor %}
+
+                    <option value="Red">Red</option>
+                    <option value="Sistemas">Sistemas</option>
+
                   </select>
                 <button type="submit" class="btn btn-secondary ml-2 my-1 float-right ">Enviar</button>
             </form>
         </div>
     <div class="container my-3" id='calendar'></div>
-
 {% endblock  %}
 
-
-{% block calendario %}
-
-
-
+{% block extra_js %}
 <script type="text/javascript" src="{% static 'core/lib/main.js' %}"></script>
 <script type="text/javascript" src="{% static 'core/lib/locales-all.js' %}"></script>
 
@@ -48,15 +44,15 @@
         },
 
             events:[
-               {% for notificacion in notificaciones %}
+               {% for ot in ots_aprobadas %}
                 {
-                    title:"{{notificacion.om}}",
-                    start:"{{notificacion.fecha_inicio|date:'Y-m-d'}} {{notificacion.fecha_inicio|time:'H:i'}}",
-                    end:"{{notificacion.fecha_fin|date:'Y-m-d'}} {{notificacion.fecha_fin|time:'H:i'}}",
-                    url:"www.google.com",
-                    backgroundColor:"{{notificacion.gerente.area.color_evento}}",
-                    borderColor:"{{notificacion.gerente.area.color_borde}}",
-                    textColor:"{{notificacion.gerente.area.color_text}}",
+                    title:"{{ot.om}}",
+                    start:"{{ot.fecha_inicio|date:'Y-m-d'}} {{ot.fecha_inicio|time:'H:i'}}",
+                    end:"{{ot.fecha_fin|date:'Y-m-d'}} {{ot.fecha_fin|time:'H:i'}}",
+                    url:"{% url 'cambio:ot_detail' ot.id %}",
+                    backgroundColor:"{{ot.color_evento}}",
+                    borderColor:"{{ot.color_borde}}",
+                    textColor:"{{ot.color_text}}",
                 },
                  {% endfor %}
 
@@ -73,3 +69,6 @@
 
 
 {% endblock  %}
+
+
+

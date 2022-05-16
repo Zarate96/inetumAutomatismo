@@ -1,0 +1,40 @@
+{% extends 'core/base.html' %}
+{% block title %} Ot {{object.om}} Detail{% endblock %}
+{% load static %}
+{% block content %}
+
+       <!-- INICIO TABLA DE ESCALACION -->
+       <div class="container table-responsive">
+           <h6 class="mt-4"><a href="javascript:history.back()" class="text-muted">
+                       <i class="bi bi-backspace-fill"></i> Regresar
+               </a>
+           </h6>
+           <h4 class="display-4 font-weight-bold text-center pb-4">Detalle de la ot :{{object.om}}</h4>
+
+         <table class="table my-3 table-hover">
+              <thead class="bg-secondary text-white">
+
+                <tr>
+                  <th scope="col">Titulo</th>
+                  <th scope="col">Descripción</th>
+                  <th scope="col">Autor</th>
+                  <th scope="col">Fecha Inicio</th>
+                  <th scope="col">Fecha Fin</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr>
+                  <th scope="row">{{object.titulo}}</th>
+                  <td>{{object.descripcion}}</td>
+                  <td>{{object.autor}}</td>
+                  <td>{{object.fecha_inicio}}</td>
+                  <td>{{object.fecha_fin}}</td>
+                </tr>
+                <tr>
+
+              </tbody>
+        </table>
+    </div>
+    <!-- /FIN DE LA TABLA DE LA ESCALACION -->
+{% endblock %}
