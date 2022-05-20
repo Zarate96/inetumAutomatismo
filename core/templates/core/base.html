@@ -16,8 +16,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{% static 'core/plugins/fontawesome-free/css/all.min.css' %}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{% static 'core/dist/css/adminlte.min.css' %}">
-  {% block extracss %}
-  {% endblock extracss %}
+  {% block css_extra %}
+  {% endblock css_extra %}
   <!-- Extra examples for card of project details -->
 </head>
 <body class="hold-transition sidebar-mini">
@@ -208,6 +208,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   </footer>
  REQUIRED SCRIPTS -->
 
+{% block calendario %}{% endblock %}
 <!-- jQuery -->
 <script src="{% static 'core/plugins/jquery/jquery.min.js' %}"></script>
 <!-- Bootstrap 4 -->

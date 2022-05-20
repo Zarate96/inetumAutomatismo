@@ -22,10 +22,10 @@
     <div class="container my-3" id='calendar'></div>
 {% endblock  %}
 
-{% block extra_js %}
+{% block calendario %}
+
 <script type="text/javascript" src="{% static 'core/libc/main.js' %}"></script>
 <script type="text/javascript" src="{% static 'core/libc/locales-all.js' %}"></script>
-
 
 <script>
     document.addEventListener('DOMContentLoaded',function(){
@@ -33,7 +33,7 @@
 
         var calendar = new FullCalendar.Calendar(calendarUI,{
 
-       timeZone: 'local',
+        timeZone: 'local',
         initialView: 'dayGridMonth',
         headerToolbar: {
             left: 'prev next today',
@@ -42,7 +42,7 @@
         },
 
             events:[
-               {% for ot in ots_aprobadas %}
+                {% for ot in ots_aprobadas %}
                 {
                     title:"{{ot.om}}",
                     start:"{{ot.fecha_inicio|date:'Y-m-d'}} {{ot.fecha_inicio|time:'H:i'}}",
@@ -52,7 +52,7 @@
                     borderColor:"{{ot.color_borde}}",
                     textColor:"{{ot.color_text}}",
                 },
-                 {% endfor %}
+                {% endfor %}
 
             ]
 

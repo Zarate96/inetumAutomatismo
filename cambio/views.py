@@ -15,14 +15,12 @@ def calendario(request):
 
     if queryset:
         if queryset ==('Seleccione...'):
-            print("HERE")
             ots_aprobadas = GestionPlanificada.objects.filter(estatus='APROBADA')
         else:
-            print("options")
             ots_aprobadas =  GestionPlanificada.objects.filter(estatus='APROBADA').filter(
                 Q(area=queryset)
             ).distinct()
-
+    print(ots_aprobadas)
     context = {
         'ots_aprobadas': ots_aprobadas,
     }
