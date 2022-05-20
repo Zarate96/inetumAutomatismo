@@ -20,7 +20,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('', include('core.urls')),
-    path('cambio', include('cambio.urls')),
+    path('cambio/', include('cambio.urls')),
     path('problema/', include('problema.urls')),
 
     #administradores
